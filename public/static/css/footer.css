@@ -1,0 +1,223 @@
+
+/*** 
+
+====================================================================
+	Main Footer
+====================================================================
+
+***/
+
+.main-footer{
+	position:relative;
+	padding: 70px 0px 60px;
+	background-color: var(--color-two);
+}
+
+.footer-logo img {
+    margin-bottom: 30px;
+}
+
+.upper-box p {
+    color: #fff;
+    margin-bottom: 30px;
+}
+
+.upper-box .gallery img {
+    padding-bottom: 5px;
+}
+
+.footer-nav{
+	position: relative;
+}
+
+.footer-nav li {
+    position: relative;
+    margin: 0px 35px;
+    padding: 10px;
+}
+
+.footer-nav li a{
+	position: relative;
+	font-weight: 300;
+	color: var(--white-color);
+	font-size: var(--font-16);
+}
+
+.footer-nav li a:hover{
+	color: #fff;
+}
+
+.footer-social_box{
+	position: relative;
+}
+
+.footer-social_box a{
+	position: relative;
+	line-height: 1em;
+	color: var(--white-color);
+	font-size: var(--font-40);
+}
+
+.footer-social_box a:hover{
+	color: var(--main-color);
+}
+
+.main-footer .footer-bottom{
+	position: relative;
+	margin-top: var(--margin-top-40);
+	padding-top: var(--padding-top-25);
+	border-top:1px solid rgba(var(--white-color-rgb), 0.20);
+}
+
+.main-footer .copyright{
+	position: relative;
+	color: var(--white-color);
+	font-size: var(--font-16);
+}
+
+.footer-bottom_nav{
+	position: relative;
+}
+
+.footer-bottom_nav li{
+	position: relative;
+	display: inline-block;
+	margin-right:var(--margin-right-15);
+	padding-right:var(--padding-right-15);
+	border-right:1px solid rgba(var(--white-color-rgb), 0.20);
+}
+
+.footer-bottom_nav li a{
+	position: relative;
+	font-weight: 300;
+	color: var(--white-color);
+	font-size: var(--font-16);
+}
+
+.footer-bottom_nav li a:hover{
+	color: var(--main-color);
+}
+
+.footer-bottom_nav li:last-child{
+	border: none;
+	margin-right: var(--margin-zero);
+	padding-right: var(--padding-zero);
+}
+
+.main-footer.style-two{
+	padding: var(--padding-zero);
+	background-color: var(--white-color);
+}
+
+.main-footer.style-two .inner-container{
+	padding: 70px 0px 60px;
+	border-top:1px solid rgba(var(--black-color-rgb), 0.10);
+}
+
+.main-footer.style-two .footer-nav li a{
+	opacity: 0.70;
+	color: var(--color-two);
+}
+
+.main-footer.style-two .footer-social_box a{
+	color: var(--color-two);
+}
+
+/*** 
+
+====================================================================
+	Footer Style Two
+====================================================================
+
+***/
+
+.footer-style-two{
+	position: relative;
+	padding: 30px 0px 50px;
+}
+
+.footer-style-two .newsletter-column{
+	position: relative;
+	margin-bottom: var(--margin-bottom-30);
+}
+
+.footer-style-two .newsletter-column_inner{
+	position: relative;
+	padding: 70px 45px;
+	border-radius: 25px;
+	background-color: var(--color-three);
+}
+
+.newsletter-title{
+	font-weight: 700;
+	line-height: 70px;
+	color: var(--color-two);
+	text-transform: uppercase;
+}
+
+.newsletter-text{
+	position: relative;
+	opacity: 0.75;
+	line-height: 26px;
+	color: var(--color-two);
+	font-size: var(--font-16);
+	margin-top: var(--margin-top-25);
+}
+
+.footer-style-two .logo-column{
+	position: relative;
+	margin-bottom: var(--margin-bottom-30);
+}
+
+.footer-style-two .logo-column_inner{
+	position: relative;
+	padding: 85px 45px;
+	border-radius: 25px;
+	background-color: var(--color-two);
+}
+
+/* Footer Nav */
+
+.footer-nav_two{
+	position: relative;
+	margin-top: var(--margin-top-45);
+}
+
+.footer-nav_two li{
+	position: relative;
+	display: inline-block;
+	margin-right: var(--margin-right-25);
+}
+
+.footer-nav_two li a{
+	position: relative;
+	color: var(--white-color);
+	font-size: var(--font-16);
+}
+
+.footer-style-two .footer-social_box{
+	left: -5px;
+	margin-top: var(--margin-top-35);
+}
+
+.footer-style-two .footer-bottom{
+	position: relative;
+	margin-top: var(--margin-top-35);
+	padding-top: var(--padding-top-30);
+	border-top:1px solid rgba(var(--white-color-rgb), 0.10);
+}
+
+.footer-style-two .copyright{
+	color: var(--white-color);
+	font-size: var(--font-16);
+}
+
+.footer-two_icon{
+	position: absolute;
+	right: 30px;
+	top: 30px;
+	line-height: 1em;
+	transform: rotate(-45deg);
+	color: var(--white-color);
+	font-size: var(--font-30);
+}

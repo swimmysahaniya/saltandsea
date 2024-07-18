@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block start %}
+
+<!-- Page Banner -->
+<section class="page-banner" style="background-image: url(/media/images/background/15.jpg)">
+    <div class="auto-container">
+        <ul class="page-breadbrumbs">
+            <li><a href="/">Home</a></li>
+            <li>{{destine_place.destination_name}}</li>
+        </ul>
+        <h1 class="page-banner_title">{{destine_place.destination_name}}</h1>
+    </div>
+</section>
+<!-- End Page Banner -->
+
+<!-- Gallery Seven -->
+<section class="gallery-seven">
+    <div class="outer-container">
+        <div class="gallery-carousel-three owl-carousel owl-theme">
+
+            <!-- Image -->
+            {% for image in images %}
+            <div class="image">
+                <a class="lightbox-image" href="/media/{{image.image}}"><img src="/media/{{image.image}}" alt="{{destine_place.destination_name}}" /></a>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+<!-- End Gallery Seven  -->
+
+<!-- Tour Detail Two -->
+<section class="tour-detail-two">
+    <div class="auto-container">
+        <div class="row clearfix">
+            <div class="col-lg-8 col-md-12 col-sm-12">
+                <h3>overview</h3>
+                <p>{{destine_place.description}}</p>
+                <div class="info_outer">
+                    <div class="row clearfix">
+                        <!-- Column -->
+                        <div class="column col-lg-6 col-md-6 col-sm-12">
+                            <ul class="tour-detail-two_list">
+                                <li><span class="icon fas fa-map-marker-alt fa-fw"></span>{{destine_place.destination_name}}</li>
+                                <li><span class="icon fas fa-dollar-sign fa-fw"></span>Start from Rs. {{destine_place.price_range}}</li>
+                            </ul>
+                        </div>
+                        <!-- Column -->
+                        <div class="column col-lg-6 col-md-6 col-sm-12">
+                            <ul class="tour-detail-two_list">
+                                <li><span class="icon fas fa-map-marker-alt fa-fw"></span>{{destine_place.no_of_packages}} Packages</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-4 col-md-12 col-sm-12">
+                <div class="tour_plans position-sticky">
+                    <div class="title-box">
+                        <h4>JOIN THIS TOUR</h4>
+                        <div class="text">No extra hassle, just fill the form and let us contact you for more informations.</div>
+                    </div>
+
+                    <!-- Booking Form -->
+                    <div class="booking-form">
+                        <form method="post" action="">
+                            <!-- Form Group -->
+                            <div class="form-group">
+                                <label>first name*</label>
+                                <select name="currency" class="custom-select-box">
+                                    <option>Mrs</option>
+                                    <option>Mr</option>
+                                </select>
+                            </div>
+                            <!-- Form Group -->
+                            <div class="form-group">
+                                <label>Starting Date*</label>
+                                <input class="datepicker" type="text" name="text" placeholder="March 23, 2023" required="">
+                            </div>
+                            <!-- Form Group -->
+                            <div class="form-group">
+                                <label>Guests*</label>
+                                <select name="currency" class="custom-select-box">
+                                    <option>02 Adults, 01 Kids</option>
+                                    <option>03 Adults, 03 Kids</option>
+                                    <option>04 Adults, 05 Kids</option>
+                                    <option>05 Adults, 07 Kids</option>
+                                    <option>06 Adults, 09 Kids</option>
+                                    <option>07 Adults, 10 Kids</option>
+                                </select>
+                            </div>
+                            <!-- Form Group -->
+                            <div class="form-group">
+                                <label>Extra Facilities</label>
+                                <select name="currency" class="custom-select-box">
+                                    <option>Airport Pickup ($ 1,000)</option>
+                                    <option>Airport Pickup ($ 2,000)</option>
+                                    <option>Airport Pickup ($ 3,000)</option>
+                                    <option>Airport Pickup ($ 4,000)</option>
+                                    <option>Airport Pickup ($ 5,000)</option>
+                                    <option>Airport Pickup ($ 6,000)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="total-payment">
+                                        Total Payment
+                                        <span>$ 2,200</span>
+                                    </div>
+                                    <button class="btn-style-two theme-btn">
+                                        <span class="btn-wrap">
+                                            <span class="text-one">Book This Tour</span>
+                                            <span class="text-two">Book This Tour</span>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Tour Detail Two -->
+
+{% endblock %}

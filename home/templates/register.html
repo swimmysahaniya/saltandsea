@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block start %}
+
+<!-- Page Banner -->
+<section class="page-banner" style="background-image: url(/media/images/background/18.jpg)">
+    <div class="auto-container">
+        <div class="row clearfix">
+
+            <!-- Contact Column -->
+            <div class="col-lg-6 col-md-8 col-sm-12 offset-lg-3 offset-md-2">
+                <div class="card p-4">
+                    <div class="card-body">
+                        <div class="title-box text-center mb-5">
+                            <h4>Create An Account</h4>
+                            <p class="mt-2 mb-0">Already have an account? <a href="/login/">Sign In</a> </p>
+                        </div>
+
+                        <!-- Contact Form -->
+                        <div class="booking-form text-start">
+                            <form method="post" action="#">
+                                <!-- Form Group -->
+                                <div class="form-group">
+                                    <input type="text" name="f-name" placeholder="Your Name">
+                                </div>
+
+                                <!-- Form Group -->
+                                <div class="form-group">
+                                    <input type="text" name="u-name" placeholder="User Name">
+                                </div>
+
+                                <!-- Form Group -->
+                                <div class="form-group">
+                                    <input type="email" name="email" placeholder="Email Address" required>
+                                </div>
+
+                                <!-- Form Group -->
+                                <div class="form-group">
+                                    <input type="number" name="phone" placeholder="Phone Number">
+                                </div>
+
+                                <!-- Form Group -->
+                                <div class="form-group">
+                                    <input type="password" name="password" placeholder="Password">
+                                </div>
+
+                                <!-- Form Group -->
+                                <div class="form-group">
+                                    <input type="password" name="c-password" placeholder="Re-type Password">
+                                </div>
+
+                                <div class="form-group">
+                                    <button type="submit" class="btn-style-two theme-btn w-100">
+                                        <span class="btn-wrap">
+                                            <span class="text-one">Signup</span>
+                                            <span class="text-two">Signup</span>
+                                        </span>
+                                    </button>
+                                </div>
+                            </form>
+
+                            <p class="text-center mt-3 mb-0">By signing Up, I agree to Vacasky <a href="/terms-and-conditions/">Terms of Use</a> <br> and <a href="/privacy-policy/">Privacy Policy.</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- End Page Banner -->
+
+{% endblock %}

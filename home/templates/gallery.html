@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block start %}
+
+<!-- Page Banner -->
+<section class="page-banner" style="background-image: url(/media/images/background/14.jpg)">
+	<div class="auto-container">
+		<ul class="page-breadbrumbs">
+			<li><a href="/">Home</a></li>
+			<li>gallery</li>
+		</ul>
+		<h1 class="page-banner_title">GALLERY</h1>
+	</div>
+</section>
+<!-- End Page Banner -->
+
+<!-- Gallery Two -->
+<section class="gallery-two">
+    <div class="auto-container">
+        <!-- Sec Title Two -->
+        <div class="sec-title_two">
+            <div class="bid-title">gallery</div>
+            <div class="title">OUR ADVENTURES</div>
+        </div>
+
+        <div class="masonry-items-container row clearfix">
+            {% for image in gallery %}
+            <!-- Gallery Block One -->
+            <div class="gallery-block_one masonry-item col-lg-3 col-md-6 col-sm-12">
+                <div class="gallery-block_one-inner">
+                    <div class="gallery-block_one-image">
+                        <img src="/media/{{image.image}}" alt="Gallery" />
+                        <div class="overlay-box">
+                            <a href="/media/{{image.image}}" class="lightbox-image plus flaticon-plus"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+
+    </div>
+</section>
+<!-- End Gallery Two -->
+
+{% endblock %}

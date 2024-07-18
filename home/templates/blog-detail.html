@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+
+{% block start %}
+
+<!-- Page Banner -->
+<section class="page-banner_two" style="background-image: url(/media/images/background/13.jpg)">
+    <div class="auto-container">
+        <ul class="page-breadbrumbs">
+            <li><a href="/">Home</a></li>
+            <li>blog</li>
+        </ul>
+        <h2 class="page-banner_two-title">{{blog_detail.title}}</h2>
+        <div class="page-banner_two-author">
+            <div class="d-flex align-items-center flex-wrap">
+                <div class="image">
+                    <img src="/media/{{ author_profile.image }}" alt="{{author.username}}" />
+                </div>
+                {{ author.username }} &ensp; | &ensp; {{blog_detail.created_at|date:"F j, Y"}}
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Page Banner -->
+
+<!-- Sidebar Page Container -->
+<div class="sidebar-page-container left-sidebar">
+    	<div class="auto-container">
+        	<div class="row clearfix">
+
+				<!-- Sidebar Side -->
+                <div class="sidebar-side col-lg-4 col-md-12 col-sm-12">
+                	<aside class="sidebar">
+
+						<!-- Search Box -->
+						<!--<div class="sidebar-widget">
+							<div class="search-box">
+								<form>
+									<div class="form-group">
+										<input type="search" name="search" value="" placeholder="Search...">
+										<button type="submit"><span class="icon fa fa-search"></span></button>
+									</div>
+								</form>
+							</div>
+						</div>-->
+
+						<!-- Tags Widget -->
+						<div class="sidebar-widget popular-tags">
+							<div class="widget-content">
+								<h4>tags</h4>
+								{% for tag in tags %}
+								<a href="/blog/">{{tag}}</a>
+								{% endfor %}
+							</div>
+						</div>
+
+						<!-- Post Widget -->
+						<div class="sidebar-widget post-widget">
+							<div class="widget-content">
+								<h4>POPULAR</h4>
+
+								<!-- Post Widget Block -->
+								{% for related_blog in related_blogs %}
+								<div class="post-widget_block">
+									<div class="post-widget_block-image">
+										<a href="{% url 'get_blog' related_blog.slug %}"><img src="/media/{{related_blog.featured_image}}" alt="{{related_blog.title}}" /></a>
+									</div>
+									<div class="content">
+										<div class="title">{{related_blog.tags}}</div>
+										<h5 class="post-widget_heading"><a href="{% url 'get_blog' related_blog.slug %}"">{{related_blog.title}}</a></h5>
+										<div class="post-widget_date">{{related_blog.created_at|date:"F j, Y"}}</div>
+									</div>
+								</div>
+								{% endfor %}
+
+							</div>
+						</div>
+
+					</aside>
+				</div>
+
+				<!-- Content Side -->
+                <div class="content-side right-sidebar col-lg-8 col-md-12 col-sm-12">
+                	<div class="blog-detail">
+						<div class="inner-box">
+							<h4 class="blog-detail_title"><span>{{blog_detail.tags}}</span></h4>
+							<div class="image">
+								<img src="/media/{{blog_detail.featured_image}}" alt="{{blog_detail.title}}" />
+							</div>
+							<p>{{blog_detail.description}}</p>
+							<div class="more-projects">
+								<div class="d-flex justify-content-between flex-wrap align-items-center">
+        							{% if previous_blog %}
+									<a href="{% url 'get_blog' previous_blog.slug %}"><span class="flaticon-left-arrow-2"></span> &nbsp; Previous Article</a>
+									{% endif %}
+        							{% if next_blog %}
+									<a href="{% url 'get_blog' next_blog.slug %}">Next Article &nbsp; <span class="flaticon-next-2"></span></a>
+									{% endif %}
+								</div>
+							</div>
+						</div>
+
+						<!-- Comments Area -->
+						<div class="comments-area">
+							<div class="comments-area_pattern" style="background-image: url(/media/images/icons/pattern-1.png)"></div>
+							<div class="comments-area_pattern-two" style="background-image: url(/media/images/icons/pattern-1.png)"></div>
+							<div class="group-title">
+								<h4>COMMENTS</h4>
+							</div>
+
+							<div class="comment-box">
+
+								<!-- Comment -->
+								{% for review in reviews %}
+								<div class="comment">
+									<div class="text">{{review.comment}}</div>
+									<div class="news-block_four-author">
+										<div class="news-block_four-author_image">
+											<img src="/media/{{review.image}}" alt="{{review.created_at}}" />
+										</div>
+										{{review.user.username}}
+										<span>{{review.created_at}}</span>
+									</div>
+								</div>
+								{% endfor %}
+
+							</div>
+
+						</div>
+
+						<!-- Comment Form -->
+						<div class="comment-form-outer">
+							<div class="group-title">
+								<h4>WRITE A COMMENT</h4>
+							</div>
+							<!-- Comment Form -->
+							<div class="comment-form">
+								<form method="post" action="https://wpthemebooster.com/demo/themeforest/html/vacasky/blog.html">
+									<div class="row clearfix">
+
+										<div class="col-lg-6 col-md-6 col-sm-12 form-group">
+											<label>NAME</label>
+											<input type="text" name="username" placeholder="Name" required="">
+										</div>
+
+										<div class="col-lg-6 col-md-6 col-sm-12 form-group">
+											<label>EMAIL ADDRESS</label>
+											<input type="text" name="username" placeholder="Email" required="">
+										</div>
+
+										<div class="col-lg-12 col-md-12 col-sm-12 form-group">
+											<label>COMMENT</label>
+											<textarea class="" name="message" placeholder="Your text here..."></textarea>
+										</div>
+
+										<div class="col-lg-12 col-md-12 col-sm-12 form-group">
+											<div class="d-flex justify-content-between align-items-center flex-wrap">
+												<input type="file" id="myfile" name="myfile">
+												<button class="theme-btn submit-btn">
+													SUBMIT COMMENT
+												</button>
+											</div>
+										</div>
+
+									</div>
+								</form>
+							</div>
+							<!-- End Comment Form -->
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block start %}
+
+<!-- Page Banner -->
+<section class="page-banner" style="background-image: url(/media/images/background/14.jpg)">
+	<div class="auto-container">
+		<ul class="page-breadbrumbs">
+			<li><a href="/">Home</a></li>
+			<li>blog</li>
+		</ul>
+		<h1 class="page-banner_title">BLOG</h1>
+	</div>
+</section>
+<!-- End Page Banner -->
+
+<!-- News Three -->
+<section class="news-three">
+    <div class="auto-container">
+        <!-- Sec Title -->
+        <div class="sec-title_three">
+            <div class="d-flex align-items-center justify-content-between flex-wrap">
+                <div class="title-content">
+                    <div class="sec-title_three-title">blog</div>
+                    <h1 class="sec-title_three-heading">TRAVEL BLOG</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix">
+
+            <!-- News Block Two -->
+            {% for blog in blogs %}
+            <div class="news-block_three col-lg-6 col-md-12 col-sm-12">
+                <div class="news-block_three-inner">
+                    <div class="news-block_three-image">
+                        <a href="{% url 'get_blog' blog.slug %}"><img src="/media/{{blog.featured_image}}" alt="{{blog.title}}" /></a>
+                        <div class="news-block_three-overlay">
+                            <div class="news-block_three-title">{{blog.tags}}</div>
+                            <h3 class="news-block_three-heading"><a href="{% url 'get_blog' blog.slug %}">{{blog.title}}</a></h3>
+                            <div class="news-block_three-author_outer">
+                                <div class="news-block_three-author">
+                                    <div class="news-block_three-author_image">
+                                        <img src="/media/{{blog.author.profile.image}}" alt="{{blog.title}}" />
+                                    </div>
+                                    {{blog.author.username}}
+                                    <span>{{blog.created_at|date:"F j, Y"}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            <!-- Pagination Outer -->
+            <div class="pagination-outer text-center">
+                <ul class="paginations">
+                    {% if page_obj.has_previous %}
+                        <li><a href="?page={{ page_obj.previous_page_number }}"><span class="flaticon-left-arrow-2"></span></a></li>
+                    {% endif %}
+
+                    {% for num in page_obj.paginator.page_range %}
+                        {% if page_obj.number == num %}
+                            <li class="active"><a href="#">{{ num|default_if_none:"" }}</a></li>
+                        {% elif num > page_obj.number|add:-5 and num < page_obj.number|add:5 %}
+                            <li><a href="?page={{ num }}">{{ num }}</a></li>
+                        {% elif num == 1 or num == page_obj.paginator.num_pages %}
+                            <li><a href="?page={{ num }}">{{ num }}</a></li>
+                        {% elif num > page_obj.number|add:5 and num < page_obj.paginator.num_pages %}
+                            <li>...</li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                        <li><a href="?page={{ page_obj.next_page_number }}"><span class="flaticon-next-2"></span></a></li>
+                    {% endif %}
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- End News Three -->
+
+{% endblock %}

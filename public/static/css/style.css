@@ -1,0 +1,31 @@
+/* Vacasky - Tour & Travel Agency HTML Template */
+
+/* 
+	
+	font-family: 'Poppins', sans-serif;
+	font-family: 'Oswald', sans-serif;
+	
+*/
+/* Google Fonts  */
+/* @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700;800&amp;family=Poppins:wght@400;500;600;700&amp;display=swap'); */
+
+@import url('bootstrap.css');
+@import url('global.css');
+@import url('header.css');
+@import url('footer.css');
+@import url('sidebar.css');
+@import url('icofont.css');
+@import url('font-awesome.css');
+@import url('flaticon_sky-flat.css');
+@import url('animate.css');
+@import url('owl.css');
+@import url('swiper.min.css');
+@import url('jquery-ui.css');
+@import url('preloader.css');
+@import url('custom-animate.css');
+@import url('magnific-popup.css');
+@import url('odometer-theme-default.css');
+@import url('select2.css');
+@import url('flatpickr.css');
+@import url('custom.css');
+@import url('responsive.css');
