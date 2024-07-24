@@ -13,6 +13,11 @@
     padding-right: 10px;
 }
 
+.about-two h3 {
+    text-decoration: underline;
+}
+
+
 /*** 
 
 ====================================================================
@@ -587,6 +592,7 @@
 .feature-one.style-three{
 	background: none;
 	padding: var(--padding-zero);
+    margin-bottom: 120px;
 }
 
 .feature-one.style-three .inner-container{
@@ -950,6 +956,7 @@
 .testimonial-one{
 	position: relative;
 	padding: 120px 0px 90px;
+	background: #f6f6f6;
 }
 
 .testimonial-one_pattern{
@@ -6167,6 +6174,7 @@
 }
 
 .about-two_text{
+    text-align: justify;
 	position: relative;
 	line-height: 28px;
 	opacity: 0.75;
@@ -6573,7 +6581,7 @@
 
 .contact-one{
 	position: relative;
-	padding-bottom: var(--padding-bottom-80);
+	padding-top: var(--padding-bottom-80);
 }
 
 .contact-one .auto-container{

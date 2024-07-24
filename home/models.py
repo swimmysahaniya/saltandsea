@@ -2,7 +2,6 @@ from django.db import models
 from base.models import BaseModel
 from django.utils.text import slugify
 from django.contrib.auth.models import User
-from django.utils import timezone
 
 
 class Destination(BaseModel):
@@ -89,3 +88,23 @@ class Review(BaseModel):
 
     def __str__(self):
         return f'Review for {self.blog.title} by {self.user.username}'
+
+
+class Testimonial(BaseModel):
+    name = models.CharField(max_length=100)
+    image = models.ImageField(upload_to="testimonials")
+    location = models.CharField(max_length=100)
+    description = models.TextField()
+
+
+class Clients(BaseModel):
+    name = models.CharField(max_length=100)
+    image = models.ImageField(upload_to="clients")
+
+
+class Faqs(BaseModel):
+    question = models.TextField()
+    answer = models.TextField()
+
+
+

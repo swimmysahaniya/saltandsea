@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Destination, Gallery, Blog, TourPackage
+from .models import Destination, Gallery, Blog, TourPackage, Testimonial, Clients, Faqs
 from django.core.paginator import Paginator
 
 
@@ -9,12 +9,18 @@ def home(request):
     galleries = Gallery.objects.all()
     blogs = Blog.objects.all()[:4]
     destinations = Destination.objects.all()
+    testimonial = Testimonial.objects.all()
+    client = Clients.objects.all()
+    faqs = Faqs.objects.all()
 
     context = {
         'page': 'Salt and Sea',
         'gallery': galleries,
         'blogs': blogs,
         'destinations': destinations,
+        'testimonials': testimonial,
+        'clients': client,
+        'faqs': faqs,
     }
 
     return render(request, "index.html", context)

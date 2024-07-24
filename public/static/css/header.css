@@ -11,6 +11,7 @@
 	-moz-transition: all 0.5s ease-in-out;
 	transition: all 0.5s ease-in-out;
 }
+
 .header_style_one:before{
 	position:absolute;
 	content: '';
@@ -39,8 +40,7 @@
 
 /* Logo  */
 .logo {
-	position: relative;
-	text-align: center;
+	position: absolute;
 }
 .logo .logo_sticky {
 	display: none;

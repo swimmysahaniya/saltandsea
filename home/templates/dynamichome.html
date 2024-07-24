@@ -19,14 +19,9 @@
 				<div class="clients-box">
 					<!-- Sponsors Carousel -->
 					<ul class="sponsors-carousel owl-carousel owl-theme">
-						<li class="slide-item"><figure class="client-one_image-box"><a href="#"><img src="/media/images/clients/1.png" alt=""></a></figure></li>
-						<li class="slide-item"><figure class="client-one_image-box"><a href="#"><img src="/media/images/clients/2.png" alt=""></a></figure></li>
-						<li class="slide-item"><figure class="client-one_image-box"><a href="#"><img src="/media/images/clients/3.png" alt=""></a></figure></li>
-						<li class="slide-item"><figure class="client-one_image-box"><a href="#"><img src="/media/images/clients/4.png" alt=""></a></figure></li>
-						<li class="slide-item"><figure class="client-one_image-box"><a href="#"><img src="/media/images/clients/5.png" alt=""></a></figure></li>
-						<li class="slide-item"><figure class="client-one_image-box"><a href="#"><img src="/media/images/clients/1.png" alt=""></a></figure></li>
-						<li class="slide-item"><figure class="client-one_image-box"><a href="#"><img src="/media/images/clients/2.png" alt=""></a></figure></li>
-						<li class="slide-item"><figure class="client-one_image-box"><a href="#"><img src="/media/images/clients/3.png" alt=""></a></figure></li>
+                		{% for client in clients %}
+						<li class="slide-item"><figure class="client-one_image-box"><a href="#"><img src="/media/{{client.image}}" alt="{{client.name}}"></a></figure></li>
+						{% endfor %}
 					</ul>
 				</div>
 
@@ -258,7 +253,7 @@
 <!-- Video One -->
 <section class="video-one">
 	<div class="outer-container">
-		<div class="video-one_logo"><a href="/"><img src="/media/images/logo.svg" alt="" title=""></a></div>
+		<div class="video-one_logo"><a href="/"><img src="/media/images/logo.jpeg" width="40%" alt="logo" title="Salt and Sea"></a></div>
 		<div class="video-one_box wow bounce" data-wow-delay="0ms" data-wow-duration="1500ms">
 			<img src="/media/images/background/1.jpg" alt="" />
 			<a href="#" class="play lightbox-video"><span class="flaticon-play"><i class="ripple"></i></span></a>
@@ -298,233 +293,53 @@
 </section>
 <!-- End Gallery Two -->
 
-<!-- Testimonial Two -->
-<section class="testimonial-two" style="background-image: url(/media/images/background/map.png)">
+<!-- Testimonial One -->
+<section class="testimonial-one">
 	<div class="auto-container">
+		<div class="row clearfix">
 
-		<div class="swiper mySwiper2">
-			<div class="swiper-wrapper">
-				<div class="swiper-slide">
-					<!-- Testimonial Block Two -->
-					<div class="testimonial-block_two">
-						<div class="testimonial-block_two-inner">
-							<div class="testimonial-block_two-quote flaticon-quote-2"></div>
-							<div class="testimonial-block_two-text">I've traveled with Salt and Sea several times, and each time has been a unique and unforgettable experience. Their team of travel specialists are knowledgeable, friendly, and always go the extra mile to make sure that everything and everyone is taken care of. I highly recommend Salt and Sea to anyone looking for a truly special travel experience!</div>
-							<div class="testimonial-block_two-author">
-								<div class="testimonial-block_two-author_image">
-									<img src="/media/images/resource/author-3.png" alt="" />
-								</div>
-								Sarah Johnson
-								<span>Client from United States of America</span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="swiper-slide">
-					<!-- Testimonial Block Two -->
-					<div class="testimonial-block_two">
-						<div class="testimonial-block_two-inner">
-							<div class="testimonial-block_two-quote flaticon-quote-2"></div>
-							<div class="testimonial-block_two-text">I've traveled with Salt and Sea several times, and each time has been a unique and unforgettable experience. Their team of travel specialists are knowledgeable, friendly, and always go the extra mile to make sure that everything and everyone is taken care of. I highly recommend Salt and Sea to anyone looking for a truly special travel experience!</div>
-							<div class="testimonial-block_two-author">
-								<div class="testimonial-block_two-author_image">
-									<img src="/media/images/resource/author-4.png" alt="" />
-								</div>
-								Sarah Johnson
-								<span>Client from United States of America</span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="swiper-slide">
-					<!-- Testimonial Block Two -->
-					<div class="testimonial-block_two">
-						<div class="testimonial-block_two-inner">
-							<div class="testimonial-block_two-quote flaticon-quote-2"></div>
-							<div class="testimonial-block_two-text">I've traveled with Salt and Sea several times, and each time has been a unique and unforgettable experience. Their team of travel specialists are knowledgeable, friendly, and always go the extra mile to make sure that everything and everyone is taken care of. I highly recommend Salt and Sea to anyone looking for a truly special travel experience!</div>
-							<div class="testimonial-block_two-author">
-								<div class="testimonial-block_two-author_image">
-									<img src="/media/images/resource/author-5.png" alt="" />
-								</div>
-								Sarah Johnson
-								<span>Client from United States of America</span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="swiper-slide">
-					<!-- Testimonial Block Two -->
-					<div class="testimonial-block_two">
-						<div class="testimonial-block_two-inner">
-							<div class="testimonial-block_two-quote flaticon-quote-2"></div>
-							<div class="testimonial-block_two-text">I've traveled with Salt and Sea several times, and each time has been a unique and unforgettable experience. Their team of travel specialists are knowledgeable, friendly, and always go the extra mile to make sure that everything and everyone is taken care of. I highly recommend Salt and Sea to anyone looking for a truly special travel experience!</div>
-							<div class="testimonial-block_two-author">
-								<div class="testimonial-block_two-author_image">
-									<img src="/media/images/resource/author-6.png" alt="" />
-								</div>
-								Sarah Johnson
-								<span>Client from United States of America</span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="swiper-slide">
-					<!-- Testimonial Block Two -->
-					<div class="testimonial-block_two">
-						<div class="testimonial-block_two-inner">
-							<div class="testimonial-block_two-quote flaticon-quote-2"></div>
-							<div class="testimonial-block_two-text">I've traveled with Salt and Sea several times, and each time has been a unique and unforgettable experience. Their team of travel specialists are knowledgeable, friendly, and always go the extra mile to make sure that everything and everyone is taken care of. I highly recommend Salt and Sea to anyone looking for a truly special travel experience!</div>
-							<div class="testimonial-block_two-author">
-								<div class="testimonial-block_two-author_image">
-									<img src="/media/images/resource/author-3.png" alt="" />
-								</div>
-								Sarah Johnson
-								<span>Client from United States of America</span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="swiper-slide">
-					<!-- Testimonial Block Two -->
-					<div class="testimonial-block_two">
-						<div class="testimonial-block_two-inner">
-							<div class="testimonial-block_two-quote flaticon-quote-2"></div>
-							<div class="testimonial-block_two-text">I've traveled with Salt and Sea several times, and each time has been a unique and unforgettable experience. Their team of travel specialists are knowledgeable, friendly, and always go the extra mile to make sure that everything and everyone is taken care of. I highly recommend Salt and Sea to anyone looking for a truly special travel experience!</div>
-							<div class="testimonial-block_two-author">
-								<div class="testimonial-block_two-author_image">
-									<img src="/media/images/resource/author-4.png" alt="" />
-								</div>
-								Sarah Johnson
-								<span>Client from United States of America</span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="swiper-slide">
-					<!-- Testimonial Block Two -->
-					<div class="testimonial-block_two">
-						<div class="testimonial-block_two-inner">
-							<div class="testimonial-block_two-quote flaticon-quote-2"></div>
-							<div class="testimonial-block_two-text">I've traveled with Salt and Sea several times, and each time has been a unique and unforgettable experience. Their team of travel specialists are knowledgeable, friendly, and always go the extra mile to make sure that everything and everyone is taken care of. I highly recommend Salt and Sea to anyone looking for a truly special travel experience!</div>
-							<div class="testimonial-block_two-author">
-								<div class="testimonial-block_two-author_image">
-									<img src="/media/images/resource/author-5.png" alt="" />
-								</div>
-								Sarah Johnson
-								<span>Client from United States of America</span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="swiper-slide">
-					<!-- Testimonial Block Two -->
-					<div class="testimonial-block_two">
-						<div class="testimonial-block_two-inner">
-							<div class="testimonial-block_two-quote flaticon-quote-2"></div>
-							<div class="testimonial-block_two-text">I've traveled with Salt and Sea several times, and each time has been a unique and unforgettable experience. Their team of travel specialists are knowledgeable, friendly, and always go the extra mile to make sure that everything and everyone is taken care of. I highly recommend Salt and Sea to anyone looking for a truly special travel experience!</div>
-							<div class="testimonial-block_two-author">
-								<div class="testimonial-block_two-author_image">
-									<img src="/media/images/resource/author-6.png" alt="" />
-								</div>
-								Sarah Johnson
-								<span>Client from United States of America</span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="swiper-slide">
-					<!-- Testimonial Block Two -->
-					<div class="testimonial-block_two">
-						<div class="testimonial-block_two-inner">
-							<div class="testimonial-block_two-quote flaticon-quote-2"></div>
-							<div class="testimonial-block_two-text">I've traveled with Salt and Sea several times, and each time has been a unique and unforgettable experience. Their team of travel specialists are knowledgeable, friendly, and always go the extra mile to make sure that everything and everyone is taken care of. I highly recommend Salt and Sea to anyone looking for a truly special travel experience!</div>
-							<div class="testimonial-block_two-author">
-								<div class="testimonial-block_two-author_image">
-									<img src="/media/images/resource/author-3.png" alt="" />
-								</div>
-								Sarah Johnson
-								<span>Client from United States of America</span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="swiper-slide">
-					<!-- Testimonial Block Two -->
-					<div class="testimonial-block_two">
-						<div class="testimonial-block_two-inner">
-							<div class="testimonial-block_two-quote flaticon-quote-2"></div>
-							<div class="testimonial-block_two-text">I've traveled with Salt and Sea several times, and each time has been a unique and unforgettable experience. Their team of travel specialists are knowledgeable, friendly, and always go the extra mile to make sure that everything and everyone is taken care of. I highly recommend Salt and Sea to anyone looking for a truly special travel experience!</div>
-							<div class="testimonial-block_two-author">
-								<div class="testimonial-block_two-author_image">
-									<img src="/media/images/resource/author-4.png" alt="" />
-								</div>
-								Sarah Johnson
-								<span>Client from United States of America</span>
-							</div>
-						</div>
+			<!-- Testimonial One Title Column -->
+			<div class="testimonial-one_title-column col-lg-4 col-md-12 col-sm-12">
+				<div class="testimonial-one_title-inner">
+					<!-- Sec Title -->
+					<div class="sec-title">
+						<h2 class="sec-title_heading">TESTIMONIALS</h2>
+						<div class="sec-title-text">What our clients love about us.</div>
 					</div>
 				</div>
 			</div>
+
+			<!-- Testimonial One Carousel Column -->
+			<div class="testimonial-one_carousel-column col-lg-8 col-md-12 col-sm-12">
+				<div class="testimonial-one_carousel-inner">
+					<div class="testimonial-one_pattern" style="background-image: url(images/icons/pattern-1.png)"></div>
+					<div class="testimonial-carousel owl-carousel owl-theme">
+
+						<!-- Testimonial Block One -->
+
+						{% for testimonial in testimonials %}
+						<div class="testimonial-block_one">
+							<div class="testimonial-block_one-inner">
+								<div class="testimonial-block_one-text">{{testimonial.description}}</div>
+								<div class="testimonial-block_one-author">
+									<div class="testimonial-block_one-author_image">
+										<img src="/media/{{testimonial.image}}" alt="{{testimonial.name}}" />
+									</div>
+									{{testimonial.name}}
+									<span>{{testimonial.location}}</span>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+
+					</div>
+				</div>
+			</div>
+
 		</div>
-
-		<div class="swiper mySwiper swiper-paginations">
-		  <div class="swiper-wrapper">
-			<div class="swiper-slide">
-				<div class="one">
-					<img src="/media/images/resource/author-3.png" alt="" />
-				</div>
-			</div>
-			<div class="swiper-slide">
-				<div class="two">
-					<img src="/media/images/resource/author-4.png" alt="" />
-				</div>
-			</div>
-			<div class="swiper-slide">
-				<div class="three">
-					<img src="/media/images/resource/author-5.png" alt="" />
-				</div>
-			</div>
-			<div class="swiper-slide">
-				<div class="four">
-					<img src="/media/images/resource/author-6.png" alt="" />
-				</div>
-			</div>
-			<div class="swiper-slide">
-				<div class="one">
-					<img src="/media/images/resource/author-3.png" alt="" />
-				</div>
-			</div>
-			<div class="swiper-slide">
-				<div class="two">
-					<img src="/media/images/resource/author-4.png" alt="" />
-				</div>
-			</div>
-			<div class="swiper-slide">
-				<div class="three">
-					<img src="/media/images/resource/author-5.png" alt="" />
-				</div>
-			</div>
-			<div class="swiper-slide">
-				<div class="four">
-					<img src="/media/images/resource/author-6.png" alt="" />
-				</div>
-			</div>
-			<div class="swiper-slide">
-				<div class="one">
-					<img src="/media/images/resource/author-3.png" alt="" />
-				</div>
-			</div>
-			<div class="swiper-slide">
-				<div class="two">
-					<img src="/media/images/resource/author-4.png" alt="" />
-				</div>
-			</div>
-		  </div>
-		</div>
-
 	</div>
 </section>
-<!-- End Testimonial Two -->
+<!-- End Testimonial One -->
 
 <!-- Achivements One -->
 <section class="achivements-one">
@@ -609,44 +424,16 @@
 			<ul class="accordion-box">
 
 				<!-- Block -->
-				<li class="accordion block active-block">
-					<div class="acc-btn active"><div class="icon-outer"><span class="icon fa-solid fa-angle-down fa-fw"></span></div>What type of travel packages does Salt and Sea offer?</div>
-					<div class="acc-content current">
+				{% for faq in faqs %}
+				<li class="accordion block {% if forloop.counter == 1 %}active-block{% endif %}">
+					<div class="acc-btn {% if forloop.counter == 1 %}active{% endif %}"><div class="icon-outer"><span class="icon fa-solid fa-angle-down fa-fw"></span></div>{{faq.question}}</div>
+					<div class="acc-content {% if forloop.counter == 1 %}current{% endif %}">
 						<div class="content">
-							<p>Salt and Sea offers a wide range of travel packages to destinations around the world, including customized tours, group tours, luxury travel, adventure travel, and more. Our travel specialists work with you to create an itinerary that meets your specific needs and preferences.</p>
+							<p>{{faq.answer}}</p>
 						</div>
 					</div>
 				</li>
-
-				<!-- Block -->
-				<li class="accordion block">
-					<div class="acc-btn"><div class="icon-outer"><span class="icon fa-solid fa-angle-down fa-fw"></span></div>How do I book a trip with Salt and Sea?</div>
-					<div class="acc-content">
-						<div class="content">
-							<p>Salt and Sea offers a wide range of travel packages to destinations around the world, including customized tours, group tours, luxury travel, adventure travel, and more. Our travel specialists work with you to create an itinerary that meets your specific needs and preferences.</p>
-						</div>
-					</div>
-				</li>
-
-				<!-- Block -->
-				<li class="accordion block">
-					<div class="acc-btn"><div class="icon-outer"><span class="icon fa-solid fa-angle-down fa-fw"></span></div>What is the payment process for Salt and Sea?</div>
-					<div class="acc-content">
-						<div class="content">
-							<p>Salt and Sea offers a wide range of travel packages to destinations around the world, including customized tours, group tours, luxury travel, adventure travel, and more. Our travel specialists work with you to create an itinerary that meets your specific needs and preferences.</p>
-						</div>
-					</div>
-				</li>
-
-				<!-- Block -->
-				<li class="accordion block">
-					<div class="acc-btn"><div class="icon-outer"><span class="icon fa-solid fa-angle-down fa-fw"></span></div>How to cancel my booking in Salt and Sea?</div>
-					<div class="acc-content">
-						<div class="content">
-							<p>Salt and Sea offers a wide range of travel packages to destinations around the world, including customized tours, group tours, luxury travel, adventure travel, and more. Our travel specialists work with you to create an itinerary that meets your specific needs and preferences.</p>
-						</div>
-					</div>
-				</li>
+				{% endfor %}
 
 			</ul>
 

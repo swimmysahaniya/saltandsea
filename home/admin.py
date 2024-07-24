@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Destination, DestinationImage, Gallery, Blog, Review, Profile, TourPackage, TourImage
+from .models import Destination, DestinationImage, Gallery, Blog, Review, Profile, TourPackage, TourImage, Testimonial, Clients, Faqs
 
 
 class DestinationImageAdmin(admin.StackedInline):
@@ -16,6 +16,13 @@ admin.site.register(Destination, DestinationAdmin)
 admin.site.register(DestinationImage)
 admin.site.register(Gallery)
 admin.site.register(Review)
+
+
+class FaqsAdmin(admin.ModelAdmin):
+    list_display = ('question',)
+
+
+admin.site.register(Faqs, FaqsAdmin)
 
 
 class BlogAdmin(admin.ModelAdmin):
@@ -46,3 +53,11 @@ class TourPackageAdmin(admin.ModelAdmin):
 
 admin.site.register(TourPackage, TourPackageAdmin)
 admin.site.register(TourImage)
+admin.site.register(Clients)
+
+
+class TestimonialAdmin(admin.ModelAdmin):
+    list_display = ('name', 'location')
+
+
+admin.site.register(Testimonial, TestimonialAdmin)
