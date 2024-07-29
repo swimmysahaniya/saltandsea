@@ -71,20 +71,13 @@
                 <!-- Contact Form -->
                 <div class="booking-form">
                     <form method="post">
+                        {% csrf_token %}
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-lg-12">
                                 <!-- Form Group -->
                                 <div class="form-group">
-                                    <label class="form-label">First Name</label>
-                                    <input type="text" name="f-name" placeholder="First Name" required>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-6">
-                                <!-- Form Group -->
-                                <div class="form-group">
-                                    <label class="form-label">Last Name</label>
-                                    <input type="text" name="l-name" placeholder="Last Name">
+                                    <label class="form-label">Name</label>
+                                    <input type="text" name="name" placeholder="Name" required>
                                 </div>
                             </div>
 
@@ -100,7 +93,7 @@
                                 <!-- Form Group -->
                                 <div class="form-group">
                                     <label class="form-label">Phone Number</label>
-                                    <input type="number" name="phone" placeholder="Phone Number">
+                                    <input type="tel" name="mobile_number" pattern="[7-9]{1}[0-9]{9}" placeholder="Mobile Number" title="Phone number with 7-9 and remaining 9 digit with 0-9">
                                 </div>
                             </div>
 
@@ -108,7 +101,7 @@
                                 <!-- Form Group -->
                                 <div class="form-group">
                                     <label class="form-label">Enter Text</label>
-                                    <textarea name="text" placeholder="Enter Text"></textarea>
+                                    <textarea name="message" placeholder="Enter Text"></textarea>
                                 </div>
                             </div>
 

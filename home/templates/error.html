@@ -1,12 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Error</title>
-</head>
-<body>
-    <h1>Error</h1>
-    <p>{{ message }}</p>
-    <a href="{% url 'home' %}">Go back to home</a>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block start %}
+
+<!-- Page Banner -->
+<section class="page-banner" style="background-image: url(/media/images/background/15.jpg)">
+    <div class="auto-container">
+        <ul class="page-breadbrumbs">
+            <li><a href="/">Home</a></li>
+            <li>Error</li>
+        </ul>
+        <h1 class="page-banner_title">Error</h1>
+    </div>
+</section>
+<!-- End Page Banner -->
+
+<!-- Gallery Seven -->
+<section class="package-one">
+    <div class="outer-container">
+        <div class="row clearfix">
+            <div class="col-lg-4 col-md-12 col-sm-12"></div>
+            <div class="col-lg-4 col-md-12 col-sm-12 text-center">
+                <h1>Error</h1>
+                <p>{{ message }}</p>
+                <div class="justify-content-between align-items-center">
+                    <a href="{% url 'home' %}" class="btn-style-two theme-btn">
+                        <span class="btn-wrap">
+                            <span class="text-one">Home</span>
+                            <span class="text-two">Home</span>
+                        </span>
+                    </a>
+                </div>
+            </div>
+                <div class="col-lg-4 col-md-12 col-sm-12"></div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

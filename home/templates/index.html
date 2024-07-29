@@ -47,7 +47,8 @@
 					<div class="sec-title_three">
 						<div class="sec-title_three-title">about</div>
 						<h1 class="sec-title_three-heading">MEMORABLE travels</h1>
-						<div class="sec-title_three-text">Salt and Sea is the perfect hotel for your every memorable trips. With our expert guides, we are both professional and personal. Our trips are consisted of unforgettable experiences and is delivered in a sustainable way to protect the environment.
+						<div class="sec-title_three-text">
+							Salt&Sea Adventures was born from the passion for the thrill of expedition and exploration ardently shared by lifelong friends and adventure enthusiasts, Sudhir,Yash and Tanvi. Founded in 2019, a simple purpose laid our company’s foundation; to offer unforgettable tour experiences that connect people with the beauty and wonder of travel.
 						</div>
 					</div>
 					<div class="row clearfix">
@@ -142,7 +143,7 @@
 
 						<!-- Location Block One -->
                 		{% for destination in destinations %}
-						<div class="location-block_one style-two">
+						<div class="location-block_one style-two {% if forloop.counter|divisibleby:2 %}translate{% endif %}">
 							<div class="location-block_one-inner">
 								<div class="location-block_one-image">
 									<a href="{% url 'get_destination' destination.slug %}"><img src="/media/{{destination.destination_images.first.image}}" width="270" height="377" alt="{{destination.destination_name}}" /></a>
@@ -154,32 +155,6 @@
 							</div>
 						</div>
                 		{% endfor %}
-
-						<!-- Location Block One -->
-						<div class="location-block_one style-two">
-							<div class="location-block_one-inner">
-								<div class="location-block_one-image">
-									<a href="hotel-details.html"><img src="/media/images/resource/trip-3.jpg" alt="" /></a>
-								</div>
-								<div class="location-block_one-content">
-									<h5 class="location-block_one-heading"><a href="hotel-details.html">Iceland</a></h5>
-									<div class="location-block_one-location">20 Packages</div>
-								</div>
-							</div>
-						</div>
-
-						<!-- Location Block One -->
-						<div class="location-block_one style-two translate">
-							<div class="location-block_one-inner">
-								<div class="location-block_one-image">
-									<a href="hotel-details.html"><img src="/media/images/resource/trip-4.jpg" alt="" /></a>
-								</div>
-								<div class="location-block_one-content">
-									<h5 class="location-block_one-heading"><a href="hotel-details.html">Italy</a></h5>
-									<div class="location-block_one-location">20 Packages</div>
-								</div>
-							</div>
-						</div>
 
 					</div>
 				</div>
@@ -200,7 +175,7 @@
 					<h2 class="sec-title_heading">SPECIAL PACKAGES</h2>
 					<div class="sec-title-text">Get special travel packages made tailored for your needs.</div>
 				</div>
-				<a class="package-one_more" href="/tour-package/">See More Packages</a>
+				<!--<a class="package-one_more" href="/tour-package/">See More Packages</a>-->
 			</div>
 		</div>
 		<div class="row clearfix">
@@ -253,7 +228,7 @@
 <!-- Video One -->
 <section class="video-one">
 	<div class="outer-container">
-		<div class="video-one_logo"><a href="/"><img src="/media/images/logo.jpeg" width="40%" alt="logo" title="Salt and Sea"></a></div>
+		<div class="video-one_logo"><a href="/"><img src="/media/images/logo.png" width="40%" alt="logo" title="Salt and Sea"></a></div>
 		<div class="video-one_box wow bounce" data-wow-delay="0ms" data-wow-duration="1500ms">
 			<img src="/media/images/background/1.jpg" alt="" />
 			<a href="#" class="play lightbox-video"><span class="flaticon-play"><i class="ripple"></i></span></a>

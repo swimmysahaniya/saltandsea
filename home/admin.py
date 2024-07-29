@@ -8,7 +8,7 @@ class DestinationImageAdmin(admin.StackedInline):
 
 class DestinationAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('destination_name',)}
-    list_display = ('destination_name', 'slug')
+    list_display = ('india_part', 'state', 'destination_name', 'slug', 'tags')
     inlines = [DestinationImageAdmin]
 
 

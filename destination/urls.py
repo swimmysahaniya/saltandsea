@@ -25,15 +25,18 @@ urlpatterns = [
     path('', home, name="home"),
 
     path('destination/', destination, name="destination"),
-    path('tour/<slug>/', get_destination, name="get_destination"),
-    path('tour-package/<slug>/', tour_package_detail, name="tour_package_detail"),
+    path('destination/<slug>/', get_destination, name="get_destination"),
+    path('tours/<slug>/', tour_package_detail, name="tour_package_detail"),
 
     path('blog/', blog, name="blog"),
     path('blog/<slug>/', get_blog, name="get_blog"),
 
     path('about/', about, name="about"),
     path('gallery/', gallery, name="gallery"),
+
     path('contact/', contact, name="contact"),
+    path('thanks/', lambda request: render(request, 'thanks.html'), name='thanks'),
+
     path('terms-and-conditions/', terms_and_conditions, name="terms_and_conditions"),
     path('privacy-policy/', privacy_policy, name="privacy_policy"),
 

@@ -6874,6 +6874,7 @@
 	position:relative;
 	display:none;
 	border-top:0px;
+	padding-top: 30px;
 }
 
 .accordian-tabs .tabs-content .tab.active-tab{

@@ -8,9 +8,9 @@
         <ul class="page-breadbrumbs">
             <li><a href="/">Home</a></li>
             <li>tours</li>
-            <li>Vietnam</li>
+            <li>{{package.destination.destination_name}}</li>
         </ul>
-        <h1 class="page-banner_title">BAY & DELTA TOUR PACKAGE</h1>
+        <h1 class="page-banner_title">{{package.name}}</h1>
     </div>
 </section>
 <!-- End Page Banner -->
@@ -21,54 +21,11 @@
         <div class="gallery-carousel-three owl-carousel owl-theme">
 
             <!-- Image -->
+            {% for image in images %}
             <div class="image">
-                <a class="lightbox-image" href="/media/images/gallery/37.jpg"><img src="/media/images/gallery/37.jpg" alt="" /></a>
+                <a class="lightbox-image" href="/media/{{image.image}}"><img src="/media/{{image.image}}" alt="{{package.name}}" height="294px" /></a>
             </div>
-
-            <!-- Image -->
-            <div class="image">
-                <a class="lightbox-image" href="/media/images/gallery/38.jpg"><img src="/media/images/gallery/38.jpg" alt="" /></a>
-            </div>
-
-            <!-- Image -->
-            <div class="image">
-                <a class="lightbox-image" href="/media/images/gallery/39.jpg"><img src="/media/images/gallery/39.jpg" alt="" /></a>
-            </div>
-
-            <!-- Image -->
-            <div class="image">
-                <a class="lightbox-image" href="/media/images/gallery/40.jpg"><img src="/media/images/gallery/40.jpg" alt="" /></a>
-            </div>
-
-            <!-- Image -->
-            <div class="image">
-                <a class="lightbox-image" href="/media/images/gallery/41.jpg"><img src="/media/images/gallery/41.jpg" alt="" /></a>
-            </div>
-
-            <!-- Image -->
-            <div class="image">
-                <a class="lightbox-image" href="/media/images/gallery/37.jpg"><img src="/media/images/gallery/37.jpg" alt="" /></a>
-            </div>
-
-            <!-- Image -->
-            <div class="image">
-                <a class="lightbox-image" href="/media/images/gallery/38.jpg"><img src="/media/images/gallery/38.jpg" alt="" /></a>
-            </div>
-
-            <!-- Image -->
-            <div class="image">
-                <a class="lightbox-image" href="/media/images/gallery/39.jpg"><img src="/media/images/gallery/39.jpg" alt="" /></a>
-            </div>
-
-            <!-- Image -->
-            <div class="image">
-                <a class="lightbox-image" href="/media/images/gallery/40.jpg"><img src="/media/images/gallery/40.jpg" alt="" /></a>
-            </div>
-
-            <!-- Image -->
-            <div class="image">
-                <a class="lightbox-image" href="/media/images/gallery/41.jpg"><img src="/media/images/gallery/41.jpg" alt="" /></a>
-            </div>
+            {% endfor %}
 
         </div>
     </div>
@@ -80,444 +37,90 @@
     <div class="auto-container">
         <div class="row clearfix">
             <div class="col-lg-8 col-md-12 col-sm-12">
-                <h3>overview</h3>
-                <p>Discover the stunning landscapes of Halong Bay, where you'll cruise on a traditional junk boat and explore the breathtaking limestone karsts that rise from the emerald waters. Discover the beauty and charm of this unique region through a boat tour.</p>
-                <div class="info_outer">
-                    <div class="row clearfix">
-                        <!-- Column -->
-                        <div class="column col-lg-6 col-md-6 col-sm-12">
-                            <ul class="tour-detail-two_list">
-                                <li><span class="icon fas fa-map-marker-alt fa-fw"></span>Halong Bay, Vietnam</li>
-                                <li><span class="icon fas fa-dollar-sign fa-fw"></span>Start from $1,400</li>
-                            </ul>
-                        </div>
-                        <!-- Column -->
-                        <div class="column col-lg-6 col-md-6 col-sm-12">
-                            <ul class="tour-detail-two_list">
-                                <li><span class="icon fas fa-map-marker-alt fa-fw"></span>5 Days</li>
-                                <li><span class="icon fas fa-dollar-sign fa-fw"></span>50 People</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="options_outer">
-                    <div class="row clearfix">
-                        <!-- Column -->
-                        <div class="column col-lg-6 col-md-6 col-sm-12">
-                            <h4>INCLUDED</h4>
-                            <ul class="tour-detail-two_options">
-                                <li>Accommodation in 4-star hotels</li>
-                                <li>Daily breakfast & selected meals</li>
-                                <li>Domestic flights & airport transfers</li>
-                                <li>Halong Bay cruise with activities</li>
-                                <li>Boat tour in Mekong Delta</li>
-                                <li>English-speaking tour guide</li>
-                            </ul>
-                        </div>
-                        <!-- Column -->
-                        <div class="column col-lg-6 col-md-6 col-sm-12">
-                            <h4>NOT INCLUDED</h4>
-                            <ul class="tour-detail-two_options cross">
-                                <li>International flights airfare</li>
-                                <li>Visa fees from home country</li>
-                                <li>International travel insurance</li>
-                                <li>Tips for tour guide & driver</li>
-                                <li>Personal meal & expenses</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <h4>ITINERARY</h4>
 
-                <!-- Accordion Box / Style Two -->
-                <ul class="accordion-box style-two">
+                <!-- Accordian Info Tabs -->
+                <div class="accordian-info-tabs">
+                    <!-- Accordian Tabs -->
+                    <div class="accordian-tabs tabs-box">
 
-                    <!-- Block -->
-                    <li class="accordion block active-block">
-                        <div class="acc-btn active"><div class="icon-outer"><span class="icon fa-solid fa-angle-down fa-fw"></span></div><span class="accordion_number">01</span> Hanoi City Tour</div>
-                        <div class="acc-content current">
-                            <div class="content">
-                                <div class="image">
-                                    <img src="/media/images/resource/accordion.jpg" alt="" />
-                                </div>
+                        <!-- Tab Btns -->
+                        <ul class="tab-btns tab-buttons clearfix">
+                            <li data-tab="#prod-overview" class="tab-btn active-btn">Overview</li>
+                            <li data-tab="#prod-inclusion-exclusion" class="tab-btn">Inclusions/Exclusions</li>
+                            <li data-tab="#prod-itinerary" class="tab-btn">Itinerary</li>
+                            <li data-tab="#prod-map" class="tab-btn">Map</li>
+                        </ul>
 
-                                <!-- Accordian Info Tabs -->
-                                <div class="accordian-info-tabs">
-                                    <!-- Accordian Tabs -->
-                                    <div class="accordian-tabs tabs-box">
+                        <!-- Tabs Container -->
+                        <div class="tabs-content">
 
-                                        <!-- Tab Btns -->
-                                        <ul class="tab-btns tab-buttons clearfix">
-                                            <li data-tab="#prod-overview" class="tab-btn active-btn">Overview</li>
-                                            <li data-tab="#prod-schedule" class="tab-btn">Schedule</li>
-                                            <li data-tab="#prod-meals" class="tab-btn">Meals</li>
-                                            <li data-tab="#prod-accommodation" class="tab-btn">Accommodation</li>
-                                        </ul>
-
-                                        <!-- Tabs Container -->
-                                        <div class="tabs-content">
-
-                                            <!-- Tab / Active Tab -->
-                                            <div class="tab active-tab" id="prod-overview">
-                                                <ul class="accordian-list">
-                                                    <li>Visit to Ho Chi Minh Mausoleum</li>
-                                                    <li>One Pillar Pagoda</li>
-                                                    <li>Temple of Literature</li>
-                                                    <li>Water puppet show in the evening</li>
-                                                </ul>
-                                            </div>
-
-                                            <!-- Tab -->
-                                            <div class="tab" id="prod-schedule">
-                                                <ul class="accordian-list">
-                                                    <li>Visit to Ho Chi Minh Mausoleum</li>
-                                                    <li>One Pillar Pagoda</li>
-                                                    <li>Temple of Literature</li>
-                                                </ul>
-                                            </div>
-
-                                            <!-- Tab -->
-                                            <div class="tab" id="prod-meals">
-                                                <ul class="accordian-list">
-                                                    <li>Visit to Ho Chi Minh Mausoleum</li>
-                                                    <li>One Pillar Pagoda</li>
-                                                </ul>
-                                            </div>
-
-                                            <!-- Tab -->
-                                            <div class="tab" id="prod-accommodation">
-                                                <ul class="accordian-list">
-                                                    <li>Visit to Ho Chi Minh Mausoleum</li>
-                                                    <li>One Pillar Pagoda</li>
-                                                    <li>Temple of Literature</li>
-                                                    <li>Water puppet show in the evening</li>
-                                                </ul>
-                                            </div>
-
+                            <!-- Tab / Active Tab -->
+                            <div class="tab active-tab" id="prod-overview">
+                                <div class="info_outer">
+                                    <h3>overview</h3>
+                                    <p>{{package.description}}</p>
+                                    <div class="row clearfix">
+                                        <!-- Column -->
+                                        <div class="column col-lg-6 col-md-6 col-sm-12">
+                                            <ul class="tour-detail-two_list">
+                                                <li><span class="icon fas fa-map-marker-alt fa-fw"></span>{{package.name}}, {{package.destination.destination_name}}</li>
+                                                <li><span class="icon fas fa-rupee-sign fa-fw"></span>Start from Rs. {{package.price}}</li>
+                                                <li><span class="icon fas fa-calendar fa-fw"></span>{{package.date_of_travel}}</li>
+                                            </ul>
+                                        </div>
+                                        <!-- Column -->
+                                        <div class="column col-lg-6 col-md-6 col-sm-12">
+                                            <ul class="tour-detail-two_list">
+                                                <li><span class="icon fas fa-sun fa-fw"></span>{{package.duration}}</li>
+                                                <li><span class="icon fas fa-user fa-fw"></span>{{package.no_of_people}} People</li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-                        </div>
-                    </li>
 
-                    <!-- Block -->
-                    <li class="accordion block">
-                        <div class="acc-btn"><div class="icon-outer"><span class="icon fa-solid fa-angle-down fa-fw"></span></div><span class="accordion_number">02</span> Halong Bay Cruise</div>
-                        <div class="acc-content">
-                            <div class="content">
-                                <div class="image">
-                                    <img src="/media/images/resource/accordion.jpg" alt="" />
-                                </div>
-
-                                <!-- Accordian Info Tabs -->
-                                <div class="accordian-info-tabs">
-                                    <!-- Accordian Tabs -->
-                                    <div class="accordian-tabs tabs-box">
-
-                                        <!-- Tab Btns -->
-                                        <ul class="tab-btns tab-buttons clearfix">
-                                            <li data-tab="#prod-overview1" class="tab-btn active-btn">Overview</li>
-                                            <li data-tab="#prod-schedule1" class="tab-btn">Schedule</li>
-                                            <li data-tab="#prod-meals1" class="tab-btn">Meals</li>
-                                            <li data-tab="#prod-accommodation1" class="tab-btn">Accommodation</li>
-                                        </ul>
-
-                                        <!-- Tabs Container -->
-                                        <div class="tabs-content">
-
-                                            <!-- Tab / Active Tab -->
-                                            <div class="tab active-tab" id="prod-overview1">
-                                                <ul class="accordian-list">
-                                                    <li>Visit to Ho Chi Minh Mausoleum</li>
-                                                    <li>One Pillar Pagoda</li>
-                                                    <li>Temple of Literature</li>
-                                                    <li>Water puppet show in the evening</li>
-                                                </ul>
-                                            </div>
-
-                                            <!-- Tab -->
-                                            <div class="tab" id="prod-schedule1">
-                                                <ul class="accordian-list">
-                                                    <li>Visit to Ho Chi Minh Mausoleum</li>
-                                                    <li>One Pillar Pagoda</li>
-                                                    <li>Temple of Literature</li>
-                                                </ul>
-                                            </div>
-
-                                            <!-- Tab -->
-                                            <div class="tab" id="prod-meals1">
-                                                <ul class="accordian-list">
-                                                    <li>Visit to Ho Chi Minh Mausoleum</li>
-                                                    <li>One Pillar Pagoda</li>
-                                                </ul>
-                                            </div>
-
-                                            <!-- Tab -->
-                                            <div class="tab" id="prod-accommodation1">
-                                                <ul class="accordian-list">
-                                                    <li>Visit to Ho Chi Minh Mausoleum</li>
-                                                    <li>One Pillar Pagoda</li>
-                                                    <li>Temple of Literature</li>
-                                                    <li>Water puppet show in the evening</li>
-                                                </ul>
-                                            </div>
-
+                            <!-- Tab -->
+                            <div class="tab" id="prod-inclusion-exclusion">
+                                <div class="options_outer">
+                                    <div class="row clearfix">
+                                        <!-- Column -->
+                                        <div class="column col-lg-6 col-md-6 col-sm-12">
+                                            <h4>INCLUDED</h4>
+                                            <ul class="tour-detail-two_options">
+                                                <li>{{package.included}}</li>
+                                            </ul>
+                                        </div>
+                                        <!-- Column -->
+                                        <div class="column col-lg-6 col-md-6 col-sm-12">
+                                            <h4>NOT INCLUDED</h4>
+                                            <ul class="tour-detail-two_options cross">
+                                                <li>{{package.not_included}}</li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-                        </div>
-                    </li>
 
-                    <!-- Block -->
-                    <li class="accordion block">
-                        <div class="acc-btn"><div class="icon-outer"><span class="icon fa-solid fa-angle-down fa-fw"></span></div><span class="accordion_number">03</span> Back to Hanoi</div>
-                        <div class="acc-content">
-                            <div class="content">
-                                <div class="image">
-                                    <img src="/media/images/resource/accordion.jpg" alt="" />
-                                </div>
+                            <!-- Tab -->
+                            <div class="tab" id="prod-itinerary">
+                                <h4>ITINERARY</h4>
+                                <p>{{package.itinerary}}</p>
+                            </div>
 
-                                <!-- Accordian Info Tabs -->
-                                <div class="accordian-info-tabs">
-                                    <!-- Accordian Tabs -->
-                                    <div class="accordian-tabs tabs-box">
-
-                                        <!-- Tab Btns -->
-                                        <ul class="tab-btns tab-buttons clearfix">
-                                            <li data-tab="#prod-overvieww" class="tab-btn active-btn">Overview</li>
-                                            <li data-tab="#prod-schedulee" class="tab-btn">Schedule</li>
-                                            <li data-tab="#prod-mealss" class="tab-btn">Meals</li>
-                                            <li data-tab="#prod-accommodationn" class="tab-btn">Accommodation</li>
-                                        </ul>
-
-                                        <!-- Tabs Container -->
-                                        <div class="tabs-content">
-
-                                            <!-- Tab / Active Tab -->
-                                            <div class="tab active-tab" id="prod-overvieww">
-                                                <ul class="accordian-list">
-                                                    <li>Visit to Ho Chi Minh Mausoleum</li>
-                                                    <li>One Pillar Pagoda</li>
-                                                    <li>Temple of Literature</li>
-                                                    <li>Water puppet show in the evening</li>
-                                                </ul>
-                                            </div>
-
-                                            <!-- Tab -->
-                                            <div class="tab" id="prod-schedulee">
-                                                <ul class="accordian-list">
-                                                    <li>Visit to Ho Chi Minh Mausoleum</li>
-                                                    <li>One Pillar Pagoda</li>
-                                                    <li>Temple of Literature</li>
-                                                </ul>
-                                            </div>
-
-                                            <!-- Tab -->
-                                            <div class="tab" id="prod-mealss">
-                                                <ul class="accordian-list">
-                                                    <li>Visit to Ho Chi Minh Mausoleum</li>
-                                                    <li>One Pillar Pagoda</li>
-                                                </ul>
-                                            </div>
-
-                                            <!-- Tab -->
-                                            <div class="tab" id="prod-accommodationn">
-                                                <ul class="accordian-list">
-                                                    <li>Visit to Ho Chi Minh Mausoleum</li>
-                                                    <li>One Pillar Pagoda</li>
-                                                    <li>Temple of Literature</li>
-                                                    <li>Water puppet show in the evening</li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
+                            <!-- Tab -->
+                            <div class="tab" id="prod-map">
+                                <h4>Map</h4>
+                                <div class="mapouter">
+                                    <div class="gmap_canvas">
+                                        <iframe width="100%" height="500" id="gmap_canvas" src="{{package.map_iframe}}" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                                        <br>
+                                        <style>.mapouter{position: relative; text-align: right; padding-top: 30px;}</style>
+                                        <style>.gmap_canvas {overflow:hidden; background:none!important; border-radius: 20px;}</style>
                                     </div>
                                 </div>
-
                             </div>
+
                         </div>
-                    </li>
-
-                    <!-- Block -->
-                    <li class="accordion block">
-                        <div class="acc-btn"><div class="icon-outer"><span class="icon fa-solid fa-angle-down fa-fw"></span></div><span class="accordion_number">04</span> Ho Chi Minh City</div>
-                        <div class="acc-content">
-                            <div class="content">
-                                <div class="image">
-                                    <img src="/media/images/resource/accordion.jpg" alt="" />
-                                </div>
-
-                                <!-- Accordian Info Tabs -->
-                                <div class="accordian-info-tabs">
-                                    <!-- Accordian Tabs -->
-                                    <div class="accordian-tabs tabs-box">
-
-                                        <!-- Tab Btns -->
-                                        <ul class="tab-btns tab-buttons clearfix">
-                                            <li data-tab="#prod-overview2" class="tab-btn active-btn">Overview</li>
-                                            <li data-tab="#prod-schedule2" class="tab-btn">Schedule</li>
-                                            <li data-tab="#prod-meals2" class="tab-btn">Meals</li>
-                                            <li data-tab="#prod-accommodation2" class="tab-btn">Accommodation</li>
-                                        </ul>
-
-                                        <!-- Tabs Container -->
-                                        <div class="tabs-content">
-
-                                            <!-- Tab / Active Tab -->
-                                            <div class="tab active-tab" id="prod-overview2">
-                                                <ul class="accordian-list">
-                                                    <li>Visit to Ho Chi Minh Mausoleum</li>
-                                                    <li>One Pillar Pagoda</li>
-                                                    <li>Temple of Literature</li>
-                                                    <li>Water puppet show in the evening</li>
-                                                </ul>
-                                            </div>
-
-                                            <!-- Tab -->
-                                            <div class="tab" id="prod-schedule2">
-                                                <ul class="accordian-list">
-                                                    <li>Visit to Ho Chi Minh Mausoleum</li>
-                                                    <li>One Pillar Pagoda</li>
-                                                    <li>Temple of Literature</li>
-                                                </ul>
-                                            </div>
-
-                                            <!-- Tab -->
-                                            <div class="tab" id="prod-meals2">
-                                                <ul class="accordian-list">
-                                                    <li>Visit to Ho Chi Minh Mausoleum</li>
-                                                    <li>One Pillar Pagoda</li>
-                                                </ul>
-                                            </div>
-
-                                            <!-- Tab -->
-                                            <div class="tab" id="prod-accommodation2">
-                                                <ul class="accordian-list">
-                                                    <li>Visit to Ho Chi Minh Mausoleum</li>
-                                                    <li>One Pillar Pagoda</li>
-                                                    <li>Temple of Literature</li>
-                                                    <li>Water puppet show in the evening</li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </li>
-
-                    <!-- Block -->
-                    <li class="accordion block">
-                        <div class="acc-btn"><div class="icon-outer"><span class="icon fa-solid fa-angle-down fa-fw"></span></div><span class="accordion_number">05</span> Mekong Delta Tour</div>
-                        <div class="acc-content">
-                            <div class="content">
-                                <div class="image">
-                                    <img src="/media/images/resource/accordion.jpg" alt="" />
-                                </div>
-
-                                <!-- Accordian Info Tabs -->
-                                <div class="accordian-info-tabs">
-                                    <!-- Accordian Tabs -->
-                                    <div class="accordian-tabs tabs-box">
-
-                                        <!-- Tab Btns -->
-                                        <ul class="tab-btns tab-buttons clearfix">
-                                            <li data-tab="#prod-overview3" class="tab-btn active-btn">Overview</li>
-                                            <li data-tab="#prod-schedule3" class="tab-btn">Schedule</li>
-                                            <li data-tab="#prod-meals3" class="tab-btn">Meals</li>
-                                            <li data-tab="#prod-accommodation3" class="tab-btn">Accommodation</li>
-                                        </ul>
-
-                                        <!-- Tabs Container -->
-                                        <div class="tabs-content">
-
-                                            <!-- Tab / Active Tab -->
-                                            <div class="tab active-tab" id="prod-overview3">
-                                                <ul class="accordian-list">
-                                                    <li>Visit to Ho Chi Minh Mausoleum</li>
-                                                    <li>One Pillar Pagoda</li>
-                                                    <li>Temple of Literature</li>
-                                                    <li>Water puppet show in the evening</li>
-                                                </ul>
-                                            </div>
-
-                                            <!-- Tab -->
-                                            <div class="tab" id="prod-schedule3">
-                                                <ul class="accordian-list">
-                                                    <li>Visit to Ho Chi Minh Mausoleum</li>
-                                                    <li>One Pillar Pagoda</li>
-                                                    <li>Temple of Literature</li>
-                                                </ul>
-                                            </div>
-
-                                            <!-- Tab -->
-                                            <div class="tab" id="prod-meals3">
-                                                <ul class="accordian-list">
-                                                    <li>Visit to Ho Chi Minh Mausoleum</li>
-                                                    <li>One Pillar Pagoda</li>
-                                                </ul>
-                                            </div>
-
-                                            <!-- Tab -->
-                                            <div class="tab" id="prod-accommodation3">
-                                                <ul class="accordian-list">
-                                                    <li>Visit to Ho Chi Minh Mausoleum</li>
-                                                    <li>One Pillar Pagoda</li>
-                                                    <li>Temple of Literature</li>
-                                                    <li>Water puppet show in the evening</li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </li>
-
-                </ul>
-
-                <!-- Comments Area -->
-                <div class="comments-area">
-                    <div class="comments-area_pattern" style="background-image: url(/media/images/icons/pattern-1.png)"></div>
-                    <div class="comments-area_pattern-two" style="background-image: url(/media/images/icons/pattern-1.png)"></div>
-                    <div class="group-title">
-                        <h4>REVIEWS</h4>
-                    </div>
-
-                    <div class="comment-box">
-
-                        <!-- Comment -->
-                        <div class="comment">
-                            <div class="text">“This article is fantastic! As someone who loves exploring the outdoors, I'm always on the lookout for new national parks to add to my bucket list. Thanks for the inspiration!"</div>
-                            <div class="news-block_four-author">
-                                <div class="news-block_four-author_image">
-                                    <img src="/media/images/resource/author-8.jpg" alt="" />
-                                </div>
-                                Jessica Laurens
-                                <span>December 3, 2025</span>
-                            </div>
-                        </div>
-
-                        <!-- Comment -->
-                        <div class="comment">
-                            <div class="text">"I've been lucky enough to visit a few of the national parks on this list, and I can vouch for their incredible beauty and unique experiences. I highly recommend visiting Yellowstone and Banff - they are truly unforgettable destinations!"</div>
-                            <div class="news-block_four-author">
-                                <div class="news-block_four-author_image">
-                                    <img src="/media/images/resource/author-7.jpg" alt="" />
-                                </div>
-                                Jack Smith
-                                <span>November 10, 2025</span>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
 
@@ -527,56 +130,42 @@
                 <div class="tour_plans position-sticky">
                     <div class="title-box">
                         <h4>JOIN THIS TOUR</h4>
-                        <div class="text">No extra hassle, just fill the form and let us contact you for more informations.</div>
+                        <div class="text">No extra hassle, just fill the form and let us contact you for more information.</div>
                     </div>
 
                     <!-- Booking Form -->
                     <div class="booking-form">
-                        <form method="post" action="https://wpthemebooster.com/demo/themeforest/html/vacasky/contact.html">
+                        <form method="post">
+                            {% csrf_token %}
                             <!-- Form Group -->
+                            <input type="hidden" name="location" value="{{package.name}}, {{package.destination.destination_name}}">
                             <div class="form-group">
-                                <label>first name*</label>
-                                <select name="currency" class="custom-select-box">
-                                    <option>Mrs</option>
-                                    <option>Mr</option>
-                                </select>
+                                <label>Full name*</label>
+                                <input type="text" name="name">
                             </div>
                             <!-- Form Group -->
                             <div class="form-group">
-                                <label>Starting Date*</label>
-                                <input class="datepicker" type="text" name="text" placeholder="March 23, 2023" required="">
+                                <label>Phone Number*</label>
+                                <input type="tel" name="phone">
                             </div>
                             <!-- Form Group -->
                             <div class="form-group">
-                                <label>Guests*</label>
-                                <select name="currency" class="custom-select-box">
-                                    <option>02 Adults, 01 Kids</option>
-                                    <option>03 Adults, 03 Kids</option>
-                                    <option>04 Adults, 05 Kids</option>
-                                    <option>05 Adults, 07 Kids</option>
-                                    <option>06 Adults, 09 Kids</option>
-                                    <option>07 Adults, 10 Kids</option>
-                                </select>
+                                <label>Email*</label>
+                                <input type="email" name="email">
                             </div>
                             <!-- Form Group -->
                             <div class="form-group">
-                                <label>Extra Facilities</label>
-                                <select name="currency" class="custom-select-box">
-                                    <option>Airport Pickup ($ 1,000)</option>
-                                    <option>Airport Pickup ($ 2,000)</option>
-                                    <option>Airport Pickup ($ 3,000)</option>
-                                    <option>Airport Pickup ($ 4,000)</option>
-                                    <option>Airport Pickup ($ 5,000)</option>
-                                    <option>Airport Pickup ($ 6,000)</option>
-                                </select>
+                                <label>Preferred Travel Date*</label>
+                                <input type="date" name="pref_travel_date">
+                            </div>
+                            <!-- Form Group -->
+                            <div class="form-group">
+                                <label>Additional Comments/Messages</label>
+                                <textarea name="message"></textarea>
                             </div>
                             <div class="form-group">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <div class="total-payment">
-                                        Total Payment
-                                        <span>$ 2,200</span>
-                                    </div>
-                                    <button class="btn-style-two theme-btn">
+                                    <button type="submit" class="btn-style-two theme-btn">
                                         <span class="btn-wrap">
                                             <span class="text-one">Book This Tour</span>
                                             <span class="text-two">Book This Tour</span>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Enquiry</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border: 1px solid #dddddd;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #dddddd;
+        }
+        .header h1 {
+            margin: 0;
+            color: #333333;
+        }
+        .content {
+            padding: 20px 0;
+        }
+        .content h2 {
+            color: #333333;
+            margin-top: 0;
+        }
+        .content p {
+            color: #555555;
+            line-height: 1.6;
+        }
+        .footer {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #dddddd;
+            color: #777777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Contact Enquiry</h1>
+        </div>
+        <div class="content">
+            <h2>Hello {{ name }},</h2>
+            <p>Thank you for enquiry with us. Here are the details of your enquiry:</p>
+            <p><strong>Name:</strong> {{ name }}</p>
+            <p><strong>Email:</strong> {{ email }}</p>
+            <p><strong>Phone Number:</strong> {{ mobile_number }}</p>
+            <p><strong>Additional Message:</strong> {{ message }}</p>
+            <p>We will get in touch with you shortly to confirm the details and provide further information.</p>
+            <p>Thank you for choosing our service!</p>
+        </div>
+        <div class="footer">
+            <p>&copy; 2024 Salt And Sea Adventures Pvt. Ltd. All rights reserved.</p>
+            <p>If you have any questions, feel free to <a href="mailto:sahaniyaswimmy@gmail.com">contact us</a>.</p>
+        </div>
+    </div>
+</body>
+</html>

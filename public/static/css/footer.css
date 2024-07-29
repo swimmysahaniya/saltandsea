@@ -10,7 +10,7 @@
 .main-footer{
 	position:relative;
 	padding: 70px 0px 60px;
-	background-color: var(--color-two);
+    background-color: #00a1ff;
 }
 
 .footer-logo img {
