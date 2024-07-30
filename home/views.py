@@ -13,10 +13,12 @@ def home(request):
 
     galleries = Gallery.objects.all()
     blogs = Blog.objects.all()[:4]
-    destinations = Destination.objects.all()
+    destinations = Destination.objects.all()[:10]
     testimonial = Testimonial.objects.all()
     client = Clients.objects.all()
     faqs = Faqs.objects.all()
+
+    tour_package = TourPackage.objects.all()[:2]
 
     links = Destination.objects.all().order_by('india_part', 'state', 'destination_name')
     grouped_links = {}
@@ -34,6 +36,7 @@ def home(request):
         'clients': client,
         'faqs': faqs,
         'grouped_links': grouped_links,
+        'tour_packages': tour_package,
     }
 
     return render(request, "index.html", context)
@@ -56,6 +59,9 @@ def destination(request):
 
 def get_destination(request, slug):
     try:
+
+        galleries = Gallery.objects.all()[:9]
+
         destine_place = Destination.objects.get(slug=slug)
         images = destine_place.destination_images.all()
 
@@ -74,6 +80,7 @@ def get_destination(request, slug):
             'images': images,
             'tour_packages': tour_package,
             'page_obj': page_obj,
+            'gallery': galleries,
         }
         return render(request, "tour-package.html", context)
     except Exception as e:
@@ -83,6 +90,8 @@ def get_destination(request, slug):
 
 
 def tour_package_detail(request, slug):
+
+    galleries = Gallery.objects.all()[:9]
 
     package = TourPackage.objects.get(slug=slug)
     images = package.tour_images.all()
@@ -127,13 +136,15 @@ def tour_package_detail(request, slug):
         'package': package,
         'images': images,
         'form': form,
+        'gallery': galleries,
     }
 
     return render(request, "tour-package-detail.html", context)
 
 
 def about(request):
-    context = {'page': 'About'}
+    queryset = Gallery.objects.all()[:9]
+    context = {'page': 'About', 'gallery': queryset}
     return render(request, "about.html", context)
 
 
@@ -146,17 +157,23 @@ def gallery(request):
 
 
 def blog(request):
+
+    galleries = Gallery.objects.all()[:9]
+
     queryset = Blog.objects.all()
     paginator = Paginator(queryset, 10)  # Show 10 objects per page
 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    context = {'page': 'Blog', 'blogs': queryset, 'page_obj': page_obj}
+    context = {'page': 'Blog', 'blogs': queryset, 'page_obj': page_obj, 'gallery': galleries}
     return render(request, "blog.html", context)
 
 
 def get_blog(request, slug):
+
+    galleries = Gallery.objects.all()[:9]
+
     blog_detail = Blog.objects.get(slug=slug)
 
     # Get all tags from all blogs
@@ -187,11 +204,15 @@ def get_blog(request, slug):
         'related_blogs': related_blogs,
         'previous_blog': previous_blog,
         'next_blog': next_blog,
+        'gallery': galleries,
     }
     return render(request, "blog-detail.html", context)
 
 
 def contact(request):
+
+    queryset = Gallery.objects.all()[:9]
+
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -224,7 +245,7 @@ def contact(request):
     else:
         form = ContactForm()
 
-    return render(request, 'contact.html', {'page': 'Contact', 'form': form})
+    return render(request, 'contact.html', {'page': 'Contact', 'form': form, 'gallery': queryset})
 
 
 def terms_and_conditions(request):
