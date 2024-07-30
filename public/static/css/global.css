@@ -390,6 +390,26 @@ body {
 	transition: all 0.5s ease-in-out;
 }
 
+/* width */
+::-webkit-scrollbar {
+width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+background: #002C39;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+background: rgb(255, 255, 255);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+background: rgb(255, 255, 255);
+}
+
 .bordered-layout .page-wrapper{
 	padding:0px 50px 0px;
 }
@@ -620,7 +640,7 @@ img{
 .scroll-to-top.show {
     opacity: 1;
     visibility: visible;
-    bottom: 15px;
+    bottom: 85px;
 }
 
 /* List Style One */

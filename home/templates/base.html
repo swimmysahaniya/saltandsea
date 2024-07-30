@@ -178,15 +178,9 @@
 					</div>
 					<div class=" col-lg-4 col-md-4 col-sm-12">
 						<div class="gallery">
-							<img src="/media/images/gallery/7.jpg" width="30%" alt="Logo" title="Salt and Sea">
-							<img src="/media/images/gallery/8.jpg" width="30%" alt="Logo" title="Salt and Sea">
-							<img src="/media/images/gallery/9.jpg" width="30%" alt="Logo" title="Salt and Sea">
-							<img src="/media/images/gallery/20.jpg" width="30%" alt="Logo" title="Salt and Sea">
-							<img src="/media/images/gallery/11.jpg" width="30%" alt="Logo" title="Salt and Sea">
-							<img src="/media/images/gallery/13.jpg" width="30%" alt="Logo" title="Salt and Sea">
-							<img src="/media/images/gallery/14.jpg" width="30%" alt="Logo" title="Salt and Sea">
-							<img src="/media/images/gallery/18.jpg" width="30%" alt="Logo" title="Salt and Sea">
-							<img src="/media/images/gallery/19.jpg" width="30%" alt="Logo" title="Salt and Sea">
+							{% for image in gallery %}
+							<img src="/media/{{image.image}}" style="width: 112px; height: 106px;" alt="Logo" title="Salt and Sea">
+							{% endfor %}
 						</div>
 					</div>
 				</div>

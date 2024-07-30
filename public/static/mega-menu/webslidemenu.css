@@ -1171,6 +1171,10 @@ video {
     white-space: inherit;
   }
 
+  .wsmenu>.wsmenu-list>li span {
+    color: #000;
+  }
+
   @supports (-webkit-overflow-scrolling: touch) {
     .wsmenu>.wsmenu-list>li:last-child {
       padding-bottom: 110px;
@@ -1221,10 +1225,10 @@ video {
     left: 27px;
   }
 
-  .wsmenu>.wsmenu-list>li:hover>a {
+  /*.wsmenu>.wsmenu-list>li:hover>a {
     background-color: rgba(0, 0, 0, 0.08);
     text-decoration: none;
-  }
+  }*/
 
   .wsmenu>.wsmenu-list>li>a>.hometext {
     display: inline-block;
@@ -1500,7 +1504,7 @@ video {
     width: 80px;
     margin: 7px auto 0px auto;
     float: none;
-    padding-left: 0px;
+    padding: 0px;
   }
 
   .mobiletext {
@@ -1734,7 +1738,6 @@ video {
 
   /* ================== Mobile Sub Menu Expander Arrows  ================== */
   .wsmenu>.wsmenu-list>li>.wsmenu-click {
-    border-left: 1px solid;
     cursor: pointer;
     display: block;
     height: 60px;

@@ -38,7 +38,7 @@
 			<!-- Image Column -->
 			<div class="about-one_image-column col-lg-6 col-md-12 col-sm-12">
 				<div class="about-one_image">
-					<img src="/media/images/resource/about.jpg" alt="" />
+					<img src="/media/images/resource/about.jpg" alt="about" style="width: 745px; height: 546px;" />
 				</div>
 			</div>
 			<!-- Content Column -->
@@ -84,7 +84,7 @@
 
 			<!-- Feature Block One -->
 			<div class="feature-block_one col-lg-3 col-md-6 col-sm-12">
-				<div class="feature-block_one-inner wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
+				<div class="feature-block_one-inner">
 					<div class="feature-block_one-icon flaticon-smile-1"></div>
 					<h5 class="feature-block_one-title">Customer Delight</h5>
 					<div class="feature-block_one-text">We deliver the best service and experience for our customer.</div>
@@ -93,7 +93,7 @@
 
 			<!-- Feature Block One -->
 			<div class="feature-block_one col-lg-3 col-md-6 col-sm-12">
-				<div class="feature-block_one-inner wow fadeInLeft" data-wow-delay="150ms" data-wow-duration="1500ms">
+				<div class="feature-block_one-inner">
 					<div class="feature-block_one-icon flaticon-mountain"></div>
 					<h5 class="feature-block_one-title">Authentic Adventure</h5>
 					<div class="feature-block_one-text">We deliver the real adventure experience for our dear customer.</div>
@@ -102,7 +102,7 @@
 
 			<!-- Feature Block One -->
 			<div class="feature-block_one col-lg-3 col-md-6 col-sm-12">
-				<div class="feature-block_one-inner wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="1500ms">
+				<div class="feature-block_one-inner">
 					<div class="feature-block_one-icon flaticon-flags"></div>
 					<h5 class="feature-block_one-title">Expert Guides</h5>
 					<div class="feature-block_one-text">We deliver only expert tour guides for our dear customer.</div>
@@ -111,7 +111,7 @@
 
 			<!-- Feature Block One -->
 			<div class="feature-block_one col-lg-3 col-md-6 col-sm-12">
-				<div class="feature-block_one-inner wow fadeInLeft" data-wow-delay="450ms" data-wow-duration="1500ms">
+				<div class="feature-block_one-inner">
 					<div class="feature-block_one-icon flaticon-clock"></div>
 					<h5 class="feature-block_one-title">Time Flexibility</h5>
 					<div class="feature-block_one-text">We welcome time flexibility of traveling for our dear customer.</div>
@@ -146,7 +146,7 @@
 						<div class="location-block_one style-two {% if forloop.counter|divisibleby:2 %}translate{% endif %}">
 							<div class="location-block_one-inner">
 								<div class="location-block_one-image">
-									<a href="{% url 'get_destination' destination.slug %}"><img src="/media/{{destination.destination_images.first.image}}" width="270" height="377" alt="{{destination.destination_name}}" /></a>
+									<a href="{% url 'get_destination' destination.slug %}"><img src="/media/{{destination.destination_images.first.image}}" alt="{{destination.destination_name}}" style="width: 100%; height: 377px;" /></a>
 								</div>
 								<div class="location-block_one-content">
 									<h5 class="location-block_one-heading"><a href="{% url 'get_destination' destination.slug %}">{{destination.destination_name}}</a></h5>
@@ -181,44 +181,19 @@
 		<div class="row clearfix">
 
 			<!-- Package Block One -->
-			<div class="package-block_one col-lg-3 col-md-4 col-sm-12">
+			{% for tour_package in tour_packages %}
+			<div class="package-block_one col-lg-6 col-md-4 col-sm-12">
 				<div class="package-block_one-inner">
 					<div class="package-block_one-image">
-						<img src="/media/images/resource/package-1.jpg" alt="" />
-						<div class="package-block_one-number">01</div>
+						<img src="/media/{{tour_package.t_image}}" alt="{{tour_package.name}}" style="width: 100%; height: 500px;" />
+						<div class="package-block_one-number">{{ forloop.counter }}</div>
 						<div class="package-block_one-content">
-							<h4 class="package-block_one-title"><a href="/tour-package/">Cultural Immersion Package</a></h4>
+							<h4 class="package-block_one-title"><a href="{% url 'tour_package_detail' tour_package.slug %}">{{tour_package.name}}</a></h4>
 						</div>
 					</div>
 				</div>
 			</div>
-
-			<!-- Package Block Two -->
-			<div class="package-block_two col-lg-9 col-md-8 col-sm-12">
-				<div class="package-block_two-inner">
-					<div class="package-block_two-image">
-						<img src="/media/images/resource/package-2.jpg" alt="" />
-						<div class="package-block_two-number">02</div>
-					</div>
-					<div class="package-block_two-content">
-						<div class="d-flex justify-content-between flex-wrap">
-							<h1 class="package-block_two-title"><a href="/tour-package/">ESCAPE <br> TO PARADISE</a></h1>
-							<div class="package-block_two-box">
-								<div class="package-block_two-text">Bask in the warm tropical sun with our exclusive Tropical Escape Package. This 7-day trip takes you to the most stunning tropical islands.</div>
-								<!-- Button Box -->
-								<div class="button-box">
-									<a class="btn-style-two theme-btn" href="/tour-package/">
-										<div class="btn-wrap">
-											<span class="text-one">Book Now</span>
-											<span class="text-two">Book Now</span>
-										</div>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			{% endfor %}
 
 		</div>
 	</div>
@@ -230,7 +205,7 @@
 	<div class="outer-container">
 		<div class="video-one_logo"><a href="/"><img src="/media/images/logo.png" width="40%" alt="logo" title="Salt and Sea"></a></div>
 		<div class="video-one_box wow bounce" data-wow-delay="0ms" data-wow-duration="1500ms">
-			<img src="/media/images/background/1.jpg" alt="" />
+			<img src="/media/images/main-slider/12.jpg" alt="video background" />
 			<a href="#" class="play lightbox-video"><span class="flaticon-play"><i class="ripple"></i></span></a>
 		</div>
 	</div>
@@ -386,7 +361,7 @@
 <!-- End Achivements One -->
 
 <!-- Faq One -->
-<section class="faq-one" style="background-image: url(/media/images/background/20.jpg)">
+<section class="faq-one" style="background-image: url(/media/images/background/21.jpg)">
 	<div class="auto-container">
 		<!-- Sec Title -->
 		<div class="sec-title centered">
@@ -436,7 +411,7 @@
             <div class="news-block_three col-lg-6 col-md-12 col-sm-12">
                 <div class="news-block_three-inner">
                     <div class="news-block_three-image">
-                        <a href="{% url 'get_blog' blog.slug %}"><img src="/media/{{blog.featured_image}}" alt="{{blog.title}}" /></a>
+                        <a href="{% url 'get_blog' blog.slug %}"><img src="/media/{{blog.featured_image}}" alt="{{blog.title}}" style="width: 100%; height: 450px;" /></a>
                         <div class="news-block_three-overlay">
                             <div class="news-block_three-title">{{blog.tags}}</div>
                             <h3 class="news-block_three-heading"><a href="{% url 'get_blog' blog.slug %}">{{blog.title}}</a></h3>
