@@ -4,15 +4,16 @@ from django.utils.text import slugify
 from django.contrib.auth.models import User
 
 
-TAG_CHOICES = {
-    "New": "New",
-    "Most Viewed": "Most Viewed",
-    "Discounted": "Discounted",
-    "50% off": "50% off",
-}
-
-
 class Destination(BaseModel):
+
+    # Specifying the choices
+    TAG_CHOICES = (
+        ("New", "New"),
+        ("Most Viewed", "Most Viewed"),
+        ("Discounted", "Discounted"),
+        ("50% Off", "50% Off"),
+    )
+
     india_part = models.CharField(max_length=100)
     state = models.CharField(max_length=100)
     destination_name = models.CharField(max_length=100)
