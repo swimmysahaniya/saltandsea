@@ -29,6 +29,9 @@ class Destination(BaseModel):
     def __str__(self):
         return self.destination_name
 
+    def tour_package_count(self):
+        return self.tour_packages.count()
+
 
 class DestinationImage(BaseModel):
     destination = models.ForeignKey(Destination, on_delete=models.CASCADE, related_name="destination_images")
@@ -97,7 +100,7 @@ class Blog(BaseModel):
 class Review(BaseModel):
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name="reviews")
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    image = models.ImageField()
+    image = models.ImageField(upload_to="review")
     comment = models.TextField()
 
     def __str__(self):
@@ -121,4 +124,16 @@ class Faqs(BaseModel):
     answer = models.TextField()
 
 
+class HomeAbout(BaseModel):
+    short_heading = models.CharField(max_length=50)
+    large_heading = models.CharField(max_length=100)
+    description = models.TextField()
+    image = models.ImageField(upload_to="home_about")
+    years = models.IntegerField(default=20)
+    countries = models.IntegerField(default=100)
 
+
+class Achievements(BaseModel):
+    icon = models.CharField(max_length=50)
+    title = models.CharField(max_length=50)
+    text = models.CharField(max_length=100)

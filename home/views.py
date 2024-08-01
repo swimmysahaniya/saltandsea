@@ -1,7 +1,9 @@
 from django.shortcuts import render
-from .models import Destination, Gallery, Blog, TourPackage, Testimonial, Clients, Faqs
+from .models import Destination, Gallery, Blog, TourPackage, Testimonial, Clients, Faqs, HomeAbout, Achievements
 from django.core.paginator import Paginator
 from itertools import groupby
+from django.db.models import Count
+from django.db.models import Q
 
 from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
@@ -17,6 +19,8 @@ def home(request):
     testimonial = Testimonial.objects.all()
     client = Clients.objects.all()
     faqs = Faqs.objects.all()
+    home_about = HomeAbout.objects.all()
+    achievements = Achievements.objects.all()
 
     tour_package = TourPackage.objects.all()[:2]
 
@@ -37,6 +41,8 @@ def home(request):
         'faqs': faqs,
         'grouped_links': grouped_links,
         'tour_packages': tour_package,
+        'home_about': home_about,
+        'achievements': achievements,
     }
 
     return render(request, "index.html", context)
@@ -44,7 +50,10 @@ def home(request):
 
 def destination(request):
 
-    queryset = Destination.objects.all()
+    galleries = Gallery.objects.all()[:9]
+
+    queryset = Destination.objects.annotate(package_count=Count('tour_packages'))
+
     paginator = Paginator(queryset, 10)  # Show 10 objects per page
 
     page_number = request.GET.get('page')
@@ -53,7 +62,13 @@ def destination(request):
     if request.GET.get('search'):
         queryset = queryset.filter(destination_name__icontains=request.GET.get('search'))
 
-    context = {'page': 'Destinations', 'destinations': queryset, 'page_obj': page_obj}
+    context = {
+        'page': 'Destinations',
+        'destinations': queryset,
+        'page_obj': page_obj,
+        'gallery': galleries,
+    }
+
     return render(request, "destination.html", context)
 
 
@@ -66,13 +81,37 @@ def get_destination(request, slug):
         images = destine_place.destination_images.all()
 
         tour_package = destine_place.tour_packages.all()
+
+        price_ranges = request.GET.getlist('price_range')
+
+        # Handle price range filtering
+        if price_ranges:
+            price_filter = Q()
+            if '1' in price_ranges:
+                price_filter |= Q(price__lte=40000)
+            if '2' in price_ranges:
+                price_filter |= Q(price__gt=40000, price__lte=80000)
+            if '3' in price_ranges:
+                price_filter |= Q(price__gt=80000, price__lte=125000)
+            if '4' in price_ranges:
+                price_filter |= Q(price__gt=125000, price__lte=160000)
+            if '5' in price_ranges:
+                price_filter |= Q(price__gt=160000)
+
+            tour_package = tour_package.filter(price_filter).distinct()
+
         paginator = Paginator(tour_package, 10)  # Show 10 objects per page
 
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
 
+        # Handle search by name
         if request.GET.get('search'):
             tour_package = tour_package.filter(name__icontains=request.GET.get('search'))
+
+        # Handle search by date
+        if request.GET.get('date_search'):
+            tour_package = tour_package.filter(date_of_travel=request.GET.get('date_search'))
 
         context = {
             'page': slug,
@@ -249,10 +288,12 @@ def contact(request):
 
 
 def terms_and_conditions(request):
-    context = {'page': 'Terms and Conditions'}
+    galleries = Gallery.objects.all()[:9]
+    context = {'page': 'Terms and Conditions', 'gallery': galleries}
     return render(request, "terms-and-conditions.html", context)
 
 
 def privacy_policy(request):
-    context = {'page': 'Privacy Policy'}
+    galleries = Gallery.objects.all()[:9]
+    context = {'page': 'Privacy Policy', 'gallery': galleries}
     return render(request, "privacy-policy.html", context)

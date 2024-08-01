@@ -22,7 +22,9 @@
             <!-- Image -->
             {% for image in images %}
             <div class="image">
-                <a class="lightbox-image" href="/media/{{image.image}}"><img src="/media/{{image.image}}" alt="{{destine_place.destination_name}}" /></a>
+                <a class="lightbox-image" href="/media/{{image.image}}">
+                    <img src="/media/{{image.image}}" alt="{{destine_place.destination_name}}" style="width: 100%; height: 294px;" />
+                </a>
             </div>
             {% endfor %}
 
@@ -64,8 +66,8 @@
                         <div class="filter-search">
                             <form>
                                 <div class="form-group">
-                                    <input type="search" name="search-field" value="" placeholder="Search..." required>
-                                    <button type="submit"><span class="icon fa fa-calendar"></span></button>
+                                    <input type="date" name="date_search" placeholder="Search...">
+                                    <button type="submit"></button>
                                 </div>
                             </form>
                         </div>
@@ -74,27 +76,33 @@
                     <div class="widget">
                         <h6 class="widget-title">Price Range</h6>
                         <div class="filter-price">
-                            <form action="#" method="post">
+                            <form method="get">
                                 <div class="form-check">
                                     <label>Up to Rs. 40,000</label>
-                                    <input type="checkbox" class="form-check-input" name="checkbox1" value="">
+                                    <input type="checkbox" class="form-check-input" name="price_range" value="1">
                                 </div>
                                 <div class="form-check">
                                     <label>Rs. 40,001 - Rs. 80,000</label>
-                                    <input type="checkbox" class="form-check-input" name="checkbox2" value="">
+                                    <input type="checkbox" class="form-check-input" name="price_range" value="2">
                                 </div>
                                 <div class="form-check">
                                     <label>Rs. 80,001 - Rs. 1,25,000</label>
-                                    <input type="checkbox" class="form-check-input" name="checkbox3" value="">
+                                    <input type="checkbox" class="form-check-input" name="price_range" value="3">
                                 </div>
                                 <div class="form-check">
                                     <label>Rs. 1,25,001 - Rs. 1,60,000</label>
-                                    <input type="checkbox" class="form-check-input" name="checkbox4" value="">
+                                    <input type="checkbox" class="form-check-input" name="price_range" value="4">
                                 </div>
                                 <div class="form-check">
                                     <label>Rs. 1,60,000+</label>
-                                    <input type="checkbox" class="form-check-input" name="checkbox5" value="">
+                                    <input type="checkbox" class="form-check-input" name="price_range" value="5">
                                 </div>
+                                <button type="submit" class="btn-style-two theme-btn">
+                                    <span class="btn-wrap">
+                                        <span class="text-one">Filter</span>
+                                        <span class="text-two">Filter</span>
+                                    </span>
+                                </button>
                             </form>
                         </div>
                     </div>
@@ -113,7 +121,9 @@
                         <div class="tour-block_one">
                             <div class="tour-block_one-inner d-flex align-items-center flex-wrap flex-xl-nowrap">
                                 <div class="tour-block_one-image flex-xl-shrink-0">
-                                    <a href="{% url 'tour_package_detail' tour_package.slug %}"><img src="/media/{{tour_package.t_image}}" alt="{{tour_package.name}}" /></a>
+                                    <a href="{% url 'tour_package_detail' tour_package.slug %}">
+                                        <img src="/media/{{tour_package.t_image}}" alt="{{tour_package.name}}" style="width: 100%; height: 206px;" />
+                                    </a>
                                 </div>
                                 <div class="tour-block_one-content">
                                     <div class="tour-block_one-location">{{destine_place.destination_name}}</div>

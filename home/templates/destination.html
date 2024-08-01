@@ -7,9 +7,9 @@
     <div class="auto-container">
         <ul class="page-breadbrumbs">
             <li><a href="/">Home</a></li>
-            <li>destination</li>
+            <li>destinations</li>
         </ul>
-        <h1 class="page-banner_title">DESTINATION</h1>
+        <h1 class="page-banner_title">DESTINATIONS</h1>
     </div>
 </section>
 <!-- End Page Banner -->
@@ -48,28 +48,12 @@
                 <div class="gallery-block_two style-two col-lg-4 col-md-6 col-sm-12">
                     <div class="gallery-block_two-inner">
                         <div class="gallery-block_two-image">
-                            <img src="/media/{{destination.destination_images.first.image}}" alt="{{destination.destination_name}}" />
-                            <div class="overlay-box_two">
-                                <div class="overlay-box_two-inner">
-                                    <h4><a href="{% url 'get_destination' destination.slug %}">{{destination.destination_name}}</a></h4>
-                                    <div class="d-flex align-items-center flex-wrap justify-content-center">
-                                        <div class="gallery-block_two-location">{{destination.no_of_packages}} Packages</div>
-                                        <div class="gallery-block_two-price">{{destination.price_range}}</div>
-                                    </div>
-                                    <div class="gallery-block_two-text-two">{{destination.description}}</div>
-                                    <div class="gallery-block_two-button">
-                                        <a class="theme-btn learn-btn" href="{% url 'get_destination' destination.slug %}">Learn More</a>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="overlay-box">
-                                <div class="overlay-content">
-                                    <h3 class="gallery-block_two-title"><a href="/destination-detail/">{{destination.destination_name}}</a></h3>
-                                    <div class="d-flex align-items-center flex-wrap">
-                                        <div class="gallery-block_two-location">{{destination.no_of_packages}} Packages</div>
-                                        <div class="gallery-block_two-price">{{destination.price_range}}</div>
-                                    </div>
-                                </div>
+                                <img src="/media/{{destination.destination_images.first.image}}" alt="{{destination.destination_name}}" style="width: 100%; height: 352px;" />
+                            </div>
+                            <h3 class="gallery-block_two-title"><a href="{% url 'get_destination' destination.slug %}">{{destination.destination_name}}</a></h3>
+                            <div class="d-flex align-items-center flex-wrap">
+                                <div class="gallery-block_two-location">{{ destination.package_count }} Packages</div>
                             </div>
                         </div>
                     </div>

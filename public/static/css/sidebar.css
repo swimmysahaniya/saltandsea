@@ -39,11 +39,11 @@
 	border-bottom:1px solid rgba(var(--black-color-rgb), 0.10);
 }
 
-.filter-search .form-group input[type="search"] {
+.filter-search .form-group input[type="date"] {
     position: relative;
     line-height: 28px;
     font-size: var(--font-16);
-    padding: 10px 50px 10px 10px;
+    padding: 10px;
     background: none;
     display: block;
     width: 100%;
@@ -63,7 +63,7 @@
 	color:var(--color-two);
 }
 
-.filter-search .form-group button{
+/*.filter-search .form-group button{
 	position:absolute;
 	right:0px;
 	top:0px;
@@ -83,7 +83,7 @@
 	-ms-transition:all 500ms ease;
 	-o-transition:all 500ms ease;
     border-left: 1px solid rgba(var(--black-color-rgb), 0.10);
-}
+}*/
 
 .filter-search .form-group button:hover{
 	color:var(--main-color);

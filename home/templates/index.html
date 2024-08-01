@@ -35,20 +35,21 @@
 <section class="about-one">
 	<div class="auto-container">
 		<div class="row clearfix">
+			{% for ha in home_about %}
 			<!-- Image Column -->
 			<div class="about-one_image-column col-lg-6 col-md-12 col-sm-12">
 				<div class="about-one_image">
-					<img src="/media/images/resource/about.jpg" alt="about" style="width: 745px; height: 546px;" />
+					<img src="/media/{{ha.image}}" alt="about" style="width: 745px; height: 546px;" />
 				</div>
 			</div>
 			<!-- Content Column -->
 			<div class="about-one_content-column col-lg-6 col-md-12 col-sm-12">
 				<div class="about-one_content">
 					<div class="sec-title_three">
-						<div class="sec-title_three-title">about</div>
-						<h1 class="sec-title_three-heading">MEMORABLE travels</h1>
+						<div class="sec-title_three-title">{{ha.short_heading}}</div>
+						<h1 class="sec-title_three-heading">{{ha.large_heading}}</h1>
 						<div class="sec-title_three-text">
-							Salt&Sea Adventures was born from the passion for the thrill of expedition and exploration ardently shared by lifelong friends and adventure enthusiasts, Sudhir,Yash and Tanvi. Founded in 2019, a simple purpose laid our company’s foundation; to offer unforgettable tour experiences that connect people with the beauty and wonder of travel.
+							{{ha.description}}
 						</div>
 					</div>
 					<div class="row clearfix">
@@ -56,7 +57,7 @@
 						<!-- Counter Column -->
 						<div class="counter-one_block col-lg-6 col-md-6 col-sm-6">
 							<div class="counter-one_block-inner wow flipInX" data-wow-delay="0ms" data-wow-duration="1500ms">
-								<div class="counter-one_counter"><span class="odometer" data-count="20"></span>+</div>
+								<div class="counter-one_counter"><span class="odometer" data-count="{{ha.years}}"></span>+</div>
 								<div class="counter-one_counter-text">years of experience</div>
 							</div>
 						</div>
@@ -64,7 +65,7 @@
 						<!-- Counter Column -->
 						<div class="counter-one_block col-lg-6 col-md-6 col-sm-6">
 							<div class="counter-one_block-inner wow flipInX" data-wow-delay="150ms" data-wow-duration="1500ms">
-								<div class="counter-one_counter"><span class="odometer" data-count="100"></span>+</div>
+								<div class="counter-one_counter"><span class="odometer" data-count="{{ha.countries}}"></span>+</div>
 								<div class="counter-one_counter-text">destination countries</div>
 							</div>
 						</div>
@@ -72,6 +73,7 @@
 					</div>
 				</div>
 			</div>
+			{% endfor %}
 		</div>
 	</div>
 </section>
@@ -228,7 +230,7 @@
 			<div class="gallery-block_one masonry-item col-lg-3 col-md-6 col-sm-12">
 				<div class="gallery-block_one-inner">
 					<div class="gallery-block_one-image">
-						<img src="/media/{{image.image}}" alt="Gallery" />
+						<img src="/media/{{image.image}}" alt="Gallery" style="width: 100%; height: 300px;" />
 						<div class="overlay-box">
 							<a href="/media/{{image.image}}" class="lightbox-image plus flaticon-plus"></a>
 						</div>
@@ -302,58 +304,15 @@
 		<div class="achivement-carousel owl-carousel owl-theme">
 
 			<!-- Achivement Block One -->
+			{% for achievement in achievements %}
 			<div class="achivement-block_one">
 				<div class="achivement-block_one-inner">
-					<div class="achivement-block_one-icon flaticon-award"></div>
-					<h3 class="achivement-block_one-title">Travel + Leisure</h3>
-					<div class="achivement-block_one-text">World's Best Tour Operator 2022 United States of America</div>
+					<div class="achivement-block_one-icon {{achievement.icon}}"></div>
+					<h3 class="achivement-block_one-title">{{achievement.title}}</h3>
+					<div class="achivement-block_one-text">{{achievement.text}}</div>
 				</div>
 			</div>
-
-			<!-- Achivement Block One -->
-			<div class="achivement-block_one">
-				<div class="achivement-block_one-inner">
-					<div class="achivement-block_one-icon flaticon-trophy"></div>
-					<h3 class="achivement-block_one-title">World Travel Award</h3>
-					<div class="achivement-block_one-text">Best Travel Agency 2023 United Kingdom</div>
-				</div>
-			</div>
-
-			<!-- Achivement Block One -->
-			<div class="achivement-block_one">
-				<div class="achivement-block_one-inner">
-					<div class="achivement-block_one-icon flaticon-badge"></div>
-					<h3 class="achivement-block_one-title">TripAdvisor</h3>
-					<div class="achivement-block_one-text">Certificate of Excellence 2021 Australia</div>
-				</div>
-			</div>
-
-			<!-- Achivement Block One -->
-			<div class="achivement-block_one">
-				<div class="achivement-block_one-inner">
-					<div class="achivement-block_one-icon flaticon-award"></div>
-					<h3 class="achivement-block_one-title">Travel + Leisure</h3>
-					<div class="achivement-block_one-text">World's Best Tour Operator 2022 United States of America</div>
-				</div>
-			</div>
-
-			<!-- Achivement Block One -->
-			<div class="achivement-block_one">
-				<div class="achivement-block_one-inner">
-					<div class="achivement-block_one-icon flaticon-trophy"></div>
-					<h3 class="achivement-block_one-title">World Travel Award</h3>
-					<div class="achivement-block_one-text">Best Travel Agency 2023 United Kingdom</div>
-				</div>
-			</div>
-
-			<!-- Achivement Block One -->
-			<div class="achivement-block_one">
-				<div class="achivement-block_one-inner">
-					<div class="achivement-block_one-icon flaticon-badge"></div>
-					<h3 class="achivement-block_one-title">TripAdvisor</h3>
-					<div class="achivement-block_one-text">Certificate of Excellence 2021 Australia</div>
-				</div>
-			</div>
+			{% endfor %}
 
 		</div>
 	</div>
