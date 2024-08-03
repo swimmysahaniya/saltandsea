@@ -1,3 +1,4 @@
 *.pyc
+*.pyo
 echo "db.sqlite3" >> .gitignore
 echo "__pycache__/" >> .gitignore

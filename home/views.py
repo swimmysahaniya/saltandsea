@@ -1,7 +1,9 @@
 from django.shortcuts import render
-from .models import Destination, Gallery, Blog, TourPackage, Testimonial, Clients, Faqs
+from .models import Destination, Gallery, Blog, TourPackage, Testimonial, Clients, Faqs, HomeAbout, Achievements, SEO
 from django.core.paginator import Paginator
 from itertools import groupby
+from django.db.models import Count
+from django.db.models import Q
 
 from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
@@ -11,14 +13,26 @@ from django.template.loader import render_to_string
 
 def home(request):
 
-    galleries = Gallery.objects.all()
+    # Fetch SEO data
+    seo_data_qs = SEO.objects.filter(page_name="home")
+    if seo_data_qs.exists():
+        seo_data = seo_data_qs.first()
+    else:
+        seo_data = None
+
+    galleries = Gallery.objects.all()[:9]
+    home_gallery = Gallery.objects.all()[:8]
     blogs = Blog.objects.all()[:4]
-    destinations = Destination.objects.all()[:10]
+    #destinations = Destination.objects.all()[:10]
     testimonial = Testimonial.objects.all()
     client = Clients.objects.all()
     faqs = Faqs.objects.all()
+    home_about = HomeAbout.objects.all()
+    achievements = Achievements.objects.all()
 
     tour_package = TourPackage.objects.all()[:2]
+
+    destinations = Destination.objects.annotate(package_count=Count('tour_packages'))[:10]
 
     links = Destination.objects.all().order_by('india_part', 'state', 'destination_name')
     grouped_links = {}
@@ -30,6 +44,7 @@ def home(request):
     context = {
         'page': 'Salt and Sea',
         'gallery': galleries,
+        'home_gallery': home_gallery,
         'blogs': blogs,
         'destinations': destinations,
         'testimonials': testimonial,
@@ -37,6 +52,11 @@ def home(request):
         'faqs': faqs,
         'grouped_links': grouped_links,
         'tour_packages': tour_package,
+        'home_about': home_about,
+        'achievements': achievements,
+        'title': seo_data.title if seo_data else 'Salt and Sea',
+        'keywords': seo_data.keywords if seo_data else 'Salt and Sea',
+        'description': seo_data.description if seo_data else 'Salt and Sea',
     }
 
     return render(request, "index.html", context)
@@ -44,8 +64,18 @@ def home(request):
 
 def destination(request):
 
-    queryset = Destination.objects.all()
-    paginator = Paginator(queryset, 10)  # Show 10 objects per page
+    # Fetch SEO data
+    seo_data_qs = SEO.objects.filter(page_name="destination")
+    if seo_data_qs.exists():
+        seo_data = seo_data_qs.first()
+    else:
+        seo_data = None
+
+    galleries = Gallery.objects.all()[:9]
+
+    queryset = Destination.objects.annotate(package_count=Count('tour_packages'))
+
+    paginator = Paginator(queryset, 9)  # Show 10 objects per page
 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -53,12 +83,88 @@ def destination(request):
     if request.GET.get('search'):
         queryset = queryset.filter(destination_name__icontains=request.GET.get('search'))
 
-    context = {'page': 'Destinations', 'destinations': queryset, 'page_obj': page_obj}
+    context = {
+        'page': 'Destinations',
+        'destinations': queryset,
+        'page_obj': page_obj,
+        'gallery': galleries,
+        'title': seo_data.title if seo_data else 'Destinations',
+        'keywords': seo_data.keywords if seo_data else 'Destinations',
+        'description': seo_data.description if seo_data else 'Destinations',
+    }
+
     return render(request, "destination.html", context)
+
+
+def tour_packages_page(request):
+
+    # Fetch SEO data
+    seo_data_qs = SEO.objects.filter(page_name="tour_packages_page")
+    if seo_data_qs.exists():
+        seo_data = seo_data_qs.first()
+    else:
+        seo_data = None
+
+    galleries = Gallery.objects.all()[:9]
+
+    destinations = Destination.objects.all()
+    #queryset = TourPackage.objects.all()
+
+    # Handle form submission
+    destination_id = request.GET.get('destination')
+    calendar = request.GET.get('calendar')
+    price = request.GET.get('price')
+
+    # Filter tour packages based on form inputs
+    tour_package_filter = Q()
+    if destination_id:
+        tour_package_filter &= Q(destination_id=destination_id)
+    if calendar:
+        tour_package_filter &= Q(date_of_travel=calendar)
+    if price:
+        if price == '0':
+            tour_package_filter &= Q(price__lte=40000)
+        elif price == '1':
+            tour_package_filter &= Q(price__gt=40000, price__lte=80000)
+        elif price == '2':
+            tour_package_filter &= Q(price__gt=80000, price__lte=125000)
+        elif price == '3':
+            tour_package_filter &= Q(price__gt=125000, price__lte=160000)
+        elif price == '4':
+            tour_package_filter &= Q(price__gt=160000)
+
+    queryset = TourPackage.objects.filter(tour_package_filter)
+
+    paginator = Paginator(queryset, 9)  # Show 10 objects per page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    if request.GET.get('search'):
+        queryset = queryset.filter(name__icontains=request.GET.get('search'))
+
+    context = {
+        'page': 'Tours',
+        'destinations': destinations,
+        'tours': queryset,
+        'page_obj': page_obj,
+        'gallery': galleries,
+        'title': seo_data.title if seo_data else 'Tours',
+        'keywords': seo_data.keywords if seo_data else 'Tours',
+        'description': seo_data.description if seo_data else 'Tours',
+    }
+
+    return render(request, "tours.html", context)
 
 
 def get_destination(request, slug):
     try:
+
+        # Fetch SEO data
+        seo_data_qs = SEO.objects.filter(page_name=slug)
+        if seo_data_qs.exists():
+            seo_data = seo_data_qs.first()
+        else:
+            seo_data = None
 
         galleries = Gallery.objects.all()[:9]
 
@@ -66,13 +172,37 @@ def get_destination(request, slug):
         images = destine_place.destination_images.all()
 
         tour_package = destine_place.tour_packages.all()
+
+        price_ranges = request.GET.getlist('price_range')
+
+        # Handle price range filtering
+        if price_ranges:
+            price_filter = Q()
+            if '1' in price_ranges:
+                price_filter |= Q(price__lte=40000)
+            if '2' in price_ranges:
+                price_filter |= Q(price__gt=40000, price__lte=80000)
+            if '3' in price_ranges:
+                price_filter |= Q(price__gt=80000, price__lte=125000)
+            if '4' in price_ranges:
+                price_filter |= Q(price__gt=125000, price__lte=160000)
+            if '5' in price_ranges:
+                price_filter |= Q(price__gt=160000)
+
+            tour_package = tour_package.filter(price_filter).distinct()
+
         paginator = Paginator(tour_package, 10)  # Show 10 objects per page
 
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
 
+        # Handle search by name
         if request.GET.get('search'):
             tour_package = tour_package.filter(name__icontains=request.GET.get('search'))
+
+        # Handle search by date
+        if request.GET.get('date_search'):
+            tour_package = tour_package.filter(date_of_travel=request.GET.get('date_search'))
 
         context = {
             'page': slug,
@@ -81,6 +211,9 @@ def get_destination(request, slug):
             'tour_packages': tour_package,
             'page_obj': page_obj,
             'gallery': galleries,
+            'title': seo_data.title if seo_data else 'Tour Packages',
+            'keywords': seo_data.keywords if seo_data else 'Tour Packages',
+            'description': seo_data.description if seo_data else 'Tour Packages',
         }
         return render(request, "tour-package.html", context)
     except Exception as e:
@@ -90,6 +223,13 @@ def get_destination(request, slug):
 
 
 def tour_package_detail(request, slug):
+
+    # Fetch SEO data
+    seo_data_qs = SEO.objects.filter(page_name=slug)
+    if seo_data_qs.exists():
+        seo_data = seo_data_qs.first()
+    else:
+        seo_data = None
 
     galleries = Gallery.objects.all()[:9]
 
@@ -120,7 +260,7 @@ def tour_package_detail(request, slug):
             send_mail(
                 'Tour Booking Enquiry',
                 '',  # Plain text message (optional)
-                'sahaniyaswimmy@gmail.com',
+                'info@saltandsea.co.in',
                 [email],
                 fail_silently=False,
                 html_message=html_message,
@@ -137,40 +277,93 @@ def tour_package_detail(request, slug):
         'images': images,
         'form': form,
         'gallery': galleries,
+        'title': seo_data.title if seo_data else 'Tour Packages Detail',
+        'keywords': seo_data.keywords if seo_data else 'Tour Packages Detail',
+        'description': seo_data.description if seo_data else 'Tour Packages Detail',
     }
 
     return render(request, "tour-package-detail.html", context)
 
 
 def about(request):
+
+    # Fetch SEO data
+    seo_data_qs = SEO.objects.filter(page_name="about")
+    if seo_data_qs.exists():
+        seo_data = seo_data_qs.first()
+    else:
+        seo_data = None
+
     queryset = Gallery.objects.all()[:9]
-    context = {'page': 'About', 'gallery': queryset}
+
+    context = {
+        'page': 'About',
+        'gallery': queryset,
+        'title': seo_data.title if seo_data else 'About',
+        'keywords': seo_data.keywords if seo_data else 'About',
+        'description': seo_data.description if seo_data else 'About',
+    }
     return render(request, "about.html", context)
 
 
 def gallery(request):
 
+    # Fetch SEO data
+    seo_data_qs = SEO.objects.filter(page_name="gallery")
+    if seo_data_qs.exists():
+        seo_data = seo_data_qs.first()
+    else:
+        seo_data = None
+
     queryset = Gallery.objects.all()
 
-    context = {'page': 'Gallery', 'gallery': queryset}
+    context = {
+        'page': 'Gallery',
+        'gallery': queryset,
+        'title': seo_data.title if seo_data else 'Gallery',
+        'keywords': seo_data.keywords if seo_data else 'Gallery',
+        'description': seo_data.description if seo_data else 'Gallery',
+    }
     return render(request, "gallery.html", context)
 
 
 def blog(request):
 
+    # Fetch SEO data
+    seo_data_qs = SEO.objects.filter(page_name="blog")
+    if seo_data_qs.exists():
+        seo_data = seo_data_qs.first()
+    else:
+        seo_data = None
+
     galleries = Gallery.objects.all()[:9]
 
     queryset = Blog.objects.all()
-    paginator = Paginator(queryset, 10)  # Show 10 objects per page
+    paginator = Paginator(queryset, 9)  # Show 10 objects per page
 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    context = {'page': 'Blog', 'blogs': queryset, 'page_obj': page_obj, 'gallery': galleries}
+    context = {
+        'page': 'Blog',
+        'blogs': queryset,
+        'page_obj': page_obj,
+        'gallery': galleries,
+        'title': seo_data.title if seo_data else 'Blog',
+        'keywords': seo_data.keywords if seo_data else 'Blog',
+        'description': seo_data.description if seo_data else 'Blog',
+    }
     return render(request, "blog.html", context)
 
 
 def get_blog(request, slug):
+
+    # Fetch SEO data
+    seo_data_qs = SEO.objects.filter(page_name=slug)
+    if seo_data_qs.exists():
+        seo_data = seo_data_qs.first()
+    else:
+        seo_data = None
 
     galleries = Gallery.objects.all()[:9]
 
@@ -205,11 +398,21 @@ def get_blog(request, slug):
         'previous_blog': previous_blog,
         'next_blog': next_blog,
         'gallery': galleries,
+        'title': seo_data.title if seo_data else 'Blog Detail',
+        'keywords': seo_data.keywords if seo_data else 'Blog Detail',
+        'description': seo_data.description if seo_data else 'Blog Detail',
     }
     return render(request, "blog-detail.html", context)
 
 
 def contact(request):
+
+    # Fetch SEO data
+    seo_data_qs = SEO.objects.filter(page_name="contact")
+    if seo_data_qs.exists():
+        seo_data = seo_data_qs.first()
+    else:
+        seo_data = None
 
     queryset = Gallery.objects.all()[:9]
 
@@ -234,7 +437,7 @@ def contact(request):
             send_mail(
                 'Contact Enquiry',
                 '',  # Plain text message (optional)
-                'sahaniyaswimmy@gmail.com',
+                'info@saltandsea.co.in',
                 [email],
                 fail_silently=False,
                 html_message=html_message,
@@ -245,14 +448,55 @@ def contact(request):
     else:
         form = ContactForm()
 
-    return render(request, 'contact.html', {'page': 'Contact', 'form': form, 'gallery': queryset})
+    context = {
+        'page': 'Contact',
+        'form': form,
+        'gallery': queryset,
+        'title': seo_data.title if seo_data else 'Contact',
+        'keywords': seo_data.keywords if seo_data else 'Contact',
+        'description': seo_data.description if seo_data else 'Contact',
+    }
+
+    return render(request, 'contact.html', context)
 
 
 def terms_and_conditions(request):
-    context = {'page': 'Terms and Conditions'}
+
+    # Fetch SEO data
+    seo_data_qs = SEO.objects.filter(page_name="terms_and_conditions")
+    if seo_data_qs.exists():
+        seo_data = seo_data_qs.first()
+    else:
+        seo_data = None
+
+    galleries = Gallery.objects.all()[:9]
+
+    context = {
+        'page': 'Terms and Conditions',
+        'gallery': galleries,
+        'title': seo_data.title if seo_data else 'Terms and Conditions',
+        'keywords': seo_data.keywords if seo_data else 'Terms and Conditions',
+        'description': seo_data.description if seo_data else 'Terms and Conditions',
+    }
     return render(request, "terms-and-conditions.html", context)
 
 
 def privacy_policy(request):
-    context = {'page': 'Privacy Policy'}
+
+    # Fetch SEO data
+    seo_data_qs = SEO.objects.filter(page_name="privacy_policy")
+    if seo_data_qs.exists():
+        seo_data = seo_data_qs.first()
+    else:
+        seo_data = None
+
+    galleries = Gallery.objects.all()[:9]
+
+    context = {
+        'page': 'Privacy Policy',
+        'gallery': galleries,
+        'title': seo_data.title if seo_data else 'Privacy Policy',
+        'keywords': seo_data.keywords if seo_data else 'Privacy Policy',
+        'description': seo_data.description if seo_data else 'Privacy Policy',
+    }
     return render(request, "privacy-policy.html", context)

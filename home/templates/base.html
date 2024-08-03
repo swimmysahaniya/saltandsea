@@ -9,7 +9,10 @@
 		<link rel="shortcut icon" href="/media/images/favicon.png" type="image/x-icon">
 		<link rel="icon" href="/media/images/favicon.png" type="image/x-icon">
 
-		<title>{{page}}</title>
+		<!--<title>{{page}}</title>-->
+		<title>{{ title|default:"Salt and Sea" }}</title>
+		<meta name="keywords" content="{{ keywords|default:"Salt and Sea" }}">
+		<meta name="description" content="{{ description|default:"Salt and Sea" }}">
 
 		<!-- Stylesheet  -->
 		<link href="/media/css/style.css" rel="stylesheet">
@@ -127,31 +130,6 @@
 	<!-- Footer -->
 	<footer class="main-footer">
 		<div class="auto-container">
-			<!-- Upper Box -->
-			<!--<div class="upper-box">
-				<div class="d-flex align-items-center justify-content-between flex-wrap">
-					<div class="footer-logo">
-						<a href="/">
-							<img src="/media/images/logo.jpeg" width="40%" alt="Logo" title="Salt and Sea">
-						</a>
-					</div>
-					<ul class="footer-nav">
-						<li><a href="/about/">About</a></li>
-						<li><a href="/destination/">Destination</a></li>
-						<li><a href="/tour-package/">Tour Packages</a></li>
-						<li><a href="/gallery/">Gallery</a></li>
-						<li><a href="/blog/">Blog</a></li>
-						<li><a href="/contact/">Contact</a></li>
-					</ul>
-					&lt;!&ndash; Social Box &ndash;&gt;
-					<div class="footer-social_box">
-						<a href="https://facebook.com/" class="fab fa-facebook fa-fw"></a>
-						<a href="https://twitter.com/" class="fab fa-twitter-square fa-fw"></a>
-						<a href="https://instagram.com/" class="fab fa-instagram fa-fw"></a>
-					</div>
-				</div>
-			</div>-->
-
 			<div class="upper-box">
 				<div class="row">
 					<div class=" col-lg-4 col-md-4 col-sm-12">
@@ -171,6 +149,8 @@
 						<ul class="footer-nav">
 							<li><a href="/">Home</a></li>
 							<li><a href="/about/">About</a></li>
+							<li><a href="/destination/">Destination</a></li>
+							<li><a href="/tours/">Tours</a></li>
 							<li><a href="/gallery/">Gallery</a></li>
 							<li><a href="/blog/">Blog</a></li>
 							<li><a href="/contact/">Contact</a></li>
@@ -190,8 +170,8 @@
 				<div class="d-flex align-items-center justify-content-between flex-wrap">
 					<div class="copyright">Copyright &copy; 2024 Salt and Sea. All Rights Reserved.</div>
 					<ul class="footer-bottom_nav">
-						<li><a href="#">Privacy Policy</a></li>
-						<li><a href="#">Terms & Conditions</a></li>
+						<li><a href="/privacy-policy/">Privacy Policy</a></li>
+						<li><a href="/terms-and-conditions/">Terms & Conditions</a></li>
 					</ul>
 				</div>
 			</div>

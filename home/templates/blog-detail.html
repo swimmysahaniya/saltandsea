@@ -62,11 +62,13 @@
 								{% for related_blog in related_blogs %}
 								<div class="post-widget_block">
 									<div class="post-widget_block-image">
-										<a href="{% url 'get_blog' related_blog.slug %}"><img src="/media/{{related_blog.featured_image}}" alt="{{related_blog.title}}" /></a>
+										<a href="{% url 'get_blog' related_blog.slug %}">
+											<img src="/media/{{related_blog.featured_image}}" alt="{{related_blog.title}}" style="width: 100%; height: 191px;" />
+										</a>
 									</div>
 									<div class="content">
 										<div class="title">{{related_blog.tags}}</div>
-										<h5 class="post-widget_heading"><a href="{% url 'get_blog' related_blog.slug %}"">{{related_blog.title}}</a></h5>
+										<h5 class="post-widget_heading"><a href="{% url 'get_blog' related_blog.slug %}">{{related_blog.title}}</a></h5>
 										<div class="post-widget_date">{{related_blog.created_at|date:"F j, Y"}}</div>
 									</div>
 								</div>
@@ -84,9 +86,9 @@
 						<div class="inner-box">
 							<h4 class="blog-detail_title"><span>{{blog_detail.tags}}</span></h4>
 							<div class="image">
-								<img src="/media/{{blog_detail.featured_image}}" alt="{{blog_detail.title}}" />
+								<img src="/media/{{blog_detail.featured_image}}" alt="{{blog_detail.title}}" style="width: 100%; height: 442px;" />
 							</div>
-							<p>{{blog_detail.description}}</p>
+							<p>{{blog_detail.description|linebreaks}}</p>
 							<div class="more-projects">
 								<div class="d-flex justify-content-between flex-wrap align-items-center">
         							{% if previous_blog %}
@@ -112,10 +114,10 @@
 								<!-- Comment -->
 								{% for review in reviews %}
 								<div class="comment">
-									<div class="text">{{review.comment}}</div>
+									<div class="text">{{review.comment|linebreaks}}</div>
 									<div class="news-block_four-author">
 										<div class="news-block_four-author_image">
-											<img src="/media/{{review.image}}" alt="{{review.created_at}}" />
+											<img src="/media/{{ review.image }}" alt="{{review.created_at}}" />
 										</div>
 										{{review.user.username}}
 										<span>{{review.created_at}}</span>

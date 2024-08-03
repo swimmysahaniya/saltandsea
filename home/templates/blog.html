@@ -33,7 +33,9 @@
             <div class="news-block_three col-lg-6 col-md-12 col-sm-12">
                 <div class="news-block_three-inner">
                     <div class="news-block_three-image">
-                        <a href="{% url 'get_blog' blog.slug %}"><img src="/media/{{blog.featured_image}}" alt="{{blog.title}}" /></a>
+                        <a href="{% url 'get_blog' blog.slug %}">
+                            <img src="/media/{{blog.featured_image}}" alt="{{blog.title}}" style="width: 100%; height: 450px;" />
+                        </a>
                         <div class="news-block_three-overlay">
                             <div class="news-block_three-title">{{blog.tags}}</div>
                             <h3 class="news-block_three-heading"><a href="{% url 'get_blog' blog.slug %}">{{blog.title}}</a></h3>
