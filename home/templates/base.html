@@ -9,7 +9,10 @@
 		<link rel="shortcut icon" href="/media/images/favicon.png" type="image/x-icon">
 		<link rel="icon" href="/media/images/favicon.png" type="image/x-icon">
 
-		<title>{{page}}</title>
+		<!--<title>{{page}}</title>-->
+		<title>{{ title|default:"Salt and Sea" }}</title>
+		<meta name="keywords" content="{{ keywords|default:"Salt and Sea" }}">
+		<meta name="description" content="{{ description|default:"Salt and Sea" }}">
 
 		<!-- Stylesheet  -->
 		<link href="/media/css/style.css" rel="stylesheet">
@@ -147,6 +150,7 @@
 							<li><a href="/">Home</a></li>
 							<li><a href="/about/">About</a></li>
 							<li><a href="/destination/">Destination</a></li>
+							<li><a href="/tours/">Tours</a></li>
 							<li><a href="/gallery/">Gallery</a></li>
 							<li><a href="/blog/">Blog</a></li>
 							<li><a href="/contact/">Contact</a></li>

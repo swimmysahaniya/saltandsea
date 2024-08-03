@@ -10,7 +10,7 @@
 .main-footer{
 	position:relative;
 	padding: 70px 0px 60px;
-    background-color: #00a1ff;
+    background-color: #212529;
 }
 
 .footer-logo img {
@@ -95,7 +95,7 @@
 }
 
 .footer-bottom_nav li a:hover{
-	color: var(--main-color);
+	color: var(--white-color);
 }
 
 .footer-bottom_nav li:last-child{

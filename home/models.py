@@ -137,3 +137,13 @@ class Achievements(BaseModel):
     icon = models.CharField(max_length=50)
     title = models.CharField(max_length=50)
     text = models.CharField(max_length=100)
+
+
+class SEO(models.Model):
+    page_name = models.CharField(max_length=100, unique=True)  # Unique identifier for the page
+    title = models.CharField(max_length=255)
+    keywords = models.TextField()
+    description = models.TextField()
+
+    def __str__(self):
+        return self.page_name

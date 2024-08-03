@@ -263,10 +263,10 @@
 	display: none;
 }
 
-.travel-form .form-group:last-child .form-group_inner{
+/*.travel-form .form-group:last-child .form-group_inner{
 	margin-right: var(--margin-zero);
 	padding-right: var(--padding-zero);
-}
+}*/
 
 .travel-form label{
 	position: relative;
@@ -289,6 +289,7 @@
 .travel-form .form-group input[type="password"],
 .travel-form .form-group input[type="tel"],
 .travel-form .form-group input[type="email"],
+.travel-form .form-group input[type="date"],
 .travel-form .form-group select{
 	position:relative;
 	display:block;
@@ -2479,6 +2480,7 @@
 .gallery-two{
 	position: relative;
 	padding: 100px 0px 100px;
+    text-align: center;
 }
 
 .gallery-two .button-box{
@@ -3326,6 +3328,7 @@
 .gallery-three{
 	position: relative;
 	padding: 80px 0px 70px;
+    text-align: center;
 }
 
 .gallery-tab{
@@ -6615,6 +6618,21 @@
 	text-transform: uppercase;
 	font-size: var(--font-20);
 	margin-bottom: var(--margin-bottom-15);
+}
+
+.contact-one a.btn-style-two {
+    position: relative;
+    font-weight: 500;
+    overflow: hidden;
+    text-align: center;
+    border-radius: 5px;
+    padding: 18px 35px;
+    display: inline-block;
+    letter-spacing: 1px;
+    color: var(--white-color);
+    font-size: var(--font-14);
+    text-transform: uppercase;
+    background-color: var(--main-color);
 }
 
 .contact-one a{

@@ -4,7 +4,7 @@
 
 <!-- Banner One -->
 <section class="banner-one">
-	<div class="banner-one_image-layer" style="background-image: url(/media/images/main-slider/1.jpg)"></div>
+	<div class="banner-one_image-layer" style="background-image: url(/media/images/main-slider/11.jpg)"></div>
 	<div class="auto-container">
 		<!-- Content Column -->
 		<div class="banner-one_content">
@@ -14,6 +14,60 @@
 				</div>
 				<h1 class="banner-one_heading">ADVENTURE</h1>
 				<div class="banner-one_text">Experience the thrill of exploring the world's most fascinating destinations <br> with our expertly curated travel packages.</div>
+				<!-- Form Box -->
+				<div class="banner-one_form-box">
+					<!-- Travel Form -->
+					<div class="travel-form">
+						<form method="get" action="/tours/">
+    						{% csrf_token %}
+							<div class="row clearfix">
+
+								<div class="col-lg-4 col-md-6 col-sm-6 form-group">
+									<div class="form-group_inner">
+										<label>Destination</label>
+										<select name="destination" required>
+											<option value="">Select</option>
+											{% for destination in destinations %}
+											<option value="{{ destination.id }}">{{destination.destination_name}}</option>
+											{% endfor %}
+										</select>
+									</div>
+								</div>
+
+								<div class="col-lg-4 col-md-6 col-sm-6 form-group">
+									<div class="form-group_inner">
+										<label>Date</label>
+										<input type="date" name="calendar" placeholder="Select Date">
+									</div>
+								</div>
+
+								<div class="col-lg-4 col-md-6 col-sm-6 form-group">
+									<div class="form-group_inner">
+										<label>Price</label>
+										<select name="price" required>
+											<option value="">Select</option>
+											<option value="0">Up to Rs. 40,000</option>
+											<option value="1">Rs. 40,001 - Rs. 80,000</option>
+											<option value="2">Rs. 80,001 - Rs. 1,25,000</option>
+											<option value="3">Rs. 1,25,001 - Rs. 1,60,000</option>
+											<option value="4">Rs. 1,60,000+</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<!-- Button Box -->
+							<div class="button-box">
+								<button type="submit" class="btn-style-two theme-btn">
+									<span class="btn-wrap">
+										<span class="text-one">Search</span>
+										<span class="text-two">Search</span>
+									</span>
+								</button>
+							</div>
+						</form>
+					</div>
+					<!-- End Travel Form -->
+				</div>
 
 				<!-- Clients Box -->
 				<div class="clients-box">
@@ -49,8 +103,15 @@
 						<div class="sec-title_three-title">{{ha.short_heading}}</div>
 						<h1 class="sec-title_three-heading">{{ha.large_heading}}</h1>
 						<div class="sec-title_three-text">
-							{{ha.description}}
+							{{ha.description|linebreaks}}
 						</div>
+						<br>
+						<a class="btn-style-two theme-btn" href="/about/">
+							<span class="btn-wrap">
+								<span class="text-one">About Us</span>
+								<span class="text-two">About Us</span>
+							</span>
+						</a>
 					</div>
 					<div class="row clearfix">
 
@@ -152,7 +213,7 @@
 								</div>
 								<div class="location-block_one-content">
 									<h5 class="location-block_one-heading"><a href="{% url 'get_destination' destination.slug %}">{{destination.destination_name}}</a></h5>
-									<div class="location-block_one-location">{{destination.no_of_packages}} Packages</div>
+									<div class="location-block_one-location">{{ destination.package_count }} Packages</div>
 								</div>
 							</div>
 						</div>
@@ -160,8 +221,13 @@
 
 					</div>
 				</div>
-
 			</div>
+			<a class="btn-style-two theme-btn" href="/destination/">
+				<span class="btn-wrap">
+					<span class="text-one">See More Destinations</span>
+					<span class="text-two">See More Destinations</span>
+				</span>
+			</a>
 		</div>
 	</div>
 </section>
@@ -177,7 +243,7 @@
 					<h2 class="sec-title_heading">SPECIAL PACKAGES</h2>
 					<div class="sec-title-text">Get special travel packages made tailored for your needs.</div>
 				</div>
-				<!--<a class="package-one_more" href="/tour-package/">See More Packages</a>-->
+				<a class="package-one_more" href="/tours/">See More Packages</a>
 			</div>
 		</div>
 		<div class="row clearfix">
@@ -188,7 +254,7 @@
 				<div class="package-block_one-inner">
 					<div class="package-block_one-image">
 						<img src="/media/{{tour_package.t_image}}" alt="{{tour_package.name}}" style="width: 100%; height: 500px;" />
-						<div class="package-block_one-number">{{ forloop.counter }}</div>
+						<div class="package-block_one-number">0{{ forloop.counter }}</div>
 						<div class="package-block_one-content">
 							<h4 class="package-block_one-title"><a href="{% url 'tour_package_detail' tour_package.slug %}">{{tour_package.name}}</a></h4>
 						</div>
@@ -222,11 +288,9 @@
 			<div class="bid-title">gallery</div>
 			<div class="title">OUR ADVENTURES</div>
 		</div>
-
 		<div class="masonry-items-container row clearfix">
-
 			<!-- Gallery Block One -->
-            {% for image in gallery %}
+            {% for image in home_gallery %}
 			<div class="gallery-block_one masonry-item col-lg-3 col-md-6 col-sm-12">
 				<div class="gallery-block_one-inner">
 					<div class="gallery-block_one-image">
@@ -238,9 +302,13 @@
 				</div>
 			</div>
 			{% endfor %}
-
 		</div>
-
+		<a class="btn-style-two theme-btn" href="/gallery/">
+			<span class="btn-wrap">
+				<span class="text-one">See More Gallery</span>
+				<span class="text-two">See More Gallery</span>
+			</span>
+		</a>
 	</div>
 </section>
 <!-- End Gallery Two -->
@@ -264,7 +332,7 @@
 			<!-- Testimonial One Carousel Column -->
 			<div class="testimonial-one_carousel-column col-lg-8 col-md-12 col-sm-12">
 				<div class="testimonial-one_carousel-inner">
-					<div class="testimonial-one_pattern" style="background-image: url(images/icons/pattern-1.png)"></div>
+					<div class="testimonial-one_pattern" style="background-image: url(/media/images/icons/pattern-1.png)"></div>
 					<div class="testimonial-carousel owl-carousel owl-theme">
 
 						<!-- Testimonial Block One -->
@@ -272,7 +340,7 @@
 						{% for testimonial in testimonials %}
 						<div class="testimonial-block_one">
 							<div class="testimonial-block_one-inner">
-								<div class="testimonial-block_one-text">{{testimonial.description}}</div>
+								<div class="testimonial-block_one-text">{{testimonial.description|linebreaks}}</div>
 								<div class="testimonial-block_one-author">
 									<div class="testimonial-block_one-author_image">
 										<img src="/media/{{testimonial.image}}" alt="{{testimonial.name}}" />
@@ -338,7 +406,7 @@
 					<div class="acc-btn {% if forloop.counter == 1 %}active{% endif %}"><div class="icon-outer"><span class="icon fa-solid fa-angle-down fa-fw"></span></div>{{faq.question}}</div>
 					<div class="acc-content {% if forloop.counter == 1 %}current{% endif %}">
 						<div class="content">
-							<p>{{faq.answer}}</p>
+							<p>{{faq.answer|linebreaks}}</p>
 						</div>
 					</div>
 				</li>
@@ -361,7 +429,7 @@
 					<h2 class="sec-title_heading">TRAVEL BLOG</h2>
 					<div class="sec-title-text">Insights, tips, and stories to inspire your travels.</div>
 				</div>
-				<a class="news-one_more" href="/blog/">See More Articles</a>
+				<a class="news-one_more" href="/blog/">See More Blogs</a>
 			</div>
 		</div>
 		<div class="row clearfix">

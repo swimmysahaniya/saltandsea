@@ -25,6 +25,7 @@ urlpatterns = [
     path('', home, name="home"),
 
     path('destination/', destination, name="destination"),
+    path('tours/', tour_packages_page, name="tour_packages_page"),
     path('destination/<slug>/', get_destination, name="get_destination"),
     path('tours/<slug>/', tour_package_detail, name="tour_package_detail"),
 

@@ -60,7 +60,7 @@
                             <div class="tab active-tab" id="prod-overview">
                                 <div class="info_outer">
                                     <h3>overview</h3>
-                                    <p>{{package.description}}</p>
+                                    <p>{{package.description|linebreaks}}</p>
                                     <div class="row clearfix">
                                         <!-- Column -->
                                         <div class="column col-lg-6 col-md-6 col-sm-12">
@@ -73,7 +73,7 @@
                                         <!-- Column -->
                                         <div class="column col-lg-6 col-md-6 col-sm-12">
                                             <ul class="tour-detail-two_list">
-                                                <li><span class="icon fas fa-sun fa-fw"></span>{{package.duration}}</li>
+                                                <li><span class="icon fas fa-sun fa-fw"></span>{{package.duration}} Days</li>
                                                 <li><span class="icon fas fa-user fa-fw"></span>{{package.no_of_people}} People</li>
                                             </ul>
                                         </div>
@@ -89,14 +89,14 @@
                                         <div class="column col-lg-6 col-md-6 col-sm-12">
                                             <h4>INCLUDED</h4>
                                             <ul class="tour-detail-two_options">
-                                                <li>{{package.included}}</li>
+                                                <li>{{package.included|linebreaks}}</li>
                                             </ul>
                                         </div>
                                         <!-- Column -->
                                         <div class="column col-lg-6 col-md-6 col-sm-12">
                                             <h4>NOT INCLUDED</h4>
                                             <ul class="tour-detail-two_options cross">
-                                                <li>{{package.not_included}}</li>
+                                                <li>{{package.not_included|linebreaks}}</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -106,7 +106,7 @@
                             <!-- Tab -->
                             <div class="tab" id="prod-itinerary">
                                 <h4>ITINERARY</h4>
-                                <p>{{package.itinerary}}</p>
+                                <p>{{package.itinerary|linebreaks}}</p>
                             </div>
 
                             <!-- Tab -->
