@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from .models import Destination, Gallery, Blog, TourPackage, Testimonial, Clients, Faqs, HomeAbout, Achievements, SEO
+from .models import (Destination, Gallery, Blog, TourPackage, Testimonial, Clients, Faqs,
+                     HomeAbout, Achievements, SEO, TemplePackage)
 from django.core.paginator import Paginator
 from itertools import groupby
-from django.db.models import Count
-from django.db.models import Q
+from django.db.models import Count, Q
 
 from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
@@ -22,7 +22,7 @@ def home(request):
 
     galleries = Gallery.objects.all()[:9]
     home_gallery = Gallery.objects.all()[:8]
-    blogs = Blog.objects.all()[:4]
+    blogs = Blog.objects.all()[:2]
     #destinations = Destination.objects.all()[:10]
     testimonial = Testimonial.objects.all()
     client = Clients.objects.all()
@@ -34,12 +34,56 @@ def home(request):
 
     destinations = Destination.objects.annotate(package_count=Count('tour_packages'))[:10]
 
-    links = Destination.objects.all().order_by('india_part', 'state', 'destination_name')
+    links = Destination.objects.all().order_by('category', 'india_part', 'state', 'destination_name')
     grouped_links = {}
-    for india_part, india_part_group in groupby(links, key=lambda x: x.india_part):
-        state_grouped_links = {state: list(state_group) for state, state_group in
-                               groupby(india_part_group, key=lambda x: x.state)}
-        grouped_links[india_part] = state_grouped_links
+    for category, category_group in groupby(links, key=lambda x: x.category):
+        india_part_grouped_links = {}
+        for india_part, india_part_group in groupby(category_group, key=lambda x: x.india_part):
+            state_grouped_links = {state: list(state_group) for state, state_group in
+                                   groupby(india_part_group, key=lambda x: x.state)}
+            india_part_grouped_links[india_part] = state_grouped_links
+        grouped_links[category] = india_part_grouped_links
+
+    temple_packages = TemplePackage.objects.all().order_by('name')
+
+    if request.method == 'POST':
+        form = TourBookingForm(request.POST)
+        if form.is_valid():
+            location = form.cleaned_data['location']
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            phone = form.cleaned_data['phone']
+            no_of_nights = form.cleaned_data['no_of_nights']
+            no_of_adults = form.cleaned_data['no_of_adults']
+            no_of_children = form.cleaned_data['no_of_children']
+            message = form.cleaned_data['message']
+
+            # Render the HTML email template
+            html_message = render_to_string('email-templates/tour-booking.html', {
+                'location': location,
+                'name': name,
+                'email': email,
+                'phone': phone,
+                'no_of_nights': no_of_nights,
+                'no_of_adults': no_of_adults,
+                'no_of_children': no_of_children,
+                'message': message,
+            })
+
+            # Send email
+            send_mail(
+                'Tour Booking Enquiry',
+                '',  # Plain text message (optional)
+                'sahaniyaswimmy@gmail.com',
+                [email],
+                fail_silently=False,
+                html_message=html_message,
+            )
+
+            # Redirect to a new URL
+            return HttpResponseRedirect('/thanks/')
+    else:
+        form = TourBookingForm()
 
     context = {
         'page': 'Salt and Sea',
@@ -50,7 +94,9 @@ def home(request):
         'testimonials': testimonial,
         'clients': client,
         'faqs': faqs,
+        'form': form,
         'grouped_links': grouped_links,
+        'temple_packages': temple_packages,
         'tour_packages': tour_package,
         'home_about': home_about,
         'achievements': achievements,
@@ -65,35 +111,69 @@ def home(request):
 def destination(request):
 
     # Fetch SEO data
-    seo_data_qs = SEO.objects.filter(page_name="destination")
+    seo_data_qs = SEO.objects.filter(page_name="national-destination")
     if seo_data_qs.exists():
         seo_data = seo_data_qs.first()
     else:
         seo_data = None
 
-    galleries = Gallery.objects.all()[:9]
-
-    queryset = Destination.objects.annotate(package_count=Count('tour_packages'))
-
-    paginator = Paginator(queryset, 9)  # Show 10 objects per page
-
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
+    queryset = (Destination.objects.filter(category="National").annotate(package_count=Count('tour_packages'))
+                .order_by('destination_name'))
 
     if request.GET.get('search'):
         queryset = queryset.filter(destination_name__icontains=request.GET.get('search'))
 
+    paginator = Paginator(queryset, 9)  # Show 9 objects per page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    galleries = Gallery.objects.all()[:9]
+
     context = {
         'page': 'Destinations',
-        'destinations': queryset,
-        'page_obj': page_obj,
+        'destinations': page_obj,
         'gallery': galleries,
-        'title': seo_data.title if seo_data else 'Destinations',
-        'keywords': seo_data.keywords if seo_data else 'Destinations',
-        'description': seo_data.description if seo_data else 'Destinations',
+        'page_obj': page_obj,
+        'title': seo_data.title if seo_data else 'National Destinations',
+        'keywords': seo_data.keywords if seo_data else 'National Destinations',
+        'description': seo_data.description if seo_data else 'National Destinations',
     }
 
-    return render(request, "destination.html", context)
+    return render(request, "national-destination.html", context)
+
+
+def international_destination(request):
+
+    # Fetch SEO data
+    seo_data_qs = SEO.objects.filter(page_name="international-destination")
+    if seo_data_qs.exists():
+        seo_data = seo_data_qs.first()
+    else:
+        seo_data = None
+
+    queryset = (Destination.objects.filter(category="International").annotate(package_count=Count('tour_packages'))
+                .order_by('destination_name'))
+
+    if request.GET.get('search'):
+        queryset = queryset.filter(destination_name__icontains=request.GET.get('search'))
+
+    paginator = Paginator(queryset, 9)  # Show 9 objects per page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    galleries = Gallery.objects.all()[:9]
+
+    context = {
+        'page': 'Destinations',
+        'destinations': page_obj,
+        'gallery': galleries,
+        'page_obj': page_obj,
+        'title': seo_data.title if seo_data else 'International Destinations',
+        'keywords': seo_data.keywords if seo_data else 'International Destinations',
+        'description': seo_data.description if seo_data else 'International Destinations',
+    }
+
+    return render(request, "international-destination.html", context)
 
 
 def tour_packages_page(request):
@@ -105,15 +185,15 @@ def tour_packages_page(request):
     else:
         seo_data = None
 
-    galleries = Gallery.objects.all()[:9]
-
     destinations = Destination.objects.all()
-    #queryset = TourPackage.objects.all()
 
     # Handle form submission
     destination_id = request.GET.get('destination')
     calendar = request.GET.get('calendar')
     price = request.GET.get('price')
+    no_of_days = request.GET.get('no_of_days')
+    no_of_adults = request.GET.get('no_of_adults')
+    no_of_children = request.GET.get('no_of_children')
 
     # Filter tour packages based on form inputs
     tour_package_filter = Q()
@@ -132,28 +212,114 @@ def tour_packages_page(request):
             tour_package_filter &= Q(price__gt=125000, price__lte=160000)
         elif price == '4':
             tour_package_filter &= Q(price__gt=160000)
+    if no_of_days:
+        tour_package_filter &= Q(duration=no_of_days)
+    if no_of_adults:
+        tour_package_filter &= Q(no_of_people=no_of_adults)
+    if no_of_children:
+        tour_package_filter &= Q(no_of_children=no_of_children)
 
-    queryset = TourPackage.objects.filter(tour_package_filter)
-
-    paginator = Paginator(queryset, 9)  # Show 10 objects per page
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
+    queryset = TourPackage.objects.filter(
+        Q(destination__category="National") & tour_package_filter
+    )
 
     if request.GET.get('search'):
         queryset = queryset.filter(name__icontains=request.GET.get('search'))
 
+    # Apply explicit ordering
+    queryset = queryset.order_by('name')
+
+    paginator = Paginator(queryset, 9)  # Show 9 objects per page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    galleries = Gallery.objects.all()[:9]
+
     context = {
         'page': 'Tours',
         'destinations': destinations,
-        'tours': queryset,
+        'tours': page_obj,
         'page_obj': page_obj,
         'gallery': galleries,
-        'title': seo_data.title if seo_data else 'Tours',
-        'keywords': seo_data.keywords if seo_data else 'Tours',
-        'description': seo_data.description if seo_data else 'Tours',
+        'title': seo_data.title if seo_data else 'National Tours',
+        'keywords': seo_data.keywords if seo_data else 'National Tours',
+        'description': seo_data.description if seo_data else 'National Tours',
     }
 
-    return render(request, "tours.html", context)
+    return render(request, "national-tours.html", context)
+
+
+def international_tours(request):
+
+    # Fetch SEO data
+    seo_data_qs = SEO.objects.filter(page_name="international_tours")
+    if seo_data_qs.exists():
+        seo_data = seo_data_qs.first()
+    else:
+        seo_data = None
+
+    destinations = Destination.objects.all()
+
+    # Handle form submission
+    destination_id = request.GET.get('destination')
+    calendar = request.GET.get('calendar')
+    price = request.GET.get('price')
+    no_of_days = request.GET.get('no_of_days')
+    no_of_adults = request.GET.get('no_of_adults')
+    no_of_children = request.GET.get('no_of_children')
+
+    # Filter tour packages based on form inputs
+    tour_package_filter = Q()
+    if destination_id:
+        tour_package_filter &= Q(destination_id=destination_id)
+    if calendar:
+        tour_package_filter &= Q(date_of_travel=calendar)
+    if price:
+        if price == '0':
+            tour_package_filter &= Q(price__lte=40000)
+        elif price == '1':
+            tour_package_filter &= Q(price__gt=40000, price__lte=80000)
+        elif price == '2':
+            tour_package_filter &= Q(price__gt=80000, price__lte=125000)
+        elif price == '3':
+            tour_package_filter &= Q(price__gt=125000, price__lte=160000)
+        elif price == '4':
+            tour_package_filter &= Q(price__gt=160000)
+    if no_of_days:
+        tour_package_filter &= Q(duration=no_of_days)
+    if no_of_adults:
+        tour_package_filter &= Q(no_of_people=no_of_adults)
+    if no_of_children:
+        tour_package_filter &= Q(no_of_children=no_of_children)
+
+    queryset = TourPackage.objects.filter(
+        Q(destination__category="International") & Q(tour_package_filter)
+    )
+
+    if request.GET.get('search'):
+        queryset = queryset.filter(name__icontains=request.GET.get('search'))
+
+    # Apply explicit ordering
+    queryset = queryset.order_by('name')
+
+    paginator = Paginator(queryset, 9)  # Show 9 objects per page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    galleries = Gallery.objects.all()[:9]
+
+    context = {
+        'page': 'Tours',
+        'destinations': destinations,
+        'tours': page_obj,
+        'page_obj': page_obj,
+        'gallery': galleries,
+        'title': seo_data.title if seo_data else 'International Tours',
+        'keywords': seo_data.keywords if seo_data else 'International Tours',
+        'description': seo_data.description if seo_data else 'International Tours',
+    }
+
+    return render(request, "international-tours.html", context)
 
 
 def get_destination(request, slug):
@@ -243,7 +409,9 @@ def tour_package_detail(request, slug):
             name = form.cleaned_data['name']
             email = form.cleaned_data['email']
             phone = form.cleaned_data['phone']
-            pref_travel_date = form.cleaned_data['pref_travel_date']
+            no_of_nights = form.cleaned_data['no_of_nights']
+            no_of_adults = form.cleaned_data['no_of_adults']
+            no_of_children = form.cleaned_data['no_of_children']
             message = form.cleaned_data['message']
 
             # Render the HTML email template
@@ -252,7 +420,9 @@ def tour_package_detail(request, slug):
                 'name': name,
                 'email': email,
                 'phone': phone,
-                'pref_travel_date': pref_travel_date,
+                'no_of_nights': no_of_nights,
+                'no_of_adults': no_of_adults,
+                'no_of_children': no_of_children,
                 'message': message,
             })
 
@@ -260,7 +430,7 @@ def tour_package_detail(request, slug):
             send_mail(
                 'Tour Booking Enquiry',
                 '',  # Plain text message (optional)
-                'info@saltandsea.co.in',
+                'sahaniyaswimmy@gmail.com',
                 [email],
                 fail_silently=False,
                 html_message=html_message,
@@ -437,7 +607,7 @@ def contact(request):
             send_mail(
                 'Contact Enquiry',
                 '',  # Plain text message (optional)
-                'info@saltandsea.co.in',
+                'sahaniyaswimmy@gmail.com',
                 [email],
                 fail_silently=False,
                 html_message=html_message,
@@ -500,3 +670,114 @@ def privacy_policy(request):
         'description': seo_data.description if seo_data else 'Privacy Policy',
     }
     return render(request, "privacy-policy.html", context)
+
+
+def thanks(request):
+
+    galleries = Gallery.objects.all()[:9]
+
+    context = {
+        'gallery': galleries,
+    }
+    return render(request, "thanks.html", context)
+
+
+def temple_darshan(request):
+
+    # Fetch SEO data
+    seo_data_qs = SEO.objects.filter(page_name="temple_darshan")
+    if seo_data_qs.exists():
+        seo_data = seo_data_qs.first()
+    else:
+        seo_data = None
+
+    queryset = TemplePackage.objects.all().order_by('name')
+
+    if request.GET.get('search'):
+        queryset = queryset.filter(name__icontains=request.GET.get('search'))
+
+    paginator = Paginator(queryset, 9)  # Show 9 objects per page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    galleries = Gallery.objects.all()[:9]
+
+    context = {
+        'page': 'Temple Darshan',
+        'destinations': queryset,
+        'temple_darshan': page_obj,
+        'page_obj': page_obj,
+        'gallery': galleries,
+        'title': seo_data.title if seo_data else 'Temple Darshan',
+        'keywords': seo_data.keywords if seo_data else 'Temple Darshan',
+        'description': seo_data.description if seo_data else 'Temple Darshan',
+    }
+
+    return render(request, "temple-darshan.html", context)
+
+
+def temple_darshan_detail(request, slug):
+
+    # Fetch SEO data
+    seo_data_qs = SEO.objects.filter(page_name=slug)
+    if seo_data_qs.exists():
+        seo_data = seo_data_qs.first()
+    else:
+        seo_data = None
+
+    galleries = Gallery.objects.all()[:9]
+
+    package = TemplePackage.objects.get(slug=slug)
+    images = package.temple_images.all()
+
+    if request.method == 'POST':
+        form = TourBookingForm(request.POST)
+        if form.is_valid():
+            location = form.cleaned_data['location']
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            phone = form.cleaned_data['phone']
+            no_of_nights = form.cleaned_data['no_of_nights']
+            no_of_adults = form.cleaned_data['no_of_adults']
+            no_of_children = form.cleaned_data['no_of_children']
+            message = form.cleaned_data['message']
+
+            # Render the HTML email template
+            html_message = render_to_string('email-templates/tour-booking.html', {
+                'location': location,
+                'name': name,
+                'email': email,
+                'phone': phone,
+                'no_of_nights': no_of_nights,
+                'no_of_adults': no_of_adults,
+                'no_of_children': no_of_children,
+                'message': message,
+            })
+
+            # Send email
+            send_mail(
+                'Tour Booking Enquiry',
+                '',  # Plain text message (optional)
+                'sahaniyaswimmy@gmail.com',
+                [email],
+                fail_silently=False,
+                html_message=html_message,
+            )
+
+            # Redirect to a new URL
+            return HttpResponseRedirect('/thanks/')
+    else:
+        form = TourBookingForm()
+
+    context = {
+        'page': 'Temple Darshan Detail',
+        'package': package,
+        'images': images,
+        'form': form,
+        'gallery': galleries,
+        'title': seo_data.title if seo_data else 'Temple Darshan Detail',
+        'keywords': seo_data.keywords if seo_data else 'Temple Darshan Detail',
+        'description': seo_data.description if seo_data else 'Temple Darshan Detail',
+    }
+
+    return render(request, "temple-darshan-detail.html", context)

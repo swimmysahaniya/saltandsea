@@ -439,6 +439,8 @@ video {
   display: block;
   position: relative;
   background-color: #fff;
+  overflow-y: scroll;
+  height: 600px !important;
 }
 
 .wsmenu>.wsmenu-list>li>.wsshoptabing.wtsdepartmentmenu {
@@ -1032,10 +1034,10 @@ video {
   width: 18px;
 }
 
-.wsmenu>.wsmenu-list>li>.wsmegamenu li a:hover {
+/*.wsmenu>.wsmenu-list>li>.wsmegamenu li a:hover {
   background: transparent;
   text-decoration: underline;
-}
+}*/
 
 .wsmenu>.wsmenu-list>li>.wsmegamenu .link-list li i {
   font-size: 11px;
@@ -1063,7 +1065,7 @@ video {
 
 /* ================== Desktop Half Menus CSS  ================== */
 .wsmenu>.wsmenu-list>li>.wsmegamenu.halfmenu {
-  width: 40%;
+  width: 20%;
   right: auto;
   left: auto;
 }

@@ -2,17 +2,21 @@
 
 {% block start %}
 
-<!-- Page Banner -->
-<section class="page-banner" style="background-image: url(/media/images/background/15.jpg)">
-    <div class="auto-container">
-        <ul class="page-breadbrumbs">
+<!-- Banner One -->
+<section class="banner-one" style="height: 650px;">
+	<video autoplay="" loop="" muted="" poster="/media/images/main-slider/1.jpg">
+        <source type="video/mp4" src="{{destine_place.video_file}}">
+    </video>
+	<div class="auto-container">
+		<!-- Content Column -->
+		<ul class="page-breadbrumbs">
             <li><a href="/">Home</a></li>
             <li>{{destine_place.destination_name}}</li>
         </ul>
         <h1 class="page-banner_title">{{destine_place.destination_name}}</h1>
-    </div>
+	</div>
 </section>
-<!-- End Page Banner -->
+<!-- End Banner One -->
 
 <!-- Gallery Seven -->
 <section class="gallery-seven">
@@ -117,7 +121,7 @@
                     <div class="filter-list">
 
                         <!-- Gallery Block Two -->
-                        {% for tour_package in tour_packages %}
+                        <!--{% for tour_package in tour_packages %}
                         <div class="tour-block_one">
                             <div class="tour-block_one-inner d-flex align-items-center flex-wrap flex-xl-nowrap">
                                 <div class="tour-block_one-image flex-xl-shrink-0">
@@ -129,6 +133,54 @@
                                     <div class="tour-block_one-location">{{destine_place.destination_name}}</div>
                                     <h4 class="tour-block_one-heading"><a href="{% url 'tour_package_detail' tour_package.slug %}">{{tour_package.name}}</a></h4>
                                     <div class="tour-block_one-text">{{tour_package.description|slice:":100"}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}-->
+
+                        <!-- Location Block One -->
+                        {% for tour_package in tour_packages %}
+                        <div class="tour-package-one col-lg-4 col-md-6 col-sm-6">
+                            <div class="tour-package-one-inner">
+                                <div class="tour-package-one-top-content">
+                                    <h5 class="tour-package-one-top-heading"><a href="{% url 'tour_package_detail' tour_package.slug %}">{{tour_package.name}}</a></h5>
+                                    <div class="tour-package-one-top-location">{{destine_place.destination_name}}</div>
+                                    <div class="duration">{{tour_package.duration}}</div>
+                                </div>
+                                <div class="row activity-area">
+                                    <div class="col-lg-3 col-md-3 col-sm-3">
+                                        <a href="#">
+                                            <img src="/media/images/airplane.png" alt="airplane" />
+                                            <div class="activity">2 flights</div>
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3">
+                                        <a href="#">
+                                            <img src="/media/images/residential.png" alt="hotel" />
+                                            <div class="activity">4 hotels</div>
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3">
+                                        <a href="#">
+                                            <img src="/media/images/sedan.png" alt="car" />
+                                            <div class="activity">6 transfers</div>
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3">
+                                        <a href="#">
+                                            <img src="/media/images/running.png" alt="activity" />
+                                            <div class="activity">4 activities</div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="tour-package-one-image">
+                                    <a href="{% url 'tour_package_detail' tour_package.slug %}"><img src="/media/{{tour_package.t_image}}" alt="{{tour_package.name}}" /></a>
+                                </div>
+                                <div class="tour-package-one-content">
+                                    <div class="tour-package-one-size">Starting Price</div>
+                                    <h5 class="tour-package-one-heading">Rs. {{tour_package.price}}</h5>
+                                    <div class="tour-package-one-size">Per Person</div>
+                                    <a class="tour-package-one-arrow flaticon-next-2" href="{% url 'tour_package_detail' tour_package.slug %}"></a>
                                 </div>
                             </div>
                         </div>
