@@ -24,6 +24,10 @@ from home.views import *
 urlpatterns = [
     path('', home, name="home"),
 
+    path('search/', search, name='search'),
+
+    path('slider/', slider, name="slider"),
+
     path('national-destination/', destination, name="destination"),
     path('international-destination/', international_destination, name="international_destination"),
 

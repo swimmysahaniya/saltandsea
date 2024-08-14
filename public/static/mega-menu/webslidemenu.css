@@ -440,7 +440,7 @@ video {
   position: relative;
   background-color: #fff;
   overflow-y: scroll;
-  height: 600px !important;
+  height: 500px !important;
 }
 
 .wsmenu>.wsmenu-list>li>.wsshoptabing.wtsdepartmentmenu {

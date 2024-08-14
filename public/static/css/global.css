@@ -392,17 +392,17 @@ body {
 
 /* width */
 ::-webkit-scrollbar {
-width: 6px;
+width: 8px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-background: #002C39;
+background: #fff;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-background: rgb(255, 255, 255);
+background: #6FB3E0;
 }
 
 /* Handle on hover */

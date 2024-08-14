@@ -3,91 +3,91 @@
 {% block start %}
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
+	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="exampleModalLabel">Join Our Tour</h5>
-				<!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>-->
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
-				<div class="booking-form">
-					<form method="post">
-						{% csrf_token %}
-						<div class="row">
-							<div class="col-lg-6">
-								<!-- Form Group -->
-								<div class="form-group">
-									<label class="form-label">Full Name*</label>
-									<input type="text" name="name" placeholder="Full Name" required>
-								</div>
-							</div>
+				<div class="row">
+					<!--<div class="col-lg-4 col-md-4 col-sm-12">
+						<img src="/media/images/nature.jpg" alt="image">
+					</div>-->
+					<div class="col-lg-12 col-md-12 col-sm-12">
+						<p>Ready to venture out into the world? Fill the form below and start your brand new journey with us.</p>
+						<div class="booking-form">
+							<form method="post">
+								{% csrf_token %}
+								<div class="row">
+									<div class="col-lg-6">
+										<!-- Form Group -->
+										<div class="form-group">
+											<input type="text" name="name" placeholder="Full Name*" required>
+										</div>
+									</div>
 
-							<div class="col-lg-6">
-								<!-- Form Group -->
-								<div class="form-group">
-									<label class="form-label">Email Address*</label>
-									<input type="email" name="email" placeholder="Email Address" required>
-								</div>
-							</div>
+									<div class="col-lg-6">
+										<!-- Form Group -->
+										<div class="form-group">
+											<input type="email" name="email" placeholder="Email Address*" required>
+										</div>
+									</div>
 
-							<div class="col-lg-6">
-								<!-- Form Group -->
-								<div class="form-group">
-									<label class="form-label">Mobile Number*</label>
-									<input type="tel" name="phone" pattern="[7-9]{1}[0-9]{9}" placeholder="Mobile Number" title="Phone number with 7-9 and remaining 9 digit with 0-9">
-								</div>
-							</div>
+									<div class="col-lg-6">
+										<!-- Form Group -->
+										<div class="form-group">
+											<input type="tel" name="phone" pattern="[7-9]{1}[0-9]{9}" placeholder="Mobile Number*" title="Phone number with 7-9 and remaining 9 digit with 0-9" required>
+										</div>
+									</div>
 
-							<div class="col-lg-6">
-								<!-- Form Group -->
-								<div class="form-group">
-									<label for="no_of_nights">Number of Nights*</label>
-									<input type="number" name="no_of_nights" id="no_of_nights" placeholder="Number of Nights" required>
-								</div>
-							</div>
+									<div class="col-lg-6">
+										<!-- Form Group -->
+										<div class="form-group">
+											<input type="number" name="no_of_nights" id="no_of_nights" placeholder="Number of Nights*" required>
+										</div>
+									</div>
 
-							<div class="col-lg-6">
-								<!-- Form Group -->
-								<div class="form-group">
-									<label for="no_of_adults">Number of Adults*</label>
-									<input type="number" name="no_of_adults" id="no_of_adults" placeholder="Number of Adults" required>
-								</div>
-							</div>
+									<div class="col-lg-6">
+										<!-- Form Group -->
+										<div class="form-group">
+											<input type="number" name="no_of_adults" id="no_of_adults" placeholder="Number of Adults*" required>
+										</div>
+									</div>
 
-							<div class="col-lg-6">
-								<!-- Form Group -->
-								<div class="form-group">
-									<label for="no_of_children">Number of Children*</label>
-									<input type="number" name="no_of_children" id="no_of_children" placeholder="Number of Children" required>
-								</div>
-							</div>
+									<div class="col-lg-6">
+										<!-- Form Group -->
+										<div class="form-group">
+											<input type="number" name="no_of_children" id="no_of_children" placeholder="Number of Children*" required>
+										</div>
+									</div>
 
-							<div class="col-lg-12">
-								<!-- Form Group -->
-								<div class="form-group">
-									<label class="form-label">Location*</label>
-									<input type="text" name="location" placeholder="Location" required>
-								</div>
-							</div>
+									<div class="col-lg-12">
+										<!-- Form Group -->
+										<div class="form-group">
+											<input type="text" name="location" placeholder="Location*" required>
+										</div>
+									</div>
 
-							<div class="col-lg-12">
-								<!-- Form Group -->
-								<div class="form-group">
-									<label class="form-label">Enter Message</label>
-									<textarea name="message" placeholder="Enter Message"></textarea>
-								</div>
-							</div>
+									<div class="col-lg-12">
+										<!-- Form Group -->
+										<div class="form-group">
+											<textarea name="message" placeholder="Enter Message"></textarea>
+										</div>
+									</div>
 
-							<button type="submit" class="btn-style-two theme-btn">
-								<span class="btn-wrap">
-									<span class="text-one">Send Message</span>
-									<span class="text-two">Send Message</span>
-								</span>
-							</button>
+									<div class="button-box text-center">
+										<a class="btn-style-three theme-btn" href="#">
+											<div class="btn-wrap">
+												<span class="text-one">Send Message</span>
+												<span class="text-two">Send Message</span>
+											</div>
+										</a>
+									</div>
+								</div>
+							</form>
 						</div>
-					</form>
+					</div>
 				</div>
 			</div>
 		</div>

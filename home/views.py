@@ -781,3 +781,27 @@ def temple_darshan_detail(request, slug):
     }
 
     return render(request, "temple-darshan-detail.html", context)
+
+
+def slider(request):
+
+    return render(request, "slider.html", )
+
+
+def search(request):
+
+    galleries = Gallery.objects.all()[:9]
+
+    query = request.GET.get('q')
+    if query:
+        results = Destination.objects.filter(destination_name__icontains=query)
+    else:
+        results = Destination.objects.all()
+
+    context = {
+        'gallery': galleries,
+        'query': query,
+        'results': results,
+    }
+    return render(request, 'search.html', context)
+

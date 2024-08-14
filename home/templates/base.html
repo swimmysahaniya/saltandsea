@@ -26,6 +26,34 @@
 
 <body>
 
+	<!-- top section start -->
+	<section class="header-top">
+		<div class="auto-container">
+			<div class="row">
+				<div class="col-lg-2 col-md-2 col-sm-2">
+
+				</div>
+				<div class="col-lg-8 col-md-8 col-sm-8">
+				<div class="cta-one_title-box">
+					<!-- Subscribe Box Two -->
+					<div class="subscribe-box_two">
+						<form method="GET" action="{% url 'search' %}">
+							<div class="form-group">
+								<input type="text" name="q" placeholder="Search for destinations here ..." required>
+								<button type="submit" class="submit-btn theme-btn">
+									Search
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-2"></div>
+			</div>
+		</div>
+	</section>
+	<!-- top section end -->
+
 <div class="page-wrapper">
 
 	  <!-- Mobile Header -->
@@ -35,7 +63,7 @@
 	  </div>
 	  <!-- Mobile Header -->
 
-	<div class="hotline-phone-ring-wrap">
+	<!--<div class="hotline-phone-ring-wrap">
 		<div class="hotline-phone-ring">
 			<div class="hotline-phone-ring-circle"></div>
 				<div class="hotline-phone-ring-circle-fill"></div>
@@ -46,7 +74,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div>-->
 
  	<!-- Main Header -->
 	<header class="header header_style_one">
@@ -168,12 +196,12 @@
 								<img src="/media/images/logo.png" width="40%" alt="Logo" title="Salt and Sea">
 							</a>
 						</div>
-						<p>Salt&Sea Adventures was born from the passion for the thrill of expedition and exploration ardently shared by lifelong friends and adventure enthusiasts, Sudhir, Yash and Tanvi.</p>
-						<div class="footer-social_box">
+						<p>Salt & Sea Adventures was born from the passion for the thrill of expedition and exploration ardently shared by lifelong friends and adventure enthusiasts, Sudhir, Yash and Tanvi. Founded in 2019, a simple purpose laid our company’s foundation; to offer unforgettable tour experiences that connect people with the beauty and wonder of travel.</p>
+						<!--<div class="footer-social_box">
 							<a href="https://facebook.com/" class="fab fa-facebook fa-fw"></a>
 							<a href="https://twitter.com/" class="fab fa-twitter-square fa-fw"></a>
 							<a href="https://instagram.com/" class="fab fa-instagram fa-fw"></a>
-						</div>
+						</div>-->
 					</div>
 					<div class=" col-lg-4 col-md-4 col-sm-12">
 						<ul class="footer-nav">
@@ -289,13 +317,11 @@
 			if (index < bookingData.length) {
 				var toastId = 'toast-' + index;
 				var toastHTML = `
-					<div id="${toastId}" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="3000">
+					<div id="${toastId}" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="40000">
 						<div class="toast-header">
 							<strong class="mr-auto">Live Booking</strong>
 							<small class="text-muted">${bookingData[index].time}</small>
-							<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
+        					<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
 						</div>
 						<div class="toast-body">
 							<strong>${bookingData[index].name}</strong> just booked a trip to <em>${bookingData[index].destination}</em>.
@@ -315,8 +341,10 @@
 			}
 		}
 
-		// Start showing the bookings from the first one
-		showNextBooking(0);
+		// Start showing the first booking 6 seconds after the page load
+		setTimeout(function() {
+			showNextBooking(0);
+		}, 10000); // Start after 10 seconds
 	});
 </script>
 </body>

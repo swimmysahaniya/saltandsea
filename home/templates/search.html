@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block start %}
+
+<!-- Page Banner -->
+<section class="page-banner" style="background-image: url(/media/images/background/7.jpg)">
+    <div class="auto-container">
+        <ul class="page-breadbrumbs">
+            <li><a href="/">Home</a></li>
+            <li>{{ query }}</li>
+        </ul>
+        <h1 class="page-banner_title">{{ query }}</h1>
+    </div>
+</section>
+<!-- End Page Banner -->
+
+{% if results %}
+<!-- Gallery Five -->
+<section class="gallery-five">
+    <div class="auto-container">
+
+        <!-- MixitUp Galery -->
+        <div class="mixitup-gallery">
+
+            <div class="filter-list row clearfix">
+
+                <!-- Gallery Block Two -->
+                {% for destination in results %}
+                <div class="gallery-block_two style-two col-lg-4 col-md-6 col-sm-12">
+                    <div class="gallery-block_two-inner">
+                        <div class="gallery-block_two-image">
+                            <div class="overlay-box">
+                                <img src="/media/{{destination.destination_images.first.image}}" alt="{{destination.destination_name}}" style="width: 100%; height: 352px;" />
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="gallery-block_two-title"><a href="{% url 'get_destination' destination.slug %}">{{destination.destination_name}}</a></h3>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Gallery Five -->
+{% else %}
+<section class="gallery-five">
+    <div class="auto-container">
+        <div class="page-header d-flex align-items-center justify-content-between flex-wrap flex-md-nowrap gap-2 gap-md-5">
+            <!-- Gallery Five Title Box -->
+            <div class="gallery-five_title-box">
+                <h4>No destinations found.</h4>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% endblock %}
