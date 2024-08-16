@@ -415,7 +415,7 @@ body.mr_menu_active .mr_menu_overlay {
 }
 /* Sticky/Fixed Nav */
 .fixed_menu .header{
-    background: #212529;
+    background: #fff;
 	position: fixed;
 	top: -50px;
 	opacity: 0;

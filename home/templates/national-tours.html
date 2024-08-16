@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block start %}
+
+<!-- Page Banner -->
+<section class="page-banner" style="background-image: url(/media/images/background/7.jpg)">
+    <div class="auto-container">
+        <ul class="page-breadbrumbs">
+            <li><a href="/">Home</a></li>
+            <li>national tour packages</li>
+        </ul>
+        <h1 class="page-banner_title">NATIONAL TOUR PACKAGES</h1>
+    </div>
+</section>
+<!-- End Page Banner -->
+
+<!-- Gallery Five -->
+<section class="gallery-five">
+    <div class="auto-container">
+        <div class="page-header d-flex align-items-center justify-content-between flex-wrap flex-md-nowrap gap-2 gap-md-5">
+            <!-- Gallery Five Title Box -->
+            <div class="gallery-five_title-box">
+                <h4>OUR NATIONAL TOUR PACKAGES</h4>
+            </div>
+
+            <!-- Gallery Search Box -->
+            <div class="gallery-search_box">
+                <!-- Search Box -->
+                <div class="search-box">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" name="search" placeholder="Search...">
+                            <button type="submit"><span class="icon fa fa-search"></span></button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- MixitUp Galery -->
+        <div class="mixitup-gallery">
+
+            <div class="filter-list row clearfix">
+
+                <!-- Gallery Block Two -->
+                {% for tour in tours %}
+                <div class="gallery-block_two style-two col-lg-4 col-md-6 col-sm-12">
+                    <div class="gallery-block_two-inner">
+                        <div class="gallery-block_two-image">
+                            <div class="overlay-box">
+                                <img src="/media/{{tour.tour_images.first.image}}" alt="{{tour.name}}" style="width: 100%; height: 352px;" />
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="gallery-block_two-title"><a href="{% url 'tour_package_detail' tour.slug %}">{{tour.name}}</a></h3>
+                </div>
+                {% endfor %}
+
+            </div>
+
+            <!-- Pagination Outer -->
+            <div class="pagination-outer text-center">
+                <ul class="paginations">
+                    {% if page_obj.has_previous %}
+                        <li><a href="?page={{ page_obj.previous_page_number }}"><span class="flaticon-left-arrow-2"></span></a></li>
+                    {% endif %}
+
+                    {% for num in page_obj.paginator.page_range %}
+                        {% if page_obj.number == 1 %}
+                            <li class="active"><a href="#"></a></li>
+                        {% elif page_obj.number == num %}
+                            <li class="active"><a href="#">{{ num|default_if_none:"" }}</a></li>
+                        {% elif num > page_obj.number|add:-5 and num < page_obj.number|add:5 %}
+                            <li><a href="?page={{ num }}">{{ num }}</a></li>
+                        {% elif num == 1 or num == page_obj.paginator.num_pages %}
+                            <li><a href="?page={{ num }}">{{ num }}</a></li>
+                        {% elif num > page_obj.number|add:5 and num < page_obj.paginator.num_pages %}
+                            <li>...</li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                        <li><a href="?page={{ page_obj.next_page_number }}"><span class="flaticon-next-2"></span></a></li>
+                    {% endif %}
+                </ul>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+<!-- End Gallery Five -->
+
+{% endblock %}

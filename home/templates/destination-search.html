@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block start %}
+
+<!-- Page Banner -->
+<section class="page-banner" style="background-image: url(/media/images/background/7.jpg)">
+    <div class="auto-container">
+        <ul class="page-breadbrumbs">
+            <li><a href="/">Home</a></li>
+            <li>tours</li>
+        </ul>
+        <h1 class="page-banner_title">tours</h1>
+    </div>
+</section>
+<!-- End Page Banner -->
+
+{% if results %}
+<!-- Gallery Five -->
+<section class="gallery-five">
+    <div class="auto-container">
+
+        <!-- MixitUp Galery -->
+        <div class="mixitup-gallery">
+
+            <div class="filter-list row clearfix">
+
+                <!-- Gallery Block Two -->
+                {% for tour in results %}
+                <div class="tour-package-one col-lg-4 col-md-6 col-sm-6">
+                    <div class="tour-package-one-inner">
+                        <div class="tour-package-one-top-content">
+                            <h5 class="tour-package-one-top-heading"><a href="{% url 'tour_package_detail' tour.slug %}">{{tour.name}}</a></h5>
+                            <div class="tour-package-one-top-location">{{tour.destination.destination_name}}</div>
+                            <div class="duration">{{tour.duration}}</div>
+                        </div>
+                        <div class="row activity-area">
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-3">
+                                <a href="#">
+                                    <img src="/media/images/airplane.png" alt="airplane" width="30" height="30" />
+                                    <div class="activity">2 flights</div>
+                                </a>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-3">
+                                <a href="#">
+                                    <img src="/media/images/residential.png" alt="hotel" width="30" height="30" />
+                                    <div class="activity">4 hotels</div>
+                                </a>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-3">
+                                <a href="#">
+                                    <img src="/media/images/sedan.png" alt="car" width="30" height="30" />
+                                    <div class="activity">6 transfers</div>
+                                </a>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-3">
+                                <a href="#">
+                                    <img src="/media/images/running.png" alt="activity" width="30" height="30" />
+                                    <div class="activity">4 activities</div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="tour-package-one-image">
+                            <a href="{% url 'tour_package_detail' tour.slug %}"><img src="/media/{{tour.tour_images.first.image}}" alt="{{tour.name}}" /></a>
+                        </div>
+                        <div class="tour-package-one-content">
+                            <div class="tour-package-one-size">Starting Price</div>
+                            <h5 class="tour-package-one-heading">Rs. {{tour.price}}</h5>
+                            <div class="tour-package-one-size">Per Person</div>
+                            <a class="tour-package-one-arrow flaticon-next-2" href="{% url 'tour_package_detail' tour.slug %}"></a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!--<div class="gallery-block_two style-two col-lg-4 col-md-6 col-sm-12">
+                    <div class="gallery-block_two-inner">
+                        <div class="gallery-block_two-image">
+                            <div class="overlay-box">
+                                <img src="/media/{{tour.tour_images.first.image}}" alt="{{tour.name}}" style="width: 100%; height: 352px;" />
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="gallery-block_two-title"><a href="{% url 'tour_package_detail' tour.slug %}">{{tour.name}}</a></h3>
+                </div>-->
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Gallery Five -->
+{% else %}
+<section class="gallery-five">
+    <div class="auto-container">
+        <div class="page-header d-flex align-items-center justify-content-between flex-wrap flex-md-nowrap gap-2 gap-md-5">
+            <!-- Gallery Five Title Box -->
+            <div class="gallery-five_title-box">
+                <h4>No tours found matching your criteria.</h4>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% endblock %}

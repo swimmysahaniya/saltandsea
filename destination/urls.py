@@ -24,8 +24,18 @@ from home.views import *
 urlpatterns = [
     path('', home, name="home"),
 
-    path('destination/', destination, name="destination"),
-    path('tours/', tour_packages_page, name="tour_packages_page"),
+    path('search/', search, name='search'),
+    path('destination-search/', destination_search, name='destination_search'),
+
+    path('national-destination/', destination, name="destination"),
+    path('international-destination/', international_destination, name="international_destination"),
+
+    path('temple-darshan/', temple_darshan, name="temple_darshan"),
+    path('temple-darshan/<slug>/', temple_darshan_detail, name="temple_darshan_detail"),
+
+    path('national-tours/', tour_packages_page, name="tour_packages_page"),
+    path('international-tours/', international_tours, name="international_tours"),
+
     path('destination/<slug>/', get_destination, name="get_destination"),
     path('tours/<slug>/', tour_package_detail, name="tour_package_detail"),
 
@@ -36,7 +46,8 @@ urlpatterns = [
     path('gallery/', gallery, name="gallery"),
 
     path('contact/', contact, name="contact"),
-    path('thanks/', lambda request: render(request, 'thanks.html'), name='thanks'),
+    path('thanks/', thanks, name='thanks'),
+    #path('thanks/', lambda request: render(request, 'thanks.html'), name='thanks'),
 
     path('terms-and-conditions/', terms_and_conditions, name="terms_and_conditions"),
     path('privacy-policy/', privacy_policy, name="privacy_policy"),

@@ -1,0 +1,199 @@
+{% extends "base.html" %}
+
+{% block start %}
+
+<!-- Page Banner -->
+<section class="page-banner" style="background-image: url(/media/images/background/15.jpg)">
+    <div class="auto-container">
+        <ul class="page-breadbrumbs">
+            <li><a href="/">Home</a></li>
+            <li>Temple Darshan</li>
+            <li>{{package.name}}</li>
+        </ul>
+        <h1 class="page-banner_title">{{package.name}}</h1>
+    </div>
+</section>
+<!-- End Page Banner -->
+
+<!-- Gallery Seven -->
+<section class="gallery-seven">
+    <div class="outer-container">
+        <div class="gallery-carousel-three owl-carousel owl-theme">
+
+            <!-- Image -->
+            {% for image in images %}
+            <div class="image">
+                <a class="lightbox-image" href="/media/{{image.image}}">
+                    <img src="/media/{{image.image}}" alt="{{package.name}}" style="width: 100%; height: 294px;" />
+                </a>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+<!-- End Gallery Seven  -->
+
+<!-- Tour Detail Two -->
+<section class="tour-detail-two">
+    <div class="auto-container">
+        <div class="row clearfix">
+            <div class="col-lg-8 col-md-12 col-sm-12">
+
+                <!-- Accordian Info Tabs -->
+                <div class="accordian-info-tabs">
+                    <!-- Accordian Tabs -->
+                    <div class="accordian-tabs tabs-box">
+
+                        <!-- Tab Btns -->
+                        <ul class="tab-btns tab-buttons clearfix">
+                            <li data-tab="#prod-overview" class="tab-btn active-btn">Overview</li>
+                            <li data-tab="#prod-inclusion-exclusion" class="tab-btn">Inclusions/Exclusions</li>
+                            <li data-tab="#prod-itinerary" class="tab-btn">Itinerary</li>
+                            <li data-tab="#prod-map" class="tab-btn">Map</li>
+                        </ul>
+
+                        <!-- Tabs Container -->
+                        <div class="tabs-content">
+
+                            <!-- Tab / Active Tab -->
+                            <div class="tab active-tab" id="prod-overview">
+                                <div class="info_outer">
+                                    <h3>overview</h3>
+                                    <p>{{package.description|linebreaks}}</p>
+                                    <div class="row clearfix">
+                                        <!-- Column -->
+                                        <div class="column col-lg-6 col-md-6 col-sm-12">
+                                            <ul class="tour-detail-two_list">
+                                                <li><span class="icon fas fa-map-marker-alt fa-fw"></span>{{package.name}}</li>
+                                                <li><span class="icon fas fa-rupee-sign fa-fw"></span>Start from Rs. {{package.price}}</li>
+                                                <li><span class="icon fas fa-calendar fa-fw"></span>{{package.date_of_travel}}</li>
+                                            </ul>
+                                        </div>
+                                        <!-- Column -->
+                                        <div class="column col-lg-6 col-md-6 col-sm-12">
+                                            <ul class="tour-detail-two_list">
+                                                <li><span class="icon fas fa-sun fa-fw"></span>{{package.duration}}</li>
+                                                <li><span class="icon fas fa-user fa-fw"></span>{{package.no_of_people}} People</li>
+                                                <li><span class="icon fas fa-user fa-fw"></span>{{package.no_of_children}} Children</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tab -->
+                            <div class="tab" id="prod-inclusion-exclusion">
+                                <div class="options_outer">
+                                    <div class="row clearfix">
+                                        <!-- Column -->
+                                        <div class="column col-lg-6 col-md-6 col-sm-12">
+                                            <h4>INCLUDED</h4>
+                                            <ul class="tour-detail-two_options">
+                                                <li>{{package.included|linebreaks}}</li>
+                                            </ul>
+                                        </div>
+                                        <!-- Column -->
+                                        <div class="column col-lg-6 col-md-6 col-sm-12">
+                                            <h4>NOT INCLUDED</h4>
+                                            <ul class="tour-detail-two_options cross">
+                                                <li>{{package.not_included|linebreaks}}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tab -->
+                            <div class="tab" id="prod-itinerary">
+                                <h4>ITINERARY</h4>
+                                <p>{{package.itinerary|linebreaks}}</p>
+                            </div>
+
+                            <!-- Tab -->
+                            <div class="tab" id="prod-map">
+                                <h4>Map</h4>
+                                <div class="mapouter">
+                                    <div class="gmap_canvas">
+                                        <iframe width="100%" height="500" id="gmap_canvas" src="{{package.map_iframe}}" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                                        <br>
+                                        <style>.mapouter{position: relative; text-align: right; padding-top: 30px;}</style>
+                                        <style>.gmap_canvas {overflow:hidden; background:none!important; border-radius: 20px;}</style>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-4 col-md-12 col-sm-12">
+                <div class="tour_plans position-sticky">
+                    <div class="title-box">
+                        <h4>JOIN THIS TOUR</h4>
+                        <div class="text">No extra hassle, just fill the form and let us contact you for more information.</div>
+                    </div>
+
+                    <!-- Booking Form -->
+                    <div class="booking-form">
+                        <form method="post">
+                            {% csrf_token %}
+                            <!-- Form Group -->
+                            <input type="hidden" name="location" value="Temple Darshan, {{package.name}}">
+                            <div class="form-group">
+                                <label for="fullname">Full name*</label>
+                                <input type="text" name="name" id="fullname" required>
+                            </div>
+                            <!-- Form Group -->
+                            <div class="form-group">
+                                <label for="email">Email*</label>
+                                <input type="email" name="email" id="email" required>
+                            </div>
+                            <!-- Form Group -->
+                            <div class="form-group">
+                                <label for="phone-number">Mobile Number*</label>
+                                <input type="tel" name="phone" id="phone-number" pattern="[7-9]{1}[0-9]{9}" placeholder="Mobile Number" title="Phone number with 7-9 and remaining 9 digit with 0-9" required>
+                            </div>
+                            <!-- Form Group -->
+                            <div class="form-group">
+                                <label for="no_of_nights">Number of Nights*</label>
+                                <input type="number" name="no_of_nights" id="no_of_nights" required>
+                            </div>
+                            <!-- Form Group -->
+                            <div class="form-group">
+                                <label for="no_of_adults">Number of Adults*</label>
+                                <input type="number" name="no_of_adults" id="no_of_adults" required>
+                            </div>
+                            <!-- Form Group -->
+                            <div class="form-group">
+                                <label for="no_of_children">Number of Children*</label>
+                                <input type="number" name="no_of_children" id="no_of_children" required>
+                            </div>
+                            <!-- Form Group -->
+                            <div class="form-group">
+                                <label for="message">Additional Comments/Messages</label>
+                                <textarea name="message" id="message"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <button type="submit" class="btn-style-two theme-btn">
+                                        <span class="btn-wrap">
+                                            <span class="text-one">Book This Tour</span>
+                                            <span class="text-two">Book This Tour</span>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Tour Detail Two -->
+
+{% endblock %}

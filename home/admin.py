@@ -1,5 +1,7 @@
 from django.contrib import admin
-from .models import Destination, DestinationImage, Gallery, Blog, Review, Profile, TourPackage, TourImage, Testimonial, Clients, Faqs, HomeAbout, Achievements, SEO
+from .models import (Destination, DestinationImage, Gallery, Blog, Review, Profile, TourPackage, TourImage,
+                     Testimonial, Faqs, HomeAbout, Achievements, SEO, TemplePackage, TempleImage,
+                     PrivacyPolicy, TermsNConditions)
 
 
 class DestinationImageAdmin(admin.StackedInline):
@@ -8,7 +10,9 @@ class DestinationImageAdmin(admin.StackedInline):
 
 class DestinationAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('destination_name',)}
-    list_display = ('india_part', 'state', 'destination_name', 'slug', 'tags')
+    list_display = ('category', 'india_part', 'state', 'destination_name', 'tags')
+    search_fields = ('india_part', 'state', 'destination_name', 'tags', 'created_at')
+    list_filter = ('category', 'india_part', 'state', 'tags', 'created_at')
     inlines = [DestinationImageAdmin]
 
 
@@ -46,12 +50,13 @@ class TourImageAdmin(admin.StackedInline):
 
 class TourPackageAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
-    list_display = ('name', 'slug')
+    list_display = ('destination', 'name', 'price', 'duration', 'date_of_travel')
+    search_fields = ('destination__destination_name', 'name', 'created_at')
+    list_filter = ('created_at',)
     inlines = [TourImageAdmin]
 
 
 admin.site.register(TourPackage, TourPackageAdmin)
-admin.site.register(Clients)
 
 
 class TestimonialAdmin(admin.ModelAdmin):
@@ -74,3 +79,20 @@ class AchievementsAdmin(admin.ModelAdmin):
 
 admin.site.register(Achievements, AchievementsAdmin)
 admin.site.register(SEO)
+admin.site.register(PrivacyPolicy)
+admin.site.register(TermsNConditions)
+
+
+class TempleImageAdmin(admin.StackedInline):
+    model = TempleImage
+
+
+class TemplePackageAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('name',)}
+    list_display = ('name', 'price', 'duration', 'date_of_travel')
+    search_fields = ('name', 'created_at')
+    list_filter = ('name', 'created_at')
+    inlines = [TempleImageAdmin]
+
+
+admin.site.register(TemplePackage, TemplePackageAdmin)

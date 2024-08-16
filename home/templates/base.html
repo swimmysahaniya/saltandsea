@@ -11,8 +11,8 @@
 
 		<!--<title>{{page}}</title>-->
 		<title>{{ title|default:"Salt and Sea" }}</title>
-		<meta name="keywords" content="{{ keywords|default:"Salt and Sea" }}">
-		<meta name="description" content="{{ description|default:"Salt and Sea" }}">
+		<meta name="keywords" content="{{ keywords|default:'Salt and Sea' }}">
+		<meta name="description" content="{{ description|default:'Salt and Sea' }}">
 
 		<!-- Stylesheet  -->
 		<link href="/media/css/style.css" rel="stylesheet">
@@ -26,6 +26,34 @@
 
 <body>
 
+	<!-- top section start -->
+	<!--<section class="header-top">
+		<div class="auto-container">
+			<div class="row">
+				<div class="col-lg-2 col-md-2 col-sm-2">
+
+				</div>
+				<div class="col-lg-8 col-md-8 col-sm-8">
+				<div class="cta-one_title-box">
+					&lt;!&ndash; Subscribe Box Two &ndash;&gt;
+					<div class="subscribe-box_two">
+						<form method="GET" action="{% url 'search' %}">
+							<div class="form-group">
+								<input type="text" name="q" placeholder="Search for destinations here ..." required>
+								<button type="submit" class="submit-btn theme-btn">
+									Search
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-2"></div>
+			</div>
+		</div>
+	</section>-->
+	<!-- top section end -->
+
 <div class="page-wrapper">
 
 	  <!-- Mobile Header -->
@@ -35,7 +63,7 @@
 	  </div>
 	  <!-- Mobile Header -->
 
-	<div class="hotline-phone-ring-wrap">
+	<!--<div class="hotline-phone-ring-wrap">
 		<div class="hotline-phone-ring">
 			<div class="hotline-phone-ring-circle"></div>
 				<div class="hotline-phone-ring-circle-fill"></div>
@@ -46,10 +74,10 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div>-->
 
  	<!-- Main Header -->
-	<header class="header header_style_one">
+	<header class="header header_style_two">
 		<div class="headerfull">
 				<div class="wsmain clearfix">
 					<div class="logo">
@@ -61,46 +89,63 @@
 						<li aria-haspopup="true"><a href="/contact/" class="navtext"><span>Contact</span></a></li>
 						<li aria-haspopup="true"><a href="/blog/" class="navtext"><span>Blog</span></a></li>
 						<li aria-haspopup="true"><a href="/gallery/" class="navtext"><span>Gallery</span></a></li>
-					  	<li aria-haspopup="true"><a href="#" class="navtext"><span></span> <span>Destinations</span></a>
-						<div class="wsshoptabing wtsdepartmentmenu clearfix">
-						  <div class="wsshopwp clearfix">
-							<ul class="wstabitem clearfix">
-								{% for india_part, states in grouped_links.items %}
+						<li aria-haspopup="true"><a href="#" class="navtext"><span></span> <span>Temple Darshan</span></a>
+							<div class="wsmegamenu clearfix halfmenu">
+							  <div class="container-fluid">
+								<div class="row">
+								  <div class="col-lg-12 col-md-12">
+									<ul class="wstliststy06 clearfix">
+										{% for temple in temple_packages %}
+									  	<li><a href="{% url 'temple_darshan_detail' temple.slug %}">{{ temple.name }}</a></li>
+										{% endfor %}
+									</ul>
+								  </div>
+								</div>
+							  </div>
+							</div>
+						</li>
+						{% for category, india_parts in grouped_links.items %}
+					  	<li aria-haspopup="true"><a href="#" class="navtext"><span></span> <span>{{ category }}</span></a>
+							<div class="wsshoptabing wtsdepartmentmenu clearfix">
+							  <div class="wsshopwp clearfix">
+								<ul class="wstabitem clearfix">
+									{% for india_part, states in india_parts.items %}
 									<li class="{% if forloop.counter == 1 %}wsshoplink-active{% endif %}">
 										<a href="#">{{ india_part }}</a>
 										<div class="wstitemright clearfix">
 											<div class="container-fluid">
 												<div class="row">
 													{% for state, links in states.items %}
-														<div class="col-lg-3 col-md-12 clearfix">
-															<ul class="wstliststy02 clearfix">
-																<li class="wstheading clearfix">{{ state }}</li>
-																{% for link in links %}
-																	<li>
-																		<a href="/destination/{{ link.slug }}/">{{ link.destination_name }}</a>
-																		{% if link.tags == "Most Viewed" %}
-																			<span class="wstmenutag orangetag">{{ link.tags }}</span>
-																		{% elif link.tags == "50% off" %}
-																			<span class="wstmenutag bluetag">{{ link.tags }}</span>
-																		{% elif link.tags == "New" %}
-																			<span class="wstmenutag greentag">{{ link.tags }}</span>
-																		{% elif link.tags == "Discounted" %}
-																			<span class="wstmenutag redtag">{{ link.tags }}</span>
-																		{% endif %}
-																	</li>
-																{% endfor %}
-															</ul>
-														</div>
+													<div class="col-lg-3 col-md-12 clearfix">
+														<ul class="wstliststy02 clearfix">
+															<li class="wstheading clearfix">{{ state }}</li>
+															{% for link in links %}
+															<li>
+																<a href="/destination/{{ link.slug }}/">{{ link.destination_name }}</a>
+																{% if link.tags == "Most Viewed" %}
+																	<span class="wstmenutag orangetag">{{ link.tags }}</span>
+																{% elif link.tags == "50% off" %}
+																	<span class="wstmenutag bluetag">{{ link.tags }}</span>
+																{% elif link.tags == "New" %}
+																	<span class="wstmenutag greentag">{{ link.tags }}</span>
+																{% elif link.tags == "Discounted" %}
+																	<span class="wstmenutag redtag">{{ link.tags }}</span>
+																{% endif %}
+															</li>
+															{% endfor %}
+														</ul>
+													</div>
 													{% endfor %}
 												</div>
 											</div>
 										</div>
 									</li>
-								{% endfor %}
-							</ul>
-						  </div>
-						</div>
-					  </li>
+									{% endfor %}
+								</ul>
+							  </div>
+							</div>
+						</li>
+                		{% endfor %}
 						<li aria-haspopup="true"><a href="/about/" class="navtext"><span>About</span></a></li>
 						<li aria-haspopup="true"><a href="/" class="navtext"><span>Home</span></a></li>
 					</ul>
@@ -123,6 +168,19 @@
 	</div>-->
     <!-- End Main Header -->
 
+	<div class="social-widget">
+		<a href="https://www.facebook.com/" target="_blank" class="social-icon facebook"><i class="fab fa-facebook fa-fw"></i></a>
+		<a href="https://www.instagram.com/" target="_blank" class="social-icon instagram"><i class="fab fa-instagram fa-fw"></i></a>
+		<a href="https://twitter.com/" target="_blank" class="social-icon twitter"><i class="fab fa-twitter-square fa-fw"></i></a>
+		<a href="https://www.linkedin.com/" target="_blank" class="social-icon linkedin"><i class="fab fa-linkedin fa-fw"></i></a>
+		<a href="https://www.youtube.com/" target="_blank" class="social-icon youtube"><i class="fab fa-youtube fa-fw"></i></a>
+	</div>
+
+	<div aria-live="polite" aria-atomic="true">
+		<!-- Position it -->
+		<div id="toast-container"></div>
+	</div>
+
 	{% block start %}
 
 	{% endblock %}
@@ -138,19 +196,22 @@
 								<img src="/media/images/logo.png" width="40%" alt="Logo" title="Salt and Sea">
 							</a>
 						</div>
-						<p>Salt&Sea Adventures was born from the passion for the thrill of expedition and exploration ardently shared by lifelong friends and adventure enthusiasts, Sudhir, Yash and Tanvi.</p>
-						<div class="footer-social_box">
+						<p>Salt & Sea Adventures was born from the passion for the thrill of expedition and exploration ardently shared by lifelong friends and adventure enthusiasts, Sudhir, Yash and Tanvi. Founded in 2019, a simple purpose laid our company’s foundation; to offer unforgettable tour experiences that connect people with the beauty and wonder of travel.</p>
+						<!--<div class="footer-social_box">
 							<a href="https://facebook.com/" class="fab fa-facebook fa-fw"></a>
 							<a href="https://twitter.com/" class="fab fa-twitter-square fa-fw"></a>
 							<a href="https://instagram.com/" class="fab fa-instagram fa-fw"></a>
-						</div>
+						</div>-->
 					</div>
 					<div class=" col-lg-4 col-md-4 col-sm-12">
 						<ul class="footer-nav">
 							<li><a href="/">Home</a></li>
 							<li><a href="/about/">About</a></li>
-							<li><a href="/destination/">Destination</a></li>
-							<li><a href="/tours/">Tours</a></li>
+							<li><a href="/national-destination/">National Destination</a></li>
+							<li><a href="/international-destination/">International Destination</a></li>
+							<li><a href="/national-tours/">National Tours</a></li>
+							<li><a href="/international-tours/">International Tours</a></li>
+							<li><a href="/temple-darshan/">Temple Darshan</a></li>
 							<li><a href="/gallery/">Gallery</a></li>
 							<li><a href="/blog/">Blog</a></li>
 							<li><a href="/contact/">Contact</a></li>
@@ -213,6 +274,76 @@
 <script src="/media/mega-menu/webslidemenu.js"></script>
 
 <script>
+	$(document).ready(function() {
+		$('#myModal').modal('show');
+	});
+</script>
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		// Simulated data fetch (in a real scenario, you'd fetch this from a server)
+		var bookingData = [
+			{"name": "Archana Sharma", "destination": "Darjeeling", "time": "2 minutes ago"},
+			{"name": "Palak Kaushik", "destination": "Hyderabad", "time": "5 minutes ago"},
+			{"name": "Ajay Chaturvedi", "destination": "Delhi", "time": "10 minutes ago"},
+			{"name": "Rohit Tyagi", "destination": "Madhya Pradesh", "time": "12 minutes ago"},
+			{"name": "Revati Khandelwal", "destination": "Cochin", "time": "20 minutes ago"},
+			{"name": "Mohit Sharma", "destination": "Goa", "time": "2 minutes ago"},
+			{"name": "Sameeksha Kaushik", "destination": "Secundarabad", "time": "5 minutes ago"},
+			{"name": "Ajay Dwivedi", "destination": "Gurgaon", "time": "10 minutes ago"},
+			{"name": "Sanjay Yadav", "destination": "Andhra Pradesh", "time": "12 minutes ago"},
+			{"name": "Anjali Singh", "destination": "Bengalore", "time": "20 minutes ago"}
+		];
+
+		// Get the container where the toasts will be displayed
+		var toastContainer = document.getElementById('toast-container');
+
+		// Function to show the booking notifications one by one as Bootstrap toasts
+		function showNextBooking(index) {
+			if (index < bookingData.length) {
+				var toastId = 'toast-' + index;
+				var toastHTML = `
+					<div id="${toastId}" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="40000">
+						<div class="toast-header">
+							<strong class="mr-auto">Live Booking</strong>
+							<small class="text-muted">${bookingData[index].time}</small>
+        					<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+						</div>
+						<div class="toast-body">
+							<strong>${bookingData[index].name}</strong> just booked a trip to <em>${bookingData[index].destination}</em>.
+						</div>
+					</div>`;
+
+				// Append the toast to the container
+				toastContainer.insertAdjacentHTML('beforeend', toastHTML);
+
+				// Show the toast
+				$(`#${toastId}`).toast('show');
+
+				// Set the next booking to show after a delay
+				setTimeout(function() {
+					showNextBooking(index + 1);
+				}, 40000); // Show the next booking after 40 seconds
+			}
+		}
+
+		// Start showing the first booking 6 seconds after the page load
+		setTimeout(function() {
+			showNextBooking(0);
+		}, 10000); // Start after 10 seconds
+	});
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        flatpickr(".flatpickr", {
+            mode: "range",
+            dateFormat: "d-M",  // Adjust the format to "day-Month"
+            onChange: function(selectedDates, dateStr, instance) {
+                // You can handle the date selection event here if needed
+            }
+        });
+    });
+</script>
+	<script>
     (function () {
         var options = {
             whatsapp: "+917905335046", // WhatsApp number
@@ -227,6 +358,5 @@
         var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
     })();
 </script>
-
 </body>
 </html>
