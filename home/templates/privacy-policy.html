@@ -19,6 +19,7 @@
 	<div class="auto-container">
 		<div class="about-two_icon flaticon-black-airplane"></div>
 		{% for private in privacy %}
+		<h3>{{private.heading}}</h3>
 		<div class="about-two_text">{{private.description}}</div>
 		{% endfor %}
 	</div>

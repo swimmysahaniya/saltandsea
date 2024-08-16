@@ -183,9 +183,16 @@ class TempleImage(BaseModel):
 
 
 class PrivacyPolicy(BaseModel):
+    heading = models.CharField(max_length=255, null=True, blank=True)
     description = models.TextField()
 
 
 class TermsNConditions(BaseModel):
+    heading = models.CharField(max_length=255, null=True, blank=True)
+    description = models.TextField()
+
+
+class AboutPage(BaseModel):
+    heading = models.CharField(max_length=255, null=True, blank=True)
     description = models.TextField()
 

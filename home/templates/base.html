@@ -27,7 +27,7 @@
 <body>
 
 	<!-- top section start -->
-	<section class="header-top">
+	<!--<section class="header-top">
 		<div class="auto-container">
 			<div class="row">
 				<div class="col-lg-2 col-md-2 col-sm-2">
@@ -35,7 +35,7 @@
 				</div>
 				<div class="col-lg-8 col-md-8 col-sm-8">
 				<div class="cta-one_title-box">
-					<!-- Subscribe Box Two -->
+					&lt;!&ndash; Subscribe Box Two &ndash;&gt;
 					<div class="subscribe-box_two">
 						<form method="GET" action="{% url 'search' %}">
 							<div class="form-group">
@@ -51,7 +51,7 @@
 				<div class="col-lg-2 col-md-2 col-sm-2"></div>
 			</div>
 		</div>
-	</section>
+	</section>-->
 	<!-- top section end -->
 
 <div class="page-wrapper">
@@ -274,21 +274,6 @@
 <script src="/media/mega-menu/webslidemenu.js"></script>
 
 <script>
-    (function () {
-        var options = {
-            whatsapp: "+917905335046", // WhatsApp number
-            call_to_action: "Message us", // Call to action
-            button_color: "#4DC247", // Color of button
-            position: "right", // Position may be 'right' or 'left'
-            order: "whatsapp", // Order of buttons
-        };
-        var proto = document.location.protocol, host = "getbutton.io", url = proto + "//static." + host;
-        var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
-        s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
-        var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
-    })();
-</script>
-<script>
 	$(document).ready(function() {
 		$('#myModal').modal('show');
 	});
@@ -357,6 +342,21 @@
             }
         });
     });
+</script>
+	<script>
+    (function () {
+        var options = {
+            whatsapp: "+917905335046", // WhatsApp number
+            call_to_action: "Message us", // Call to action
+            button_color: "#4DC247", // Color of button
+            position: "right", // Position may be 'right' or 'left'
+            order: "whatsapp", // Order of buttons
+        };
+        var proto = document.location.protocol, host = "getbutton.io", url = proto + "//static." + host;
+        var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
+        s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
+        var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+    })();
 </script>
 </body>
 </html>

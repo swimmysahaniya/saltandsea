@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import (Destination, Gallery, Blog, TourPackage, Testimonial, Clients, Faqs,
-                     HomeAbout, Achievements, SEO, TemplePackage, PrivacyPolicy, TermsNConditions)
+                     HomeAbout, Achievements, SEO, TemplePackage, PrivacyPolicy, TermsNConditions, AboutPage)
 from django.core.paginator import Paginator
 from itertools import groupby
 from django.db.models import Count, Q
@@ -390,10 +390,12 @@ def about(request):
     else:
         seo_data = None
 
+    about_to = AboutPage.objects.all()
     queryset = Gallery.objects.all()[:9]
 
     context = {
         'page': 'About',
+        'about': about_to,
         'gallery': queryset,
         'title': seo_data.title if seo_data else 'About',
         'keywords': seo_data.keywords if seo_data else 'About',
