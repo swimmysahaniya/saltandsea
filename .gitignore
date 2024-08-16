@@ -1,5 +1,5 @@
 *.pyc
 *.pyo
 .DS_Store
-echo "db.sqlite3" >> .gitignore
-echo "__pycache__/" >> .gitignore.DS_Store
+db.sqlite3
+__pycache__/
