@@ -77,7 +77,7 @@
 	</div>-->
 
  	<!-- Main Header -->
-	<header class="header header_style_one">
+	<header class="header header_style_two">
 		<div class="headerfull">
 				<div class="wsmain clearfix">
 					<div class="logo">
@@ -346,6 +346,17 @@
 			showNextBooking(0);
 		}, 10000); // Start after 10 seconds
 	});
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        flatpickr(".flatpickr", {
+            mode: "range",
+            dateFormat: "d-M",  // Adjust the format to "day-Month"
+            onChange: function(selectedDates, dateStr, instance) {
+                // You can handle the date selection event here if needed
+            }
+        });
+    });
 </script>
 </body>
 </html>

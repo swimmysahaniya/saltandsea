@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import (Destination, DestinationImage, Gallery, Blog, Review, Profile, TourPackage, TourImage,
-                     Testimonial, Clients, Faqs, HomeAbout, Achievements, SEO, TemplePackage, TempleImage)
+                     Testimonial, Faqs, HomeAbout, Achievements, SEO, TemplePackage, TempleImage,
+                     PrivacyPolicy, TermsNConditions)
 
 
 class DestinationImageAdmin(admin.StackedInline):
@@ -56,7 +57,6 @@ class TourPackageAdmin(admin.ModelAdmin):
 
 
 admin.site.register(TourPackage, TourPackageAdmin)
-admin.site.register(Clients)
 
 
 class TestimonialAdmin(admin.ModelAdmin):
@@ -79,6 +79,8 @@ class AchievementsAdmin(admin.ModelAdmin):
 
 admin.site.register(Achievements, AchievementsAdmin)
 admin.site.register(SEO)
+admin.site.register(PrivacyPolicy)
+admin.site.register(TermsNConditions)
 
 
 class TempleImageAdmin(admin.StackedInline):

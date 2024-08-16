@@ -25,8 +25,7 @@ urlpatterns = [
     path('', home, name="home"),
 
     path('search/', search, name='search'),
-
-    path('slider/', slider, name="slider"),
+    path('destination-search/', destination_search, name='destination_search'),
 
     path('national-destination/', destination, name="destination"),
     path('international-destination/', international_destination, name="international_destination"),

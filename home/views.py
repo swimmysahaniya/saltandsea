@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import (Destination, Gallery, Blog, TourPackage, Testimonial, Clients, Faqs,
-                     HomeAbout, Achievements, SEO, TemplePackage)
+                     HomeAbout, Achievements, SEO, TemplePackage, PrivacyPolicy, TermsNConditions)
 from django.core.paginator import Paginator
 from itertools import groupby
 from django.db.models import Count, Q
@@ -9,6 +9,7 @@ from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
 from .forms import ContactForm, TourBookingForm
 from django.template.loader import render_to_string
+from datetime import datetime
 
 
 def home(request):
@@ -23,12 +24,12 @@ def home(request):
     galleries = Gallery.objects.all()[:9]
     home_gallery = Gallery.objects.all()[:8]
     blogs = Blog.objects.all()[:2]
-    #destinations = Destination.objects.all()[:10]
     testimonial = Testimonial.objects.all()
     client = Clients.objects.all()
     faqs = Faqs.objects.all()
     home_about = HomeAbout.objects.all()
     achievements = Achievements.objects.all()
+    destiny = Destination.objects.all()
 
     tour_package = TourPackage.objects.all()[:2]
 
@@ -88,6 +89,7 @@ def home(request):
     context = {
         'page': 'Salt and Sea',
         'gallery': galleries,
+        'dest': destiny,
         'home_gallery': home_gallery,
         'blogs': blogs,
         'destinations': destinations,
@@ -186,48 +188,10 @@ def tour_packages_page(request):
         seo_data = None
 
     destinations = Destination.objects.all()
-
-    # Handle form submission
-    destination_id = request.GET.get('destination')
-    calendar = request.GET.get('calendar')
-    price = request.GET.get('price')
-    no_of_days = request.GET.get('no_of_days')
-    no_of_adults = request.GET.get('no_of_adults')
-    no_of_children = request.GET.get('no_of_children')
-
-    # Filter tour packages based on form inputs
-    tour_package_filter = Q()
-    if destination_id:
-        tour_package_filter &= Q(destination_id=destination_id)
-    if calendar:
-        tour_package_filter &= Q(date_of_travel=calendar)
-    if price:
-        if price == '0':
-            tour_package_filter &= Q(price__lte=40000)
-        elif price == '1':
-            tour_package_filter &= Q(price__gt=40000, price__lte=80000)
-        elif price == '2':
-            tour_package_filter &= Q(price__gt=80000, price__lte=125000)
-        elif price == '3':
-            tour_package_filter &= Q(price__gt=125000, price__lte=160000)
-        elif price == '4':
-            tour_package_filter &= Q(price__gt=160000)
-    if no_of_days:
-        tour_package_filter &= Q(duration=no_of_days)
-    if no_of_adults:
-        tour_package_filter &= Q(no_of_people=no_of_adults)
-    if no_of_children:
-        tour_package_filter &= Q(no_of_children=no_of_children)
-
-    queryset = TourPackage.objects.filter(
-        Q(destination__category="National") & tour_package_filter
-    )
+    queryset = TourPackage.objects.filter(destination__category="National").order_by('name')
 
     if request.GET.get('search'):
         queryset = queryset.filter(name__icontains=request.GET.get('search'))
-
-    # Apply explicit ordering
-    queryset = queryset.order_by('name')
 
     paginator = Paginator(queryset, 9)  # Show 9 objects per page
     page_number = request.GET.get('page')
@@ -259,48 +223,10 @@ def international_tours(request):
         seo_data = None
 
     destinations = Destination.objects.all()
-
-    # Handle form submission
-    destination_id = request.GET.get('destination')
-    calendar = request.GET.get('calendar')
-    price = request.GET.get('price')
-    no_of_days = request.GET.get('no_of_days')
-    no_of_adults = request.GET.get('no_of_adults')
-    no_of_children = request.GET.get('no_of_children')
-
-    # Filter tour packages based on form inputs
-    tour_package_filter = Q()
-    if destination_id:
-        tour_package_filter &= Q(destination_id=destination_id)
-    if calendar:
-        tour_package_filter &= Q(date_of_travel=calendar)
-    if price:
-        if price == '0':
-            tour_package_filter &= Q(price__lte=40000)
-        elif price == '1':
-            tour_package_filter &= Q(price__gt=40000, price__lte=80000)
-        elif price == '2':
-            tour_package_filter &= Q(price__gt=80000, price__lte=125000)
-        elif price == '3':
-            tour_package_filter &= Q(price__gt=125000, price__lte=160000)
-        elif price == '4':
-            tour_package_filter &= Q(price__gt=160000)
-    if no_of_days:
-        tour_package_filter &= Q(duration=no_of_days)
-    if no_of_adults:
-        tour_package_filter &= Q(no_of_people=no_of_adults)
-    if no_of_children:
-        tour_package_filter &= Q(no_of_children=no_of_children)
-
-    queryset = TourPackage.objects.filter(
-        Q(destination__category="International") & Q(tour_package_filter)
-    )
+    queryset = TourPackage.objects.filter(destination__category="International").order_by('name')
 
     if request.GET.get('search'):
         queryset = queryset.filter(name__icontains=request.GET.get('search'))
-
-    # Apply explicit ordering
-    queryset = queryset.order_by('name')
 
     paginator = Paginator(queryset, 9)  # Show 9 objects per page
     page_number = request.GET.get('page')
@@ -639,10 +565,12 @@ def terms_and_conditions(request):
     else:
         seo_data = None
 
+    terms = TermsNConditions.objects.all()
     galleries = Gallery.objects.all()[:9]
 
     context = {
         'page': 'Terms and Conditions',
+        'terms': terms,
         'gallery': galleries,
         'title': seo_data.title if seo_data else 'Terms and Conditions',
         'keywords': seo_data.keywords if seo_data else 'Terms and Conditions',
@@ -660,10 +588,12 @@ def privacy_policy(request):
     else:
         seo_data = None
 
+    privacy = PrivacyPolicy.objects.all()
     galleries = Gallery.objects.all()[:9]
 
     context = {
         'page': 'Privacy Policy',
+        'privacy': privacy,
         'gallery': galleries,
         'title': seo_data.title if seo_data else 'Privacy Policy',
         'keywords': seo_data.keywords if seo_data else 'Privacy Policy',
@@ -783,11 +713,6 @@ def temple_darshan_detail(request, slug):
     return render(request, "temple-darshan-detail.html", context)
 
 
-def slider(request):
-
-    return render(request, "slider.html", )
-
-
 def search(request):
 
     galleries = Gallery.objects.all()[:9]
@@ -804,4 +729,67 @@ def search(request):
         'results': results,
     }
     return render(request, 'search.html', context)
+
+
+def destination_search(request):
+    destinations = Destination.objects.all()
+
+    # Handle form submission
+    destination_id = request.GET.get('destination')
+    date_range = request.GET.get('date_range')
+    price = request.GET.get('price')
+    no_of_days = request.GET.get('no_of_days')
+    no_of_adults = request.GET.get('no_of_adults')
+    no_of_children = request.GET.get('no_of_children')
+
+    # Initialize the filter
+    tour_package_filter = Q()
+
+    # Apply filters based on form inputs
+    if destination_id:
+        tour_package_filter &= Q(destination_id=destination_id)
+    if date_range:
+        dates = date_range.split(' to ')
+        if len(dates) == 2:
+            try:
+                from_date = datetime.strptime(dates[0], '%d-%b').replace(year=datetime.now().year).date()
+                to_date = datetime.strptime(dates[1], '%d-%b').replace(year=datetime.now().year).date()
+                tour_package_filter &= Q(date_of_travel__range=[from_date, to_date])
+            except ValueError:
+                # Handle error if date format is incorrect
+                print("Invalid date format")
+    if price:
+        if price == '0':
+            tour_package_filter &= Q(price__lte=40000)
+        elif price == '1':
+            tour_package_filter &= Q(price__gt=40000, price__lte=80000)
+        elif price == '2':
+            tour_package_filter &= Q(price__gt=80000, price__lte=125000)
+        elif price == '3':
+            tour_package_filter &= Q(price__gt=125000, price__lte=160000)
+        elif price == '4':
+            tour_package_filter &= Q(price__gt=160000)
+    if no_of_days:
+        tour_package_filter &= Q(duration=no_of_days)
+    if no_of_adults:
+        tour_package_filter &= Q(no_of_people=no_of_adults)
+    if no_of_children:
+        tour_package_filter &= Q(no_of_children=no_of_children)
+
+    # Fetch the filtered results
+    results = TourPackage.objects.filter(tour_package_filter)
+
+    # Fetch the gallery data
+    galleries = Gallery.objects.all()[:9]
+
+    # Pass the data to the template
+    context = {
+        'page': 'Tours',
+        'destination': destinations,
+        'results': results,
+        'gallery': galleries,
+    }
+    #print(results.query)
+
+    return render(request, "destination-search.html", context)
 

@@ -157,7 +157,7 @@ video {
     font-size: 16px;
     font-weight: 300;
     line-height: 24px;
-    color: #fff;
+    color: #6e6e6e;
 }
 
 .wsmenu>.wsmenu-list>li>a {
@@ -167,7 +167,7 @@ video {
 }
 
 .wsmenu>.wsmenu-list>li>a:hover {
-  color: #fff;
+  color:#212529;
 }
 
 .wsmenu>.wsmenu-list>li>.navtext>span+span:after {
@@ -183,7 +183,7 @@ video {
   line-height: 10px;
   position: relative;
   right: -7px;
-  color: #fff;
+  color: #6e6e6e;
   top: -3px;
 
 }
@@ -1231,7 +1231,7 @@ video {
   }
 
   .wsmenu>.wsmenu-list>li:hover>a {
-    background-color: rgba(0, 0, 0, 0.08);
+    background-color: rgba(0, 0, 0, 0);
     text-decoration: none;
   }
 
@@ -1343,7 +1343,7 @@ video {
     margin: 0px;
     float: none;
     font-size: 12px;
-    padding: 14px 11px 14px 11px;
+    padding: 14px 11px;
     font-weight: bold;
   }
 

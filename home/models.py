@@ -181,3 +181,11 @@ class TempleImage(BaseModel):
     temple = models.ForeignKey(TemplePackage, on_delete=models.CASCADE, related_name="temple_images")
     image = models.ImageField(upload_to="temple")
 
+
+class PrivacyPolicy(BaseModel):
+    description = models.TextField()
+
+
+class TermsNConditions(BaseModel):
+    description = models.TextField()
+
