@@ -39,10 +39,6 @@
     --color-three: rgb(246,246,246);
     --color-three-rgb:246,246,246;
 
-
-
-
-    
   /* #ffffff in decimal RGB */
   --white-color:rgb(255,255,255);
   --white-color-rgb:255,255,255;
@@ -402,7 +398,7 @@ background: #fff;
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-background: red;
+background: rgb(28 135 220);
 }
 
 /* Handle on hover */
@@ -798,7 +794,7 @@ img{
 	color: var(--white-color);
 	font-size: var(--font-14);
 	text-transform: uppercase;
-    background-color: var(--main-color);
+    background-color: rgb(28 135 220);
 }
 
 .btn-style-two::before{
@@ -810,7 +806,6 @@ img{
 	content: "";
 	right: -50px;
     bottom: -50px;
-	
 	border-radius: 50%;
 	background-color: var(--color-two);
     transition:all 600ms ease;
