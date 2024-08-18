@@ -116,7 +116,7 @@ video {
 }
 
 .wsmenu {
-  width: 94%;
+  width: 75%;
   float: right;
   font-family: var(--font-family-Poppins);
   color: #fff;
@@ -157,7 +157,7 @@ video {
     font-size: 16px;
     font-weight: 500;
     line-height: 24px;
-    color: #6e6e6e;
+    color: #ffffff;
 }
 
 .wsmenu>.wsmenu-list>li>a {
@@ -603,7 +603,7 @@ video {
 }
 
 .wsmenu>.wsmenu-list>li .wstliststy02 li a {
-  color: #6e6e6e;
+  color: #212529;
   font-size: 12px;
 }
 
@@ -641,7 +641,7 @@ video {
 }
 
 .wsmenu>.wsmenu-list>li .wstliststy06 li a {
-  color: #6e6e6e;
+  color: #212529;
   font-size: 12px;
 }
 
@@ -1506,7 +1506,7 @@ video {
 
   .wsmobileheader>.smllogo {
     display: block;
-    width: 80px;
+    width: 130px;
     margin: 7px auto 0px auto;
     float: none;
     padding: 0px;
@@ -1622,7 +1622,7 @@ video {
 
   .wsanimated-arrow {
     cursor: pointer;
-    padding: 16px 35px 16px 0px;
+    padding: 7px 35px 16px 0px;
     margin: 12px 0 0 15px;
   }
 
