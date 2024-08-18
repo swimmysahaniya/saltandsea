@@ -208,7 +208,7 @@
 	position: relative;
 	max-width: 1090px;
 	margin: 0 auto;
-	padding: 40px 45px 30px;
+	padding: 40px 45px 1px;
 	border-radius: 25px;
 	margin-top: var(--margin-top-40);
 	background-color: var(--white-color);
@@ -274,7 +274,7 @@
 	position: relative;
 	display: block;
 	font-weight: 500;
-	font-size: var(--font-20);
+	font-size: var(--font-14);
 	margin-bottom: var(--margin-bottom-5);
 }
 
@@ -302,7 +302,7 @@
 	height:50px;
 	border-radius:5px;
 	font-weight: 400;
-	font-size:var(--font-16);
+	font-size:var(--font-14);
 	color:var(--color-fourtynine);
 	-webkit-transition:all 300ms ease;
 	-ms-transition:all 300ms ease;
@@ -3609,7 +3609,7 @@
 	color: var(--white-color);
 	font-size: var(--font-26);
 	border: 6px solid var(--white-color);
-	background-color: var(--main-color);
+	background-color: rgb(28 135 220);
 	font-family: 'Font Awesome 5 Pro';
 	-webkit-transition:all 500ms ease;
 	-ms-transition:all 500ms ease;
@@ -3629,7 +3629,7 @@
 	color: var(--white-color);
 	font-size: var(--font-26);
 	border: 6px solid var(--white-color);
-	background-color: var(--main-color);
+	background-color: rgb(28 135 220);
 	font-family: 'Font Awesome 5 Pro';
 	-webkit-transition:all 500ms ease;
 	-ms-transition:all 500ms ease;
@@ -6921,9 +6921,11 @@
 	transition:all 500ms ease;
 }
 
-.gallery-seven .owl-carousel .owl-item.center .image{
-	opacity: 1;
-	filter: grayscale(0%);
+.gallery-seven .owl-carousel .owl-item.center .image {
+    opacity: 1;
+    filter: grayscale(0%);
+    transform: scale(1.1); /* Adjust the scale value as needed */
+    transition: transform 0.3s ease; /* Optional: smooth scaling transition */
 }
 
 .gallery-seven .owl-dots{

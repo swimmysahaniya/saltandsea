@@ -5,7 +5,7 @@
 	top: 0;
 	width: 100%;
 	height: auto;
-	background: transparent;
+	background: #212529;
 	z-index: 3;
 	-webkit-transition: all 0.5s ease-in-out;
 	-moz-transition: all 0.5s ease-in-out;
@@ -415,7 +415,7 @@ body.mr_menu_active .mr_menu_overlay {
 }
 /* Sticky/Fixed Nav */
 .fixed_menu .header{
-    background: #fff;
+    background: #000;
 	position: fixed;
 	top: -50px;
 	opacity: 0;
