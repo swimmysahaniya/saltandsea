@@ -167,7 +167,7 @@ video {
 }
 
 .wsmenu>.wsmenu-list>li>a:hover {
-  color:#212529;
+  color:#fff;
 }
 
 .wsmenu>.wsmenu-list>li>.navtext>span+span:after {
@@ -491,7 +491,7 @@ video {
   text-decoration: none;
   color: #000;
   font-weight: 600;
-/*  background: #fff;*/
+  background: #f8f9fa;
 }
 
 .wsmenu>.wsmenu-list>li>.wsshoptabing>.wsshopwp>.wstabitem>li>a>i {
@@ -509,7 +509,7 @@ video {
   position: absolute;
   right: 0;
   top: 0;
-  background-color: #fff;
+  background-color: #f8f9fa;
   color: #000;
   display: block;
   float: left;
