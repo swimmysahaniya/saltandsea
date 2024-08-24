@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-qbaot!emx#$gz2!zgkd#qfs)bvnx34$5a+$vy4p#i8ocg3k=5b
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['saltandsea.com', 'www.saltandsea.com']
 
 
 # Application definition
