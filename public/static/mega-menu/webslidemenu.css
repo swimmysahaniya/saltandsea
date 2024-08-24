@@ -1482,7 +1482,7 @@ video {
   .wsmobileheader {
     width: 100%;
     display: block;
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     z-index: 10002;
@@ -1494,6 +1494,10 @@ video {
     -ms-transition: all 0.25s ease-in-out;
     transition: all 0.25s ease-in-out;
   }
+
+  .social-widget {
+    display: block;
+}
 
   .wsactive .wsmobileheader {
     margin-left: 260px;

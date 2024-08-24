@@ -8701,7 +8701,7 @@
     display: inline-grid;
     gap: 10px;
     position: fixed;
-    top: 200px;
+    bottom: 0;
     z-index: 9;
     padding-left: 5px;
 }
