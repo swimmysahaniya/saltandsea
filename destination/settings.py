@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['saltandsea.co.in', 'www.saltandsea.co.in']
 
+CSRF_TRUSTED_ORIGINS = ['https://saltandsea.co.in', 'https://www.saltandsea.co.in']
+
 
 # Application definition
 
