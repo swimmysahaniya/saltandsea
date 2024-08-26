@@ -25,9 +25,7 @@ SECRET_KEY = 'django-insecure-qbaot!emx#$gz2!zgkd#qfs)bvnx34$5a+$vy4p#i8ocg3k=5b
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['saltandsea.co.in', 'www.saltandsea.co.in']
-
-CSRF_TRUSTED_ORIGINS = ['https://saltandsea.co.in', 'https://www.saltandsea.co.in']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
