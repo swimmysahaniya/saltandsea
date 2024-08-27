@@ -102,9 +102,9 @@ def home(request):
         'tour_packages': tour_package,
         'home_about': home_about,
         'achievements': achievements,
-        'title': seo_data.title if seo_data else 'Salt and Sea',
-        'keywords': seo_data.keywords if seo_data else 'Salt and Sea',
-        'description': seo_data.description if seo_data else 'Salt and Sea',
+        'title': seo_data.title if seo_data else 'Salt and Sea Adventures',
+        'keywords': seo_data.keywords if seo_data else 'Salt and Sea Adventures',
+        'description': seo_data.description if seo_data else 'Salt and Sea Adventures',
     }
 
     return render(request, "index.html", context)

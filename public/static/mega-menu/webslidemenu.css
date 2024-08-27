@@ -152,7 +152,7 @@ video {
     margin: 0px;
     border: 0;
     list-style: none;
-    display: inline-block;
+    display: block;
     position: relative;
     font-size: 16px;
     font-weight: 500;
@@ -1495,9 +1495,9 @@ video {
     transition: all 0.25s ease-in-out;
   }
 
-  .social-widget {
+  /*.social-widget {
     display: block;
-}
+  }*/
 
   .wsactive .wsmobileheader {
     margin-left: 260px;
